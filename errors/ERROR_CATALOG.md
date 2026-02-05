@@ -1,9 +1,10 @@
 # ⚠️ ERROR_CATALOG - 错误知识库总览
 
-> **Version**: 2.1
-> **Last Updated**: 2026-01-23
+> **Version**: 2.2
+> **Last Updated**: 2026-02-02
 > **Status**: Active
 > **用途**: 错误统计仪表板和快速索引
+> **新增**: ML Production Errors (E016-E018)
 
 ---
 
@@ -26,6 +27,9 @@
 | **E011** | **Git Bash npm install 失败** | **高** | **🟡** | **2026-01-23** | **是否在 PowerShell/CMD 中运行?** |
 | **E012** | **Pre-commit Hook 权限** | **中** | **🟡** | **2026-01-23** | **Hook 是否可执行 (`chmod +x`)?** |
 | **E013** | **知识库每次请求加载** | **中** | **🔴** | **2026-01-23** | **是否在启动时预加载到内存?** |
+| **E016** | **🆕 Train/Serve Skew** | **高** | **🔴** | **2026-02-02** | **训练服务是否用同一代码路径?** |
+| **E017** | **🆕 ML 部署无监控** | **高** | **🔴** | **2026-02-02** | **是否有 5 个核心监控?** |
+| **E018** | **🆕 静默模型漂移** | **中** | **🔴** | **2026-02-02** | **是否监控输入分布?** |
 
 ### 错误趋势分析
 
@@ -42,9 +46,9 @@ E005: ████░░░░░░ 40% → 30%  📉 改善中
 
 | 严重度 | 数量 | 占比 | 状态 |
 |--------|------|------|------|
-| 🔴 严重 | 4 | 40% | 需要优先处理 |
-| 🟡 中等 | 4 | 40% | 持续监控 |
-| 🟢 轻微 | 2 | 20% | 定期审查 |
+| 🔴 严重 | 7 | 44% | 需要优先处理（新增 ML 错误） |
+| 🟡 中等 | 4 | 25% | 持续监控 |
+| 🟢 轻微 | 2 | 12% | 定期审查 |
 
 ---
 
@@ -63,7 +67,15 @@ E005: ████░░░░░░ 40% → 30%  📉 改善中
 | [state-management.md](./errors/system-errors/state-management.md) | 状态管理 | 3 | 🟡 中 |
 | [api-integration.md](./errors/system-errors/api-integration.md) | API 集成 | 3 | 🟡 中 |
 
-**总计**: 6 个分类，17 个错误模式
+### 🆕 ML 生产错误（Machine Learning in Production）
+
+| 文件 | 错误类别 | 错误数量 | 优先级 |
+|------|---------|---------|--------|
+| [E016-train-serve-skew.md](./errors/ml-errors/E016-train-serve-skew.md) | Train/Serve 不一致 | 4 | 🔴 高 |
+| [E017-ml-no-monitoring.md](./errors/ml-errors/E017-ml-no-monitoring.md) | 部署无监控 | 1 | 🔴 高 |
+| [E018-silent-model-drift.md](./errors/ml-errors/E018-silent-model-drift.md) | 静默模型漂移 | 1 | 🔴 高 |
+
+**总计**: 6 个分类，17 个错误模式 + 🆕 3 个 ML 错误（6 个案例）
 
 ### 项目级错误（特定项目场景）
 
@@ -95,6 +107,9 @@ E005: ████░░░░░░ 40% → 30%  📉 改善中
 | `chart config` | E008 图表配置 | [api-integration.md](./errors/system-errors/api-integration.md) |
 | `npm install` | E009 依赖安装 | project-errors/ (待创建) |
 | `magic number` | E010 硬编码 | [state-management.md](./errors/system-errors/state-management.md) |
+| `Feature Store` | E016 Train/Serve Skew | [E016-train-serve-skew.md](./errors/ml-errors/E016-train-serve-skew.md) |
+| `model monitoring` | E017 ML 无监控 | [ML_MONITORING_CHECKLIST.md](../best-practices/ML_MONITORING_CHECKLIST.md) |
+| `feature drift` | E018 模型漂移 | [E016-train-serve-skew.md](./errors/ml-errors/E016-train-serve-skew.md) |
 
 ### 按场景搜索
 
@@ -105,6 +120,7 @@ E005: ████░░░░░░ 40% → 30%  📉 改善中
 | **API 集成** | E006, E008 | [api-integration.md](./errors/system-errors/api-integration.md) |
 | **状态管理** | E005, E010 | [state-management.md](./errors/system-errors/state-management.md) |
 | **错误处理** | E003, E007 | [error-handling.md](./errors/system-errors/error-handling.md) |
+| **🆕 ML 生产** | E016, E017, E018 | [E016-train-serve-skew.md](./errors/ml-errors/E016-train-serve-skew.md), [ML_MONITORING_CHECKLIST.md](../best-practices/ML_MONITORING_CHECKLIST.md) |
 
 ---
 

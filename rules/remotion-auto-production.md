@@ -55,6 +55,57 @@
 | 包含"音乐"、"节奏"、"节拍" | Audio visualization + useAudioData |
 | 包含"卡通"、"可爱"、"动画" | Lottie animations |
 | 包含"照片"、"图片"、"素材" | Nano Banana Pro 生成 |
+| **包含"模板"、"现成"、"快速"** | **Remotion Templates Library** |
+
+### 自动模板匹配（新增）
+
+> 📚 **完整模板库**: [REMOTION_TEMPLATES_LIBRARY.md](../capabilities/REMOTION_TEMPLATES_LIBRARY.md)
+
+当用户需求可以使用现成模板时，自动推荐最合适的模板：
+
+| 用户需求关键词 | 推荐模板 | 模板特点 |
+|--------------|---------|---------|
+| "标题"、"开场"、"动态文字" | animated-text | 字符逐个旋转入场 |
+| "弹跳"、"卡片"、"商务" | bounce-text | 渐变卡片弹性入场 |
+| "气泡"、"可爱"、"趣味" | bubble-pop-text | 圆形气泡依次弹出 |
+| "列表"、"功能"、"特性" | animated-list | 列表项滑入+圆形图标 |
+| "翻转"、"卡片"、"切换" | card-flip | 3D卡片360度翻转 |
+| "悬浮"、"强调"、"霓虹" | floating-bubble-text | 浮动+霓虹边框 |
+| "几何"、"科技背景" | geometric-patterns | 几何图形旋转 |
+| "故障"、"赛博朋克" | glitch-text | RGB分离抖动 |
+| "液态"、"波浪"、"流体" | liquid-wave | 流动的液态波浪 |
+| "矩阵"、"黑客"、"科幻" | matrix-rain | 绿色/蓝色字符雨 |
+| "爆炸"、"粒子"、"转场" | particle-explosion | 粒子旋转爆炸 |
+| "脉冲"、"节奏"、"音乐" | pulsing-text | 逐字脉冲闪烁 |
+| "滑动"、"简单"、"字幕" | slide-text | 从右滑入 |
+| "声波"、"音频"、"可视化" | sound-wave | 律动的声波条 |
+| "打字机"、"字幕"、"对话" | typewriter-subtitle | 打字机+闪烁光标 |
+
+**模板组合建议**（自动推荐）：
+
+```typescript
+// 产品介绍视频（30秒）
+scenes = [
+  { template: "animated-text", duration: 5 },      // 标题
+  { template: "animated-list", duration: 15 },     // 功能列表
+  { template: "particle-explosion", duration: 3 }, // 转场
+  { template: "bounce-text", duration: 7 }         // CTA
+]
+
+// 音乐视频（60秒）
+scenes = [
+  { template: "glitch-text", duration: 5 },        // 标题
+  { template: "sound-wave", duration: 45 },        // 声波可视化
+  { template: "pulsing-text", duration: 10 }       // 结尾
+]
+
+// 科技背景视频（持续循环）
+layers = [
+  { template: "geometric-patterns", layer: "background" },
+  { template: "matrix-rain", layer: "overlay", opacity: 0.3 },
+  { template: "animated-text", layer: "foreground" }
+]
+```
 
 ### 自动分辨率选择
 
@@ -154,8 +205,39 @@ def generate_structured_prompt(analysis):
 
 ### Step 3: 代码生成（自动）
 
-直接生成完整的 Remotion 项目结构：
+**优先级规则**：
+1. **有现成模板** → 直接使用模板库（最快）
+2. **需要自定义** → 基于模板修改（中等）
+3. **特殊需求** → 从零生成代码（最慢）
 
+**方案A：使用模板库**（推荐，速度快）
+```typescript
+// 1. 克隆模板库（仅首次）
+git clone https://github.com/reactvideoeditor/remotion-templates.git
+
+// 2. 复制需要的模板
+cp remotion-templates/templates/animated-text.tsx ./src/components/
+cp remotion-templates/templates/animated-list.tsx ./src/components/
+
+// 3. 自定义内容
+const text = "你的标题".split("");
+const items = [
+  { name: "你的功能1", color: "#3b82f6" },
+  { name: "你的功能2", color: "#60a5fa" }
+];
+
+// 4. 集成到项目
+<Composition
+  id="MyVideo"
+  component={CombinedScene}
+  durationInFrames={240}
+  fps={30}
+  width={1920}
+  height={1080}
+/>
+```
+
+**方案B：从零生成**（特殊需求）
 ```
 /my-video-project
   /src
@@ -163,6 +245,10 @@ def generate_structured_prompt(analysis):
       Scene1.tsx  # 自动生成
       Scene2.tsx  # 自动生成
       Scene3.tsx  # 自动生成
+    /templates    # 新增：模板库
+      animated-text.tsx
+      animated-list.tsx
+      particle-explosion.tsx
     /assets
       # Nano Banana Pro 生成指令
     /utils
@@ -173,6 +259,47 @@ def generate_structured_prompt(analysis):
     # 静态资源
   package.json
   remotion.config.ts
+```
+
+**自动决策流程**：
+```typescript
+function select_generation_strategy(request: string) {
+  // 1. 检查是否有完全匹配的模板
+  const exact_match = find_exact_template(request);
+  if (exact_match) {
+    return {
+      strategy: "use_template",
+      template: exact_match,
+      customization: extract_custom_params(request)
+    };
+  }
+
+  // 2. 检查是否可以组合现有模板
+  const combinable = find_combinable_templates(request);
+  if (combinable.length > 0) {
+    return {
+      strategy: "combine_templates",
+      templates: combinable,
+      sequence: generate_sequence(combinable)
+    };
+  }
+
+  // 3. 检查是否可以基于模板修改
+  const similar = find_similar_template(request);
+  if (similar) {
+    return {
+      strategy: "modify_template",
+      base_template: similar,
+      modifications: extract_modifications(request)
+    };
+  }
+
+  // 4. 从零生成
+  return {
+    strategy: "generate_from_scratch",
+    design_spec: analyze_full_requirements(request)
+  };
+}
 ```
 
 ---
@@ -515,6 +642,232 @@ const auto_checklist = {
 
 ---
 
+---
+
+## 📚 模板库集成指南（新增）
+
+> **完整文档**: [REMOTION_TEMPLATES_LIBRARY.md](../capabilities/REMOTION_TEMPLATES_LIBRARY.md)
+
+### 快速决策树
+
+```
+用户需求
+  ↓
+检查模板库
+  ↓
+  ├─ 有现成模板 → 直接使用（5分钟）
+  │   ├─ 复制模板文件
+  │   ├─ 修改文字/颜色
+  │   └─ 集成到项目
+  │
+  ├─ 可以组合 → 组合模板（15分钟）
+  │   ├─ 选择2-4个模板
+  │   ├─ 设计时间线
+  │   └─ 添加过渡效果
+  │
+  ├─ 需要修改 → 基于模板改（30分钟）
+  │   ├─ 选择最相似的模板
+  │   ├─ 修改动画逻辑
+  │   └─ 调整视觉效果
+  │
+  └─ 特殊需求 → 从零生成（1-2小时）
+      ├─ 完整需求分析
+      ├─ 设计组件结构
+      └─ 编写自定义代码
+```
+
+### 自动推荐逻辑
+
+```typescript
+function auto_recommend_templates(user_request: string) {
+  const keywords = extract_keywords(user_request);
+
+  // 1. 直接匹配
+  if (keywords.includes("标题") || keywords.includes("开场")) {
+    return {
+      primary: "animated-text",
+      alternatives: ["bounce-text", "bubble-pop-text"],
+      reason: "标题动画首选"
+    };
+  }
+
+  // 2. 场景组合
+  if (keywords.includes("产品介绍")) {
+    return {
+      combination: [
+        { template: "animated-text", role: "intro", duration: "10%" },
+        { template: "animated-list", role: "features", duration: "60%" },
+        { template: "particle-explosion", role: "transition", duration: "10%" },
+        { template: "bounce-text", role: "cta", duration: "20%" }
+      ],
+      reason: "产品介绍标准流程"
+    };
+  }
+
+  // 3. 风格匹配
+  if (keywords.includes("赛博朋克") || keywords.includes("科幻")) {
+    return {
+      style_pack: ["glitch-text", "matrix-rain", "neon-effects"],
+      background: "geometric-patterns",
+      reason: "赛博朋克视觉套装"
+    };
+  }
+
+  // 4. 功能匹配
+  if (keywords.includes("音乐") || keywords.includes("节奏")) {
+    return {
+      primary: "sound-wave",
+      secondary: "pulsing-text",
+      sync: "use useAudioData for real-time sync",
+      reason: "音频可视化专用"
+    };
+  }
+}
+```
+
+### 模板使用示例
+
+#### 示例 1：快速标题动画
+
+**用户说**："做一个标题动画，文字是'欢迎来到未来'"
+
+**自动处理**：
+```typescript
+// 1. 选择模板：animated-text（最适合）
+// 2. 修改内容
+const text = "欢迎来到未来".split("");
+
+// 3. 调整配色（可选）
+color: "#00ffff"  // 青色，符合"未来"主题
+
+// 4. 生成代码
+import AnimatedText from './templates/animated-text';
+
+// 完成！耗时：2分钟
+```
+
+#### 示例 2：产品功能展示
+
+**用户说**："展示我们产品的3个核心功能"
+
+**自动处理**：
+```typescript
+// 1. 选择模板：animated-list（完美匹配）
+// 2. 自定义数据
+const items = [
+  { name: "AI 智能写作", color: "#3b82f6" },
+  { name: "实时协作", color: "#60a5fa" },
+  { name: "多语言支持", color: "#93c5fd" }
+];
+
+// 3. 调整动画速度（可选）
+delay: i * 8  // 从5帧改为8帧，更舒缓
+
+// 完成！耗时：5分钟
+```
+
+#### 示例 3：音乐可视化
+
+**用户说**："做一个音乐视频，要有声波效果"
+
+**自动处理**：
+```typescript
+// 1. 选择模板：sound-wave + pulsing-text（组合）
+// 2. 添加音频同步
+import { useAudioData, Audio } from "remotion";
+
+const audioData = useAudioData("./music.mp3");
+const amplitude = audioData?.getAmplitude(frame) || 0;
+
+// 3. 驱动声波高度
+const height = amplitude * 200;
+
+// 4. 背景层
+<GeometricPatterns />  // 添加科技感背景
+
+// 完成！耗时：15分钟
+```
+
+#### 示例 4：赛博朋克开场
+
+**用户说**："做一个酷炫的赛博朋克风格开场"
+
+**自动处理**：
+```typescript
+// 1. 风格套装：glitch-text + matrix-rain + geometric-patterns
+// 2. 层次结构
+<AbsoluteFill>
+  {/* 背景层 */}
+  <div style={{ zIndex: 1 }}>
+    <MatrixRain />
+  </div>
+
+  {/* 几何层 */}
+  <div style={{ zIndex: 2, opacity: 0.5 }}>
+    <GeometricPatterns />
+  </div>
+
+  {/* 文字层 */}
+  <div style={{ zIndex: 3 }}>
+    <GlitchText />
+  </div>
+</AbsoluteFill>
+
+// 3. 配色调整为霓虹色
+colors = {
+  primary: "#00FFFF",
+  secondary: "#FF00FF",
+  accent: "#FFFF00"
+}
+
+// 完成！耗时：10分钟
+```
+
+### 性能对比
+
+| 方案 | 耗时 | 质量 | 灵活性 | 推荐场景 |
+|------|------|------|--------|---------|
+| **使用现成模板** | 2-5分钟 | ⭐⭐⭐⭐ | ⭐⭐⭐ | 标准需求 |
+| **组合多个模板** | 10-15分钟 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 中等复杂度 |
+| **基于模板修改** | 20-30分钟 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 有特殊需求 |
+| **从零生成代码** | 1-2小时 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 独特创意 |
+
+**建议**：80% 的需求可以用现成模板或组合解决，只有 20% 需要从零生成。
+
+### 模板库维护
+
+**本地模板路径**：
+```bash
+E:/Bobo's Coding cache/remotion-templates-lib/templates/
+```
+
+**更新模板库**：
+```bash
+cd "E:/Bobo's Coding cache/remotion-templates-lib"
+git pull origin main
+```
+
+**查看所有模板**：
+```bash
+ls templates/*.tsx
+# 输出：15个模板文件
+```
+
+**测试单个模板**：
+```bash
+# 在 Remotion 项目中
+npm start
+# 在浏览器中预览各个模板
+```
+
+---
+
 ## 🔄 更新到 CLAUDE.md
 
 这个自动化规则已集成到你的工作流程中，当检测到视频创作需求时自动激活。
+
+**模板库优先级**：
+- ✅ 优先推荐现成模板
+- ✅ 其次建议模板组合
+- ✅ 必要时基于模板修改
+- ✅ 最后才从零生成

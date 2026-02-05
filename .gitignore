@@ -1,0 +1,17 @@
+# Claude Code session history files (can be very large)
+projects/**/*.jsonl
+
+# Debug logs
+debug/*.txt
+
+# Session temporary files
+sessions/*.tmp
+
+# Task files
+tasks/**/*.json
+
+# File history
+file-history/
+
+# History file
+history.jsonl
