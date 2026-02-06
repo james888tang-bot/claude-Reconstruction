@@ -1,8 +1,7 @@
 {
   "name": "@arxchibobo/claude-reconstruction",
-  "version": "4.0.0",
-  "description": "Claude Code Engineering Configuration System - A comprehensive collection of best practices, error catalogs, decision trees, and workflows for Claude Code",
-  "main": "index.js",
+  "version": "5.0.0",
+  "description": "Production-ready Claude Code engineering config - smart context loading, rules engine, error library, and hook system",
   "type": "module",
   "scripts": {
     "install": "bash scripts/install.sh",
@@ -11,15 +10,16 @@
   },
   "keywords": [
     "claude-code",
-    "ai",
-    "productivity",
+    "ai-engineering",
+    "context-engineering",
     "configuration",
     "workflow",
     "best-practices",
     "error-handling",
     "mcp",
     "skills",
-    "plugins"
+    "plugins",
+    "hooks"
   ],
   "author": {
     "name": "Arxchibobo",
@@ -34,28 +34,24 @@
     "url": "https://github.com/Arxchibobo/claude-Reconstruction/issues"
   },
   "homepage": "https://github.com/Arxchibobo/claude-Reconstruction#readme",
-  "engines": {
-    "node": ">=14.0.0"
-  },
   "os": [
     "darwin",
     "linux",
     "win32"
   ],
   "files": [
-    "core/",
-    "errors/",
+    "CLAUDE.md",
+    "CONTEXT_MANAGER.md",
+    "index/",
+    "rules/",
     "capabilities/",
-    "workflows/",
-    "learning/",
-    "references/",
-    "automation/",
-    "delegator/",
+    "errors/",
+    "design/",
+    "vibe-marketing/",
     "scripts/",
-    "examples/",
     "README.md",
-    "README.en.md",
     "LICENSE",
-    "CONTRIBUTING.md"
+    "CONTRIBUTING.md",
+    "CHANGELOG.md"
   ]
 }

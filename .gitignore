@@ -1,17 +1,47 @@
-# Claude Code session history files (can be very large)
+# Session and debug files
 projects/**/*.jsonl
-
-# Debug logs
 debug/*.txt
-
-# Session temporary files
 sessions/*.tmp
-
-# Task files
 tasks/**/*.json
-
-# File history
 file-history/
-
-# History file
 history.jsonl
+
+# Large binary files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.svg
+*.ico
+
+# Cloned research repos
+skills-research/
+
+# Python virtual environments
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Security state files
+security_warnings_state_*.json
+
+# Backup files
+*.backup
+*.backup.*
