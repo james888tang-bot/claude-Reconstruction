@@ -1,22 +1,21 @@
 #!/bin/bash
-# Claude Reconstruction 安装脚本 (Unix/Linux/macOS)
+# Claude Reconstruction install script (Unix/Linux/macOS/Git Bash)
 
 set -e
 
-# 颜色定义
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 echo -e "${GREEN}"
 echo "╔═══════════════════════════════════════════════════════════════╗"
-echo "║         Claude Reconstruction 安装程序                        ║"
-echo "║         Claude Code 工程化配置系统                            ║"
+echo "║         Claude Reconstruction v5.0                           ║"
+echo "║         Claude Code Engineering Config                       ║"
 echo "╚═══════════════════════════════════════════════════════════════╝"
 echo -e "${NC}"
 
-# 检测操作系统
+# Detect OS
 OS="$(uname -s)"
 case "${OS}" in
     Linux*)     MACHINE=Linux;;
@@ -27,90 +26,76 @@ case "${OS}" in
     *)          MACHINE="UNKNOWN:${OS}"
 esac
 
-echo -e "${YELLOW}检测到操作系统: ${MACHINE}${NC}"
+echo -e "${YELLOW}OS: ${MACHINE}${NC}"
 
-# Claude 配置目录
+# Directories
 CLAUDE_DIR="$HOME/.claude"
-CLAUDE_RULES_DIR="$CLAUDE_DIR/rules"
-CLAUDE_COMMANDS_DIR="$CLAUDE_DIR/commands"
-
-# 当前脚本目录
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
 echo ""
-echo -e "${YELLOW}安装源目录: ${PROJECT_DIR}${NC}"
-echo -e "${YELLOW}目标目录: ${CLAUDE_DIR}${NC}"
+echo -e "${YELLOW}Source: ${PROJECT_DIR}${NC}"
+echo -e "${YELLOW}Target: ${CLAUDE_DIR}${NC}"
 echo ""
 
-# 创建必要的目录
-echo -e "${GREEN}[1/5] 创建目录结构...${NC}"
-mkdir -p "$CLAUDE_DIR"
-mkdir -p "$CLAUDE_RULES_DIR"
-mkdir -p "$CLAUDE_COMMANDS_DIR"
-mkdir -p "$CLAUDE_DIR/logs"
+# Create directory structure
+echo -e "${GREEN}[1/5] Creating directories...${NC}"
+mkdir -p "$CLAUDE_DIR/rules/core"
+mkdir -p "$CLAUDE_DIR/rules/domain"
+mkdir -p "$CLAUDE_DIR/rules/delegator"
+mkdir -p "$CLAUDE_DIR/index"
+mkdir -p "$CLAUDE_DIR/capabilities"
+mkdir -p "$CLAUDE_DIR/errors"
+mkdir -p "$CLAUDE_DIR/design"
+mkdir -p "$CLAUDE_DIR/vibe-marketing"
 
-# 备份现有配置
+# Backup existing config
 if [ -f "$CLAUDE_DIR/CLAUDE.md" ]; then
-    echo -e "${YELLOW}[备份] 备份现有 CLAUDE.md...${NC}"
+    echo -e "${YELLOW}[Backup] Backing up existing CLAUDE.md...${NC}"
     cp "$CLAUDE_DIR/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md.backup.$(date +%Y%m%d_%H%M%S)"
 fi
 
-# 复制核心配置
-echo -e "${GREEN}[2/5] 安装核心配置...${NC}"
-cp "$PROJECT_DIR/core/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
-cp "$PROJECT_DIR/core/QUICK_START.md" "$CLAUDE_DIR/QUICK_START.md"
-cp "$PROJECT_DIR/core/DECISION_TREE.md" "$CLAUDE_DIR/DECISION_TREE.md"
+# Install core config
+echo -e "${GREEN}[2/5] Installing core config...${NC}"
+cp "$PROJECT_DIR/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
+cp "$PROJECT_DIR/CONTEXT_MANAGER.md" "$CLAUDE_DIR/CONTEXT_MANAGER.md"
 
-# 复制错误知识库
-echo -e "${GREEN}[3/5] 安装错误知识库...${NC}"
-mkdir -p "$CLAUDE_DIR/errors/system-errors"
-mkdir -p "$CLAUDE_DIR/errors/project-errors"
-mkdir -p "$CLAUDE_DIR/errors/templates"
+# Install rules
+echo -e "${GREEN}[3/5] Installing rules...${NC}"
+cp -r "$PROJECT_DIR/rules/"* "$CLAUDE_DIR/rules/"
+
+# Install index & capabilities
+echo -e "${GREEN}[4/5] Installing index, capabilities, errors...${NC}"
+cp -r "$PROJECT_DIR/index/"* "$CLAUDE_DIR/index/"
+cp -r "$PROJECT_DIR/capabilities/"* "$CLAUDE_DIR/capabilities/"
 cp -r "$PROJECT_DIR/errors/"* "$CLAUDE_DIR/errors/"
 
-# 复制能力文档
-echo -e "${GREEN}[4/5] 安装能力文档...${NC}"
-mkdir -p "$CLAUDE_DIR/capabilities"
-cp -r "$PROJECT_DIR/capabilities/"* "$CLAUDE_DIR/capabilities/"
+# Install optional resources
+echo -e "${GREEN}[5/5] Installing design & marketing docs...${NC}"
+[ -d "$PROJECT_DIR/design" ] && cp -r "$PROJECT_DIR/design/"* "$CLAUDE_DIR/design/"
+[ -d "$PROJECT_DIR/vibe-marketing" ] && cp -r "$PROJECT_DIR/vibe-marketing/"* "$CLAUDE_DIR/vibe-marketing/"
 
-# 复制其他资源
-echo -e "${GREEN}[5/5] 安装其他资源...${NC}"
-mkdir -p "$CLAUDE_DIR/workflows"
-mkdir -p "$CLAUDE_DIR/learning"
-mkdir -p "$CLAUDE_DIR/references"
-mkdir -p "$CLAUDE_DIR/automation"
-mkdir -p "$CLAUDE_DIR/delegator"
-
-[ -d "$PROJECT_DIR/workflows" ] && cp -r "$PROJECT_DIR/workflows/"* "$CLAUDE_DIR/workflows/"
-[ -d "$PROJECT_DIR/learning" ] && cp -r "$PROJECT_DIR/learning/"* "$CLAUDE_DIR/learning/"
-[ -d "$PROJECT_DIR/references" ] && cp -r "$PROJECT_DIR/references/"* "$CLAUDE_DIR/references/"
-[ -d "$PROJECT_DIR/automation" ] && cp -r "$PROJECT_DIR/automation/"* "$CLAUDE_DIR/automation/"
-[ -d "$PROJECT_DIR/delegator" ] && cp -r "$PROJECT_DIR/delegator/"* "$CLAUDE_DIR/delegator/"
-
-# 设置文件权限
-echo -e "${YELLOW}设置文件权限...${NC}"
+# Set permissions
 chmod -R 644 "$CLAUDE_DIR"/*.md 2>/dev/null || true
-chmod -R 755 "$CLAUDE_DIR"/scripts/*.sh 2>/dev/null || true
+find "$CLAUDE_DIR" -type d -exec chmod 755 {} \; 2>/dev/null || true
 
-# 验证安装
+# Verify
 echo ""
 echo -e "${GREEN}═══════════════════════════════════════════════════════════════${NC}"
-echo -e "${GREEN}安装完成！${NC}"
+echo -e "${GREEN}Install complete!${NC}"
 echo -e "${GREEN}═══════════════════════════════════════════════════════════════${NC}"
 echo ""
-echo -e "${YELLOW}已安装的文件:${NC}"
-echo "  - $CLAUDE_DIR/CLAUDE.md (主配置)"
-echo "  - $CLAUDE_DIR/QUICK_START.md (快速启动)"
-echo "  - $CLAUDE_DIR/DECISION_TREE.md (决策树)"
-echo "  - $CLAUDE_DIR/errors/ (错误知识库)"
-echo "  - $CLAUDE_DIR/capabilities/ (能力文档)"
-echo "  - $CLAUDE_DIR/workflows/ (工作流程)"
-echo "  - $CLAUDE_DIR/learning/ (学习资源)"
+echo -e "${YELLOW}Installed:${NC}"
+echo "  - $CLAUDE_DIR/CLAUDE.md (entry point)"
+echo "  - $CLAUDE_DIR/CONTEXT_MANAGER.md (smart loading)"
+echo "  - $CLAUDE_DIR/rules/ (rules engine)"
+echo "  - $CLAUDE_DIR/index/ (navigation)"
+echo "  - $CLAUDE_DIR/capabilities/ (capability docs)"
+echo "  - $CLAUDE_DIR/errors/ (error library)"
+echo "  - $CLAUDE_DIR/design/ (design system)"
 echo ""
-echo -e "${YELLOW}下一步:${NC}"
-echo "  1. 启动 Claude Code"
-echo "  2. 系统会自动加载配置"
-echo "  3. 开始使用工程化工作流"
+echo -e "${YELLOW}Next:${NC}"
+echo "  1. Start Claude Code"
+echo "  2. Config loads automatically"
+echo "  3. Context usage: ~20% (down from 60%)"
 echo ""
-echo -e "${GREEN}享受更高效的 Claude Code 体验！${NC}"
