@@ -1,4 +1,4 @@
-# CLAUDE.md v5.0
+# CLAUDE.md v5.1
 
 > **核心原则**: 计划 → 确认 → 执行到底 → 验收
 > **智能加载**: 只加载必需的文档，保持 context 清洁
@@ -44,7 +44,8 @@
 | 数据、分析、SQL | 数据分析指南 | ~20KB |
 | 设计、UI、界面 | 设计指南 | ~30KB |
 | 营销、文案、SEO | 营销指南 | ~35KB |
-| 开发、代码、功能 | 编码规则 | ~15KB |
+| 开发、代码、功能 | 编码规则 + 工程化工作流 | ~20KB |
+| 迁移、TDD、组件 | 工程化工作流（高级） | ~8KB |
 | 错误、bug、调试 | 错误目录 | ~12KB |
 | 安全、漏洞、审计 | 安全规则 | ~15KB |
 
@@ -67,12 +68,12 @@
 | 能力 | 快速链接 |
 |------|---------|
 | 🌐 浏览器自动化 | `capabilities/browser-automation/decision-tree.md` |
-| 🎬 视频创作 | `rules/remotion-auto-production.md` |
+| 🎬 视频创作 | 项目级 `.claude/rules/remotion-auto-production.md` |
 | 📊 数据分析 | `capabilities/data-analysis-guide.md` |
 | 🎨 UI 设计 | `design/DESIGN_MASTER_PERSONA.md` |
 | 📝 营销内容 | `vibe-marketing/VIBE_MARKETING_GUIDE.md` |
 | 🐛 错误调试 | `errors/top-5-errors.md` |
-| 🤖 GPT 专家 | `rules/delegator/triggers.md` |
+| 🤖 Agent 编排 | `rules/agents.md` |
 
 ---
 
@@ -137,21 +138,6 @@ Phase 3: 实现代码
 
 ---
 
-## 🤖 GPT 专家系统
-
-### 可用专家
-
-| 专家 | 专长 | 触发时机 |
-|------|------|---------|
-| Architect | 系统设计、技术决策 | 架构决策 / 2+失败尝试 |
-| Plan Reviewer | 计划验证 | "review this plan" |
-| Code Reviewer | 代码质量 | 完成功能后 |
-| Security Analyst | 安全审计 | 安全问题 |
-
-**详细文档**: `rules/delegator/`
-
----
-
 ## 📚 完整文档导航
 
 ### 索引层（快速查找）
@@ -162,8 +148,12 @@ Phase 3: 实现代码
 
 ### 规则库（自动加载）
 - `rules/core/` - 核心规则（总是加载）
+  - `blocking-rules.md`, `work-mode.md`
 - `rules/domain/` - 领域规则（按需加载）
-  - `coding.md`, `testing.md`, `security.md`, `git.md`
+  - `coding.md`（含 Common Patterns）, `testing.md`, `security.md`, `git.md`, `engineering-workflows.md`
+- `rules/agents.md` - Agent 编排
+- `rules/hooks.md` - Hooks 系统
+- `rules/performance.md` - 性能优化
 
 ### 能力库（按需加载）
 - `capabilities/browser-automation/` - 浏览器自动化
@@ -192,6 +182,42 @@ Phase 3: 实现代码
 
 ---
 
+## 👁️ 视觉验证
+
+进行 UI 修改后（尤其是 3D 可视化或连接线相关），必须：
+1. 用 `npm run dev` 启动应用
+2. 导航到受影响的组件
+3. 验证视觉元素正确渲染且无控制台错误
+4. **确认无误后才能标记任务完成**
+
+---
+
+## 🔷 TypeScript 优先
+
+本代码库使用 TypeScript 作为主要语言。确保所有新文件使用 .ts/.tsx 扩展名并保持严格的类型安全。
+
+---
+
+## 🗄️ 数据库操作
+
+所有数据库查询和迁移使用 Bytebase MCP 服务器（`mcp__mcphub__bytebase-execute_sql`）。多表变更必须在单个事务中执行，包含回滚逻辑。
+
+---
+
+## 🔬 工程化工作流
+
+| 任务类型 | 必须执行 |
+|---------|---------|
+| UI 修改 | 验证闭环（启动应用 → 视觉确认） |
+| 新功能 | 顺序思维规划 → 步骤分解 → 依赖标注 |
+| 数据库变更 | 事务化迁移 → 回滚脚本 → 一致性验证 |
+| 复杂功能 | TDD 全流程（RED → GREEN → 属性测试） |
+| 核心组件 | 自愈合模式（回归测试 + 响应式 + 无障碍） |
+
+**详细说明**: `rules/domain/engineering-workflows.md`
+
+---
+
 ## 📊 Context 使用优化
 
 ### Before (v4.2)
@@ -202,15 +228,15 @@ CLAUDE.md: 20KB
 = 总计: 120KB (60% context)
 ```
 
-### After (v5.0 - 目标)
+### After (v5.1 - 清理后)
 ```
 CLAUDE.md: 5KB
-+ 核心规则: 10KB
-+ 按需加载 1-2 个文档: 20-30KB
-= 总计: 35-45KB (18-23% context)
++ 核心规则 (core/ + domain/): ~18KB
++ agents + hooks + performance: ~4KB
+= 总计: ~27KB (全局规则，不含项目级)
 ```
 
-**节省**: ~75KB context (60% → 77%+ free context)
+**节省**: 删除 ~50KB 重复/无效内容（16个重复文件 + delegator 22KB + remotion 24KB 移至项目级）
 
 ---
 
@@ -247,11 +273,11 @@ CLAUDE.md: 5KB
 2. **再查** `errors/ERROR_CATALOG.md` - 完整错误库
 3. **还不行** - 使用 Debugging Agent
 
-### 需要专家意见？
+### 需要 Agent 协助？
 
-1. **识别场景** - 见 `rules/delegator/triggers.md`
-2. **选择专家** - Architect / Code Reviewer / Security Analyst
-3. **自动触发** - 系统会识别并路由
+1. **查看可用 Agents** - 见 `rules/agents.md`
+2. **选择合适的 Agent** - planner / code-reviewer / tdd-guide / architect
+3. **通过 Task 工具调用** - 系统会自动路由
 
 ---
 
@@ -267,9 +293,9 @@ CLAUDE.md: 5KB
 
 ---
 
-**版本**: v5.0 (Context Engineering)
-**更新**: 2026-02-05
+**版本**: v5.1 (Context Cleanup)
+**更新**: 2026-02-09
 **大小**: ~5KB
-**改进**: 从 v4.2 (20KB) 缩减 75%，实现智能按需加载
+**改进**: 删除 16 个重复文件，移除无效 Delegation 系统，Remotion 规则移至项目级
 
-**升级自**: v4.2 (2026-01-28)
+**升级自**: v5.0 (2026-02-05)

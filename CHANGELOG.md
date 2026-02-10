@@ -7,6 +7,97 @@
 
 ---
 
+## [5.1.0] - 2026-02-10
+
+### 🎯 今日复盘 (2026-02-10)
+
+#### 做得好的
+
+1. **Context Cleanup 成效显著**
+   - CLAUDE.md 从 v4.2 (20KB) → v5.0 (5KB) → v5.1 (5KB)，全局规则总量从 ~120KB 降到 ~27KB
+   - 删除 16 个重复文件 + delegator 22KB + remotion 24KB 移至项目级
+   - Context 使用率从 ~60% 降至 ~15%，留出大量空间给实际任务
+
+2. **工程化工作流沉淀**
+   - engineering-workflows.md v1.1 新增 3D 可视化和大规模数据处理两个实战工作流
+   - 关键教训均来自真实踩坑（固定角度等分导致重叠、AttentionFlow 穿透几何体、348K 用户数据全量传输卡死）
+   - 触发规则矩阵完善，覆盖 7 种常见任务类型
+
+3. **Skills + Plugins 体系扩充**
+   - Skills 清单从模糊描述更新为完整 41 项清单（15 用户调用 + 26 自动激活）
+   - Plugins 从 ~30 个扩充到 80 个（新增 claude-code-workflows 60 个工作流插件）
+   - 新增 6 类 Skills：image-editor、image-enhancer、canvas-design、theme-factory、developer-growth-analysis、meeting-insights-analyzer
+
+4. **Hooks 系统完善**
+   - 新增 vibecraft 集成（PreToolUse/PostToolUse/Stop/SubagentStop）
+   - 新增 learn-patterns.sh（SessionStart 自动学习模式）
+   - 新增 session-summary.sh（会话总结）
+   - 形成完整的 pre→execute→post→stop 生命周期覆盖
+
+#### 做得不好的 / 待改进
+
+1. **Delegator 系统无效删除晚了**
+   - delegator/ 目录 22KB 占位但从未真正使用过，应该在 v5.0 就删掉
+   - 教训：定期审计 context 占用，不用的就删
+
+2. **Remotion 规则放错层级**
+   - remotion-auto-production.md (24KB) 长期在全局 rules/ 下，但只有特定项目使用
+   - v5.1 修正：移至项目级 `.claude/rules/`
+   - 教训：区分全局规则 vs 项目规则，避免 context 污染
+
+3. **Skills/Plugins 文档长期没同步**
+   - 实际安装了 41 Skills + 80 Plugins，但文档只记录了 ~20 个
+   - 教训：每次安装新 skill/plugin 时立即更新文档
+
+4. **hooks.md 描述与实际配置不一致**
+   - hooks.md 还在描述旧的 tmux reminder / git push review / doc blocker
+   - 实际已更换为 vibecraft + learn-patterns + session-summary 体系
+   - 需要同步更新
+
+### ✨ 新增
+
+#### Context Engineering v5.1
+- **CLAUDE.md v5.1**: Context Cleanup，全局规则从 120KB 降至 27KB
+- **四层加载架构**: Layer 0 (总是) → Layer 1 (识别) → Layer 2 (按需) → Layer 3 (精确)
+- **delegator 系统移除**: 删除 22KB 无效委托系统
+- **Remotion 规则项目级化**: 从全局 rules/ 移至 examples/project-rules/
+
+#### 工程化工作流 v1.1
+- **3D 可视化布局修改工作流**: Three.js/R3F 场景修改规范
+  - 按节点数量加权分配扇区角度
+  - 连线表面偏移系数（球=1.0, 方=1.2, 环=1.4）
+- **大规模数据处理工作流**: 批量查询 + 去重 + 懒加载规范
+  - 分批查询、前端 Set 去重、CSS 固定裁剪、按需加载
+
+#### Skills 清单 v2.0
+- 完整 41 项 Skills 清单（15 用户调用 + 26 自动激活）
+- 新增分类：UI 设计(6)、开发专家(8)、内容创作(4)、专业工具(5)、分析(2)
+
+#### Plugins 清单 v2.0
+- 完整 80 个 Plugins 清单（4 个来源）
+- 新增 claude-code-workflows 系列 60 个专业工作流插件
+- 新增 everything-claude-code 全功能增强插件
+
+#### Hooks 系统更新
+- 新增 vibecraft 四阶段集成
+- 新增 learn-patterns + session-summary 自动化
+
+### 🔧 改进
+
+- 删除顶层重复规则文件（coding-style.md, git-workflow.md 等已合并到 domain/）
+- engineering-workflows.md 触发规则矩阵覆盖 7 种任务类型
+- 所有 domain/ 规则与本地 ~/.claude/rules/domain/ 完全同步
+
+### 📊 统计
+
+- Skills: 41 (↑ from ~20)
+- Plugins: 80 (↑ from ~30)
+- 全局 Context: ~27KB (↓ from ~120KB)
+- 工程化工作流: 7 种触发类型 (↑ from 5)
+- Hooks: 7 个脚本 (↑ from 3)
+
+---
+
 ## [4.2.0] - 2026-01-28
 
 ### ✨ 新增
@@ -471,4 +562,4 @@
 
 ---
 
-**最新稳定版本**: v4.0.0
+**最新稳定版本**: v5.1.0
