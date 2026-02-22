@@ -20,42 +20,42 @@
 
 ### 场景类型识别（关键词触发）
 
-| 用户需求关键词 | 场景类型 | 自动选择的风格 |
-|--------------|---------|---------------|
-| "产品演示"、"SaaS"、"科技" | 产品演示 | Glassmorphism + Tech Innovation |
-| "社交媒体"、"短视频"、"Reels" | 社交内容 | Synthwave / Cyberpunk |
-| "教程"、"教学"、"如何" | 教育视频 | Clean Modern + Minimalist |
-| "数据"、"报告"、"分析" | 数据可视化 | Business Pro + Charts |
-| "品牌"、"故事"、"宣传" | 品牌视频 | Creative Vibrant / Claymorphism |
-| "游戏"、"酷炫"、"电竞" | 游戏/电竞 | Cyberpunk + Neon |
-| "复古"、"怀旧"、"80年代" | 复古风 | Synthwave + Memphis |
-| "简洁"、"高端"、"极简" | 高端品牌 | Minimalist + Japanese Zen |
+| 用户需求关键词                | 场景类型   | 自动选择的风格                  |
+| ----------------------------- | ---------- | ------------------------------- |
+| "产品演示"、"SaaS"、"科技"    | 产品演示   | Glassmorphism + Tech Innovation |
+| "社交媒体"、"短视频"、"Reels" | 社交内容   | Synthwave / Cyberpunk           |
+| "教程"、"教学"、"如何"        | 教育视频   | Clean Modern + Minimalist       |
+| "数据"、"报告"、"分析"        | 数据可视化 | Business Pro + Charts           |
+| "品牌"、"故事"、"宣传"        | 品牌视频   | Creative Vibrant / Claymorphism |
+| "游戏"、"酷炫"、"电竞"        | 游戏/电竞  | Cyberpunk + Neon                |
+| "复古"、"怀旧"、"80年代"      | 复古风     | Synthwave + Memphis             |
+| "简洁"、"高端"、"极简"        | 高端品牌   | Minimalist + Japanese Zen       |
 
 ### 自动配色方案
 
-| 风格 | 主色 | 辅助色 | 背景色 | 强调色 |
-|------|------|--------|--------|--------|
-| **Tech Innovation** | #0066ff | #00ffff | #1e1e1e | #FFFFFF |
-| **Synthwave** | #ff006e | #8338ec | #3a86ff | #FFFF00 |
-| **Business Pro** | #1C2833 | #F39C12 | #F4F6F6 | #E74C3C |
+| 风格                 | 主色    | 辅助色  | 背景色  | 强调色  |
+| -------------------- | ------- | ------- | ------- | ------- |
+| **Tech Innovation**  | #0066ff | #00ffff | #1e1e1e | #FFFFFF |
+| **Synthwave**        | #ff006e | #8338ec | #3a86ff | #FFFF00 |
+| **Business Pro**     | #1C2833 | #F39C12 | #F4F6F6 | #E74C3C |
 | **Creative Vibrant** | #E76F51 | #2A9D8F | #264653 | #F4A261 |
-| **Cyberpunk** | #00FFFF | #FF00FF | #0A0E27 | #FFFF00 |
-| **Clean Modern** | #2C3E50 | #3498DB | #ECF0F1 | #E74C3C |
-| **Minimalist** | #000000 | #FFFFFF | #F5F5F5 | #FF0000 |
-| **Claymorphism** | #A8DADC | #F1FAEE | #457B9D | #E63946 |
+| **Cyberpunk**        | #00FFFF | #FF00FF | #0A0E27 | #FFFF00 |
+| **Clean Modern**     | #2C3E50 | #3498DB | #ECF0F1 | #E74C3C |
+| **Minimalist**       | #000000 | #FFFFFF | #F5F5F5 | #FF0000 |
+| **Claymorphism**     | #A8DADC | #F1FAEE | #457B9D | #E63946 |
 
 ### 自动技术栈选择
 
-| 场景特征 | 自动启用的技术 |
-|---------|---------------|
-| 包含"3D"、"立体"、"旋转" | Three.js + React Three Fiber |
-| 包含"粒子"、"特效"、"背景" | Processing Creative Skill |
-| 包含"图表"、"数据"、"增长" | Chart animations + interpolate |
-| 包含"字幕"、"文字"、"说明" | DisplayCaptions (TikTok风格) |
-| 包含"音乐"、"节奏"、"节拍" | Audio visualization + useAudioData |
-| 包含"卡通"、"可爱"、"动画" | Lottie animations |
-| 包含"照片"、"图片"、"素材" | Nano Banana Pro 生成 |
-| **包含"模板"、"现成"、"快速"** | **Remotion Templates Library** |
+| 场景特征                       | 自动启用的技术                     |
+| ------------------------------ | ---------------------------------- |
+| 包含"3D"、"立体"、"旋转"       | Three.js + React Three Fiber       |
+| 包含"粒子"、"特效"、"背景"     | Processing Creative Skill          |
+| 包含"图表"、"数据"、"增长"     | Chart animations + interpolate     |
+| 包含"字幕"、"文字"、"说明"     | DisplayCaptions (TikTok风格)       |
+| 包含"音乐"、"节奏"、"节拍"     | Audio visualization + useAudioData |
+| 包含"卡通"、"可爱"、"动画"     | Lottie animations                  |
+| 包含"照片"、"图片"、"素材"     | Nano Banana Pro 生成               |
+| **包含"模板"、"现成"、"快速"** | **Remotion Templates Library**     |
 
 ### 自动模板匹配（新增）
 
@@ -63,68 +63,68 @@
 
 当用户需求可以使用现成模板时，自动推荐最合适的模板：
 
-| 用户需求关键词 | 推荐模板 | 模板特点 |
-|--------------|---------|---------|
-| "标题"、"开场"、"动态文字" | animated-text | 字符逐个旋转入场 |
-| "弹跳"、"卡片"、"商务" | bounce-text | 渐变卡片弹性入场 |
-| "气泡"、"可爱"、"趣味" | bubble-pop-text | 圆形气泡依次弹出 |
-| "列表"、"功能"、"特性" | animated-list | 列表项滑入+圆形图标 |
-| "翻转"、"卡片"、"切换" | card-flip | 3D卡片360度翻转 |
-| "悬浮"、"强调"、"霓虹" | floating-bubble-text | 浮动+霓虹边框 |
-| "几何"、"科技背景" | geometric-patterns | 几何图形旋转 |
-| "故障"、"赛博朋克" | glitch-text | RGB分离抖动 |
-| "液态"、"波浪"、"流体" | liquid-wave | 流动的液态波浪 |
-| "矩阵"、"黑客"、"科幻" | matrix-rain | 绿色/蓝色字符雨 |
-| "爆炸"、"粒子"、"转场" | particle-explosion | 粒子旋转爆炸 |
-| "脉冲"、"节奏"、"音乐" | pulsing-text | 逐字脉冲闪烁 |
-| "滑动"、"简单"、"字幕" | slide-text | 从右滑入 |
-| "声波"、"音频"、"可视化" | sound-wave | 律动的声波条 |
-| "打字机"、"字幕"、"对话" | typewriter-subtitle | 打字机+闪烁光标 |
+| 用户需求关键词             | 推荐模板             | 模板特点            |
+| -------------------------- | -------------------- | ------------------- |
+| "标题"、"开场"、"动态文字" | animated-text        | 字符逐个旋转入场    |
+| "弹跳"、"卡片"、"商务"     | bounce-text          | 渐变卡片弹性入场    |
+| "气泡"、"可爱"、"趣味"     | bubble-pop-text      | 圆形气泡依次弹出    |
+| "列表"、"功能"、"特性"     | animated-list        | 列表项滑入+圆形图标 |
+| "翻转"、"卡片"、"切换"     | card-flip            | 3D卡片360度翻转     |
+| "悬浮"、"强调"、"霓虹"     | floating-bubble-text | 浮动+霓虹边框       |
+| "几何"、"科技背景"         | geometric-patterns   | 几何图形旋转        |
+| "故障"、"赛博朋克"         | glitch-text          | RGB分离抖动         |
+| "液态"、"波浪"、"流体"     | liquid-wave          | 流动的液态波浪      |
+| "矩阵"、"黑客"、"科幻"     | matrix-rain          | 绿色/蓝色字符雨     |
+| "爆炸"、"粒子"、"转场"     | particle-explosion   | 粒子旋转爆炸        |
+| "脉冲"、"节奏"、"音乐"     | pulsing-text         | 逐字脉冲闪烁        |
+| "滑动"、"简单"、"字幕"     | slide-text           | 从右滑入            |
+| "声波"、"音频"、"可视化"   | sound-wave           | 律动的声波条        |
+| "打字机"、"字幕"、"对话"   | typewriter-subtitle  | 打字机+闪烁光标     |
 
 **模板组合建议**（自动推荐）：
 
 ```typescript
 // 产品介绍视频（30秒）
 scenes = [
-  { template: "animated-text", duration: 5 },      // 标题
-  { template: "animated-list", duration: 15 },     // 功能列表
-  { template: "particle-explosion", duration: 3 }, // 转场
-  { template: "bounce-text", duration: 7 }         // CTA
-]
+  { template: 'animated-text', duration: 5 }, // 标题
+  { template: 'animated-list', duration: 15 }, // 功能列表
+  { template: 'particle-explosion', duration: 3 }, // 转场
+  { template: 'bounce-text', duration: 7 }, // CTA
+];
 
 // 音乐视频（60秒）
 scenes = [
-  { template: "glitch-text", duration: 5 },        // 标题
-  { template: "sound-wave", duration: 45 },        // 声波可视化
-  { template: "pulsing-text", duration: 10 }       // 结尾
-]
+  { template: 'glitch-text', duration: 5 }, // 标题
+  { template: 'sound-wave', duration: 45 }, // 声波可视化
+  { template: 'pulsing-text', duration: 10 }, // 结尾
+];
 
 // 科技背景视频（持续循环）
 layers = [
-  { template: "geometric-patterns", layer: "background" },
-  { template: "matrix-rain", layer: "overlay", opacity: 0.3 },
-  { template: "animated-text", layer: "foreground" }
-]
+  { template: 'geometric-patterns', layer: 'background' },
+  { template: 'matrix-rain', layer: 'overlay', opacity: 0.3 },
+  { template: 'animated-text', layer: 'foreground' },
+];
 ```
 
 ### 自动分辨率选择
 
-| 用户提及 | 自动设置 |
-|---------|---------|
-| "Instagram"、"竖屏"、"手机" | 1080x1920 (9:16) |
-| "YouTube"、"横屏"、"电脑" | 1920x1080 (16:9) |
-| "正方形"、"微信"、"朋友圈" | 1080x1080 (1:1) |
-| "4K"、"高清" | 3840x2160 (16:9) |
-| 未提及 | 1920x1080 (16:9) 默认 |
+| 用户提及                    | 自动设置              |
+| --------------------------- | --------------------- |
+| "Instagram"、"竖屏"、"手机" | 1080x1920 (9:16)      |
+| "YouTube"、"横屏"、"电脑"   | 1920x1080 (16:9)      |
+| "正方形"、"微信"、"朋友圈"  | 1080x1080 (1:1)       |
+| "4K"、"高清"                | 3840x2160 (16:9)      |
+| 未提及                      | 1920x1080 (16:9) 默认 |
 
 ### 自动帧率选择
 
-| 场景类型 | 自动设置帧率 |
-|---------|-------------|
-| 游戏/电竞/酷炫特效 | 60fps |
-| 社交媒体/快节奏 | 30fps |
-| 教育/数据报告 | 30fps |
-| 品牌故事/电影感 | 24fps |
+| 场景类型           | 自动设置帧率 |
+| ------------------ | ------------ |
+| 游戏/电竞/酷炫特效 | 60fps        |
+| 社交媒体/快节奏    | 30fps        |
+| 教育/数据报告      | 30fps        |
+| 品牌故事/电影感    | 24fps        |
 
 ---
 
@@ -206,11 +206,13 @@ def generate_structured_prompt(analysis):
 ### Step 3: 代码生成（自动）
 
 **优先级规则**：
+
 1. **有现成模板** → 直接使用模板库（最快）
 2. **需要自定义** → 基于模板修改（中等）
 3. **特殊需求** → 从零生成代码（最慢）
 
 **方案A：使用模板库**（推荐，速度快）
+
 ```typescript
 // 1. 克隆模板库（仅首次）
 git clone https://github.com/reactvideoeditor/remotion-templates.git
@@ -238,6 +240,7 @@ const items = [
 ```
 
 **方案B：从零生成**（特殊需求）
+
 ```
 /my-video-project
   /src
@@ -262,15 +265,16 @@ const items = [
 ```
 
 **自动决策流程**：
+
 ```typescript
 function select_generation_strategy(request: string) {
   // 1. 检查是否有完全匹配的模板
   const exact_match = find_exact_template(request);
   if (exact_match) {
     return {
-      strategy: "use_template",
+      strategy: 'use_template',
       template: exact_match,
-      customization: extract_custom_params(request)
+      customization: extract_custom_params(request),
     };
   }
 
@@ -278,9 +282,9 @@ function select_generation_strategy(request: string) {
   const combinable = find_combinable_templates(request);
   if (combinable.length > 0) {
     return {
-      strategy: "combine_templates",
+      strategy: 'combine_templates',
       templates: combinable,
-      sequence: generate_sequence(combinable)
+      sequence: generate_sequence(combinable),
     };
   }
 
@@ -288,16 +292,16 @@ function select_generation_strategy(request: string) {
   const similar = find_similar_template(request);
   if (similar) {
     return {
-      strategy: "modify_template",
+      strategy: 'modify_template',
       base_template: similar,
-      modifications: extract_modifications(request)
+      modifications: extract_modifications(request),
     };
   }
 
   // 4. 从零生成
   return {
-    strategy: "generate_from_scratch",
-    design_spec: analyze_full_requirements(request)
+    strategy: 'generate_from_scratch',
+    design_spec: analyze_full_requirements(request),
   };
 }
 ```
@@ -311,42 +315,42 @@ function select_generation_strategy(request: string) {
 ```typescript
 function auto_adjust_colors(scene_type: string, mood: string) {
   // 科技感 → 冷色调（蓝/青/紫）
-  if (mood === "tech" || scene_type === "product") {
+  if (mood === 'tech' || scene_type === 'product') {
     return {
-      primary: "#0066ff",
-      secondary: "#00ffff",
-      background: "#1e1e1e",
-      accent: "#FFFFFF"
+      primary: '#0066ff',
+      secondary: '#00ffff',
+      background: '#1e1e1e',
+      accent: '#FFFFFF',
     };
   }
 
   // 温暖/友好 → 暖色调（橙/黄/粉）
-  if (mood === "warm" || scene_type === "brand_story") {
+  if (mood === 'warm' || scene_type === 'brand_story') {
     return {
-      primary: "#E76F51",
-      secondary: "#F4A261",
-      background: "#FFFBF7",
-      accent: "#2A9D8F"
+      primary: '#E76F51',
+      secondary: '#F4A261',
+      background: '#FFFBF7',
+      accent: '#2A9D8F',
     };
   }
 
   // 专业/商务 → 中性色（灰/蓝/红强调）
-  if (mood === "professional" || scene_type === "data") {
+  if (mood === 'professional' || scene_type === 'data') {
     return {
-      primary: "#2C3E50",
-      secondary: "#34495E",
-      background: "#ECF0F1",
-      accent: "#E74C3C"
+      primary: '#2C3E50',
+      secondary: '#34495E',
+      background: '#ECF0F1',
+      accent: '#E74C3C',
     };
   }
 
   // 酷炫/游戏 → 霓虹色（品红/青/黄）
-  if (mood === "cool" || scene_type === "gaming") {
+  if (mood === 'cool' || scene_type === 'gaming') {
     return {
-      primary: "#00FFFF",
-      secondary: "#FF00FF",
-      background: "#0A0E27",
-      accent: "#FFFF00"
+      primary: '#00FFFF',
+      secondary: '#FF00FF',
+      background: '#0A0E27',
+      accent: '#FFFF00',
     };
   }
 }
@@ -356,36 +360,36 @@ function auto_adjust_colors(scene_type: string, mood: string) {
 
 ```typescript
 function auto_animation_timing(scene_type: string, duration: number) {
-  const scenes = Math.ceil(duration / 10);  // 每10秒一个场景
+  const scenes = Math.ceil(duration / 10); // 每10秒一个场景
 
   // 产品演示：慢入场 + 中速展示 + 快速结尾
-  if (scene_type === "product") {
+  if (scene_type === 'product') {
     return {
-      intro: duration * 0.15,      // 15% 用于入场
-      main: duration * 0.70,       // 70% 用于展示
-      outro: duration * 0.15,      // 15% 用于结尾
-      transition: 15               // 15帧过渡
+      intro: duration * 0.15, // 15% 用于入场
+      main: duration * 0.7, // 70% 用于展示
+      outro: duration * 0.15, // 15% 用于结尾
+      transition: 15, // 15帧过渡
     };
   }
 
   // 社交媒体：快节奏
-  if (scene_type === "social") {
+  if (scene_type === 'social') {
     return {
-      intro: duration * 0.10,      // 10% 快速入场
-      main: duration * 0.70,       // 70% 核心内容
-      outro: duration * 0.20,      // 20% 强化 CTA
-      transition: 10               // 10帧快速切换
+      intro: duration * 0.1, // 10% 快速入场
+      main: duration * 0.7, // 70% 核心内容
+      outro: duration * 0.2, // 20% 强化 CTA
+      transition: 10, // 10帧快速切换
     };
   }
 
   // 教育：均匀节奏
-  if (scene_type === "education") {
+  if (scene_type === 'education') {
     const step_duration = duration / scenes;
     return {
       intro: step_duration,
       main: step_duration * (scenes - 2),
       outro: step_duration,
-      transition: 20               // 20帧舒适切换
+      transition: 20, // 20帧舒适切换
     };
   }
 }
@@ -398,157 +402,163 @@ function auto_animation_timing(scene_type: string, duration: number) {
 ### 示例 1：极简输入
 
 **用户说**：
+
 ```
 做一个30秒的产品介绍视频，我们的产品是 AI 写作工具
 ```
 
 **自动处理**：
+
 ```typescript
 // 自动分析
-scene_type = "product_demo"
-mood = "tech"
-duration = 30
-product_name = "AI 写作工具"
+scene_type = 'product_demo';
+mood = 'tech';
+duration = 30;
+product_name = 'AI 写作工具';
 
 // 自动匹配
-design_style = "Glassmorphism + Tech Innovation"
-colors = { primary: "#0066ff", secondary: "#00ffff", bg: "#1e1e1e" }
-tech_stack = ["Tailwind", "Spring animations", "Particle background"]
+design_style = 'Glassmorphism + Tech Innovation';
+colors = { primary: '#0066ff', secondary: '#00ffff', bg: '#1e1e1e' };
+tech_stack = ['Tailwind', 'Spring animations', 'Particle background'];
 
 // 自动生成场景
 scenes = [
-  { name: "Scene1: Logo入场", duration: 5, animation: "spring_scale" },
-  { name: "Scene2: 核心功能", duration: 15, animation: "slide_in" },
-  { name: "Scene3: 数据展示", duration: 7, animation: "number_count" },
-  { name: "Scene4: CTA", duration: 3, animation: "pulse" }
-]
+  { name: 'Scene1: Logo入场', duration: 5, animation: 'spring_scale' },
+  { name: 'Scene2: 核心功能', duration: 15, animation: 'slide_in' },
+  { name: 'Scene3: 数据展示', duration: 7, animation: 'number_count' },
+  { name: 'Scene4: CTA', duration: 3, animation: 'pulse' },
+];
 
 // 自动生成素材指令
 nano_banana_prompts = [
-  "AI writing tool dashboard UI, glassmorphism style, tech blue theme, 4K",
-  "Text generation animation visual, futuristic interface, neon accents, 4K",
-  "Writing assistant features showcase, clean modern design, 4K"
-]
+  'AI writing tool dashboard UI, glassmorphism style, tech blue theme, 4K',
+  'Text generation animation visual, futuristic interface, neon accents, 4K',
+  'Writing assistant features showcase, clean modern design, 4K',
+];
 
-processing_background = "Particle connections, tech style, blue cyan palette"
+processing_background = 'Particle connections, tech style, blue cyan palette';
 ```
 
 ### 示例 2：带细节的输入
 
 **用户说**：
+
 ```
 创建一个60秒的季度数据报告视频，展示收入增长45%，用户从3万增长到5万，
 要专业商务风格，重点突出增长趋势
 ```
 
 **自动处理**：
+
 ```typescript
 // 自动分析
-scene_type = "data_visualization"
-mood = "professional"
-duration = 60
+scene_type = 'data_visualization';
+mood = 'professional';
+duration = 60;
 key_metrics = {
-  revenue_growth: "45%",
-  user_growth: "30k → 50k"
-}
+  revenue_growth: '45%',
+  user_growth: '30k → 50k',
+};
 
 // 自动匹配
-design_style = "Business Pro + Data Driven"
-colors = { primary: "#2C3E50", secondary: "#E74C3C", bg: "#ECF0F1" }
-tech_stack = ["Charts", "Number animations", "Tailwind"]
+design_style = 'Business Pro + Data Driven';
+colors = { primary: '#2C3E50', secondary: '#E74C3C', bg: '#ECF0F1' };
+tech_stack = ['Charts', 'Number animations', 'Tailwind'];
 
 // 自动生成场景
 scenes = [
   {
-    name: "Scene1: 开场",
+    name: 'Scene1: 开场',
     duration: 10,
-    content: "标题 + 3个关键指标数字递增动画",
-    animations: ["number_count_up", "spring_bounce"]
+    content: '标题 + 3个关键指标数字递增动画',
+    animations: ['number_count_up', 'spring_bounce'],
   },
   {
-    name: "Scene2: 收入图表",
+    name: 'Scene2: 收入图表',
     duration: 15,
-    content: "柱状图展示12个月收入",
-    animations: ["bar_chart_rise", "delay_sequence"]
+    content: '柱状图展示12个月收入',
+    animations: ['bar_chart_rise', 'delay_sequence'],
   },
   {
-    name: "Scene3: 用户增长",
+    name: 'Scene3: 用户增长',
     duration: 15,
-    content: "折线图展示用户增长趋势",
-    animations: ["line_chart_draw", "smooth_ease"]
+    content: '折线图展示用户增长趋势',
+    animations: ['line_chart_draw', 'smooth_ease'],
   },
   {
-    name: "Scene4: 增长率",
+    name: 'Scene4: 增长率',
     duration: 12,
-    content: "饼图展示增长来源",
-    animations: ["pie_chart_reveal", "rotate"]
+    content: '饼图展示增长来源',
+    animations: ['pie_chart_reveal', 'rotate'],
   },
   {
-    name: "Scene5: 结论",
+    name: 'Scene5: 结论',
     duration: 8,
-    content: "总结文字 + Logo",
-    animations: ["fade_in", "text_slide"]
-  }
-]
+    content: '总结文字 + Logo',
+    animations: ['fade_in', 'text_slide'],
+  },
+];
 
 // 自动选择字体
-fonts = ["Roboto Medium", "Inter Regular"]
+fonts = ['Roboto Medium', 'Inter Regular'];
 ```
 
 ### 示例 3：风格导向的输入
 
 **用户说**：
+
 ```
 做一个15秒的 Instagram 视频，要那种酷炫的赛博朋克风格，
 介绍我们的游戏工作室
 ```
 
 **自动处理**：
+
 ```typescript
 // 自动分析
-scene_type = "social_media"
-mood = "cool_cyberpunk"
-duration = 15
-platform = "Instagram"
-aspect_ratio = "9:16"
+scene_type = 'social_media';
+mood = 'cool_cyberpunk';
+duration = 15;
+platform = 'Instagram';
+aspect_ratio = '9:16';
 
 // 自动匹配
-design_style = "Cyberpunk + Neon"
+design_style = 'Cyberpunk + Neon';
 colors = {
-  primary: "#00FFFF",
-  secondary: "#FF00FF",
-  bg: "#0A0E27",
-  accent: "#FFFF00"
-}
-tech_stack = ["Three.js", "Glitch effects", "Neon borders", "Processing"]
+  primary: '#00FFFF',
+  secondary: '#FF00FF',
+  bg: '#0A0E27',
+  accent: '#FFFF00',
+};
+tech_stack = ['Three.js', 'Glitch effects', 'Neon borders', 'Processing'];
 
 // 自动生成场景
 scenes = [
   {
-    name: "Scene1: Logo爆炸入场",
+    name: 'Scene1: Logo爆炸入场',
     duration: 3,
-    effects: ["neon_glow", "glitch_distortion", "particle_explosion"],
-    animations: ["scale_spring", "rotation_3d"]
+    effects: ['neon_glow', 'glitch_distortion', 'particle_explosion'],
+    animations: ['scale_spring', 'rotation_3d'],
   },
   {
-    name: "Scene2: 游戏画面快速切换",
+    name: 'Scene2: 游戏画面快速切换',
     duration: 8,
-    effects: ["scanline_overlay", "chromatic_aberration"],
-    animations: ["rapid_crossfade", "zoom_pulse"]
+    effects: ['scanline_overlay', 'chromatic_aberration'],
+    animations: ['rapid_crossfade', 'zoom_pulse'],
   },
   {
-    name: "Scene3: CTA + 社交媒体信息",
+    name: 'Scene3: CTA + 社交媒体信息',
     duration: 4,
-    effects: ["neon_text", "hologram_flicker"],
-    animations: ["text_glitch_in", "button_pulse"]
-  }
-]
+    effects: ['neon_text', 'hologram_flicker'],
+    animations: ['text_glitch_in', 'button_pulse'],
+  },
+];
 
 // Processing 背景
-processing_effect = "Neon grid + Matrix rain effect"
+processing_effect = 'Neon grid + Matrix rain effect';
 
 // 音频自动选择
-audio_style = "Synthwave electronic (high energy, 140 BPM)"
+audio_style = 'Synthwave electronic (high energy, 140 BPM)';
 ```
 
 ---
@@ -612,6 +622,7 @@ const auto_checklist = {
 每次处理完用户需求后，自动输出：
 
 1. **📋 分析总结**
+
    ```
    场景类型：产品演示
    设计风格：Glassmorphism + Tech Innovation
@@ -626,6 +637,7 @@ const auto_checklist = {
    - 配置文件
 
 3. **🖼️ 素材生成指令**
+
    ```bash
    # Nano Banana Pro 生成图片
    uv run generate_image.py --prompt "..." --resolution 4K
@@ -683,43 +695,43 @@ function auto_recommend_templates(user_request: string) {
   const keywords = extract_keywords(user_request);
 
   // 1. 直接匹配
-  if (keywords.includes("标题") || keywords.includes("开场")) {
+  if (keywords.includes('标题') || keywords.includes('开场')) {
     return {
-      primary: "animated-text",
-      alternatives: ["bounce-text", "bubble-pop-text"],
-      reason: "标题动画首选"
+      primary: 'animated-text',
+      alternatives: ['bounce-text', 'bubble-pop-text'],
+      reason: '标题动画首选',
     };
   }
 
   // 2. 场景组合
-  if (keywords.includes("产品介绍")) {
+  if (keywords.includes('产品介绍')) {
     return {
       combination: [
-        { template: "animated-text", role: "intro", duration: "10%" },
-        { template: "animated-list", role: "features", duration: "60%" },
-        { template: "particle-explosion", role: "transition", duration: "10%" },
-        { template: "bounce-text", role: "cta", duration: "20%" }
+        { template: 'animated-text', role: 'intro', duration: '10%' },
+        { template: 'animated-list', role: 'features', duration: '60%' },
+        { template: 'particle-explosion', role: 'transition', duration: '10%' },
+        { template: 'bounce-text', role: 'cta', duration: '20%' },
       ],
-      reason: "产品介绍标准流程"
+      reason: '产品介绍标准流程',
     };
   }
 
   // 3. 风格匹配
-  if (keywords.includes("赛博朋克") || keywords.includes("科幻")) {
+  if (keywords.includes('赛博朋克') || keywords.includes('科幻')) {
     return {
-      style_pack: ["glitch-text", "matrix-rain", "neon-effects"],
-      background: "geometric-patterns",
-      reason: "赛博朋克视觉套装"
+      style_pack: ['glitch-text', 'matrix-rain', 'neon-effects'],
+      background: 'geometric-patterns',
+      reason: '赛博朋克视觉套装',
     };
   }
 
   // 4. 功能匹配
-  if (keywords.includes("音乐") || keywords.includes("节奏")) {
+  if (keywords.includes('音乐') || keywords.includes('节奏')) {
     return {
-      primary: "sound-wave",
-      secondary: "pulsing-text",
-      sync: "use useAudioData for real-time sync",
-      reason: "音频可视化专用"
+      primary: 'sound-wave',
+      secondary: 'pulsing-text',
+      sync: 'use useAudioData for real-time sync',
+      reason: '音频可视化专用',
     };
   }
 }
@@ -732,13 +744,14 @@ function auto_recommend_templates(user_request: string) {
 **用户说**："做一个标题动画，文字是'欢迎来到未来'"
 
 **自动处理**：
+
 ```typescript
 // 1. 选择模板：animated-text（最适合）
 // 2. 修改内容
-const text = "欢迎来到未来".split("");
+const text = '欢迎来到未来'.split('');
 
 // 3. 调整配色（可选）
-color: "#00ffff"  // 青色，符合"未来"主题
+color: '#00ffff'; // 青色，符合"未来"主题
 
 // 4. 生成代码
 import AnimatedText from './templates/animated-text';
@@ -751,17 +764,18 @@ import AnimatedText from './templates/animated-text';
 **用户说**："展示我们产品的3个核心功能"
 
 **自动处理**：
+
 ```typescript
 // 1. 选择模板：animated-list（完美匹配）
 // 2. 自定义数据
 const items = [
-  { name: "AI 智能写作", color: "#3b82f6" },
-  { name: "实时协作", color: "#60a5fa" },
-  { name: "多语言支持", color: "#93c5fd" }
+  { name: 'AI 智能写作', color: '#3b82f6' },
+  { name: '实时协作', color: '#60a5fa' },
+  { name: '多语言支持', color: '#93c5fd' },
 ];
 
 // 3. 调整动画速度（可选）
-delay: i * 8  // 从5帧改为8帧，更舒缓
+delay: i * 8; // 从5帧改为8帧，更舒缓
 
 // 完成！耗时：5分钟
 ```
@@ -771,6 +785,7 @@ delay: i * 8  // 从5帧改为8帧，更舒缓
 **用户说**："做一个音乐视频，要有声波效果"
 
 **自动处理**：
+
 ```typescript
 // 1. 选择模板：sound-wave + pulsing-text（组合）
 // 2. 添加音频同步
@@ -793,6 +808,7 @@ const height = amplitude * 200;
 **用户说**："做一个酷炫的赛博朋克风格开场"
 
 **自动处理**：
+
 ```typescript
 // 1. 风格套装：glitch-text + matrix-rain + geometric-patterns
 // 2. 层次结构
@@ -825,35 +841,39 @@ colors = {
 
 ### 性能对比
 
-| 方案 | 耗时 | 质量 | 灵活性 | 推荐场景 |
-|------|------|------|--------|---------|
-| **使用现成模板** | 2-5分钟 | ⭐⭐⭐⭐ | ⭐⭐⭐ | 标准需求 |
-| **组合多个模板** | 10-15分钟 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 中等复杂度 |
+| 方案             | 耗时      | 质量       | 灵活性     | 推荐场景   |
+| ---------------- | --------- | ---------- | ---------- | ---------- |
+| **使用现成模板** | 2-5分钟   | ⭐⭐⭐⭐   | ⭐⭐⭐     | 标准需求   |
+| **组合多个模板** | 10-15分钟 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐   | 中等复杂度 |
 | **基于模板修改** | 20-30分钟 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 有特殊需求 |
-| **从零生成代码** | 1-2小时 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 独特创意 |
+| **从零生成代码** | 1-2小时   | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 独特创意   |
 
 **建议**：80% 的需求可以用现成模板或组合解决，只有 20% 需要从零生成。
 
 ### 模板库维护
 
 **本地模板路径**：
+
 ```bash
 E:/Bobo's Coding cache/remotion-templates-lib/templates/
 ```
 
 **更新模板库**：
+
 ```bash
 cd "E:/Bobo's Coding cache/remotion-templates-lib"
 git pull origin main
 ```
 
 **查看所有模板**：
+
 ```bash
 ls templates/*.tsx
 # 输出：15个模板文件
 ```
 
 **测试单个模板**：
+
 ```bash
 # 在 Remotion 项目中
 npm start
@@ -867,6 +887,7 @@ npm start
 这个自动化规则已集成到你的工作流程中，当检测到视频创作需求时自动激活。
 
 **模板库优先级**：
+
 - ✅ 优先推荐现成模板
 - ✅ 其次建议模板组合
 - ✅ 必要时基于模板修改

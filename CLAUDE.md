@@ -37,17 +37,17 @@
 
 **你不需要关心加载什么**，系统会根据你的需求自动选择。
 
-| 任务关键词 | 自动加载的文档 | 预估大小 |
-|-----------|---------------|---------|
-| 浏览器、自动化、爬虫 | 浏览器自动化指南 | ~15KB |
-| 视频、Remotion、动画 | 视频创作指南 | ~25KB |
-| 数据、分析、SQL | 数据分析指南 | ~20KB |
-| 设计、UI、界面 | 设计指南 | ~30KB |
-| 营销、文案、SEO | 营销指南 | ~35KB |
-| 开发、代码、功能 | 编码规则 + 工程化工作流 | ~20KB |
-| 迁移、TDD、组件 | 工程化工作流（高级） | ~8KB |
-| 错误、bug、调试 | 错误目录 | ~12KB |
-| 安全、漏洞、审计 | 安全规则 | ~15KB |
+| 任务关键词           | 自动加载的文档          | 预估大小 |
+| -------------------- | ----------------------- | -------- |
+| 浏览器、自动化、爬虫 | 浏览器自动化指南        | ~15KB    |
+| 视频、Remotion、动画 | 视频创作指南            | ~25KB    |
+| 数据、分析、SQL      | 数据分析指南            | ~20KB    |
+| 设计、UI、界面       | 设计指南                | ~30KB    |
+| 营销、文案、SEO      | 营销指南                | ~35KB    |
+| 开发、代码、功能     | 编码规则 + 工程化工作流 | ~20KB    |
+| 迁移、TDD、组件      | 工程化工作流（高级）    | ~8KB     |
+| 错误、bug、调试      | 错误目录                | ~12KB    |
+| 安全、漏洞、审计     | 安全规则                | ~15KB    |
 
 **系统说明**: `CONTEXT_MANAGER.md`
 
@@ -65,27 +65,27 @@
 
 ### 常用能力快速跳转
 
-| 能力 | 快速链接 |
-|------|---------|
+| 能力            | 快速链接                                           |
+| --------------- | -------------------------------------------------- |
 | 🌐 浏览器自动化 | `capabilities/browser-automation/decision-tree.md` |
-| 🎬 视频创作 | 项目级 `.claude/rules/remotion-auto-production.md` |
-| 📊 数据分析 | `capabilities/data-analysis-guide.md` |
-| 🎨 UI 设计 | `design/DESIGN_MASTER_PERSONA.md` |
-| 📝 营销内容 | `vibe-marketing/VIBE_MARKETING_GUIDE.md` |
-| 🐛 错误调试 | `errors/top-5-errors.md` |
-| 🤖 Agent 编排 | `rules/agents.md` |
+| 🎬 视频创作     | 项目级 `.claude/rules/remotion-auto-production.md` |
+| 📊 数据分析     | `capabilities/data-analysis-guide.md`              |
+| 🎨 UI 设计      | `design/DESIGN_MASTER_PERSONA.md`                  |
+| 📝 营销内容     | `vibe-marketing/VIBE_MARKETING_GUIDE.md`           |
+| 🐛 错误调试     | `errors/top-5-errors.md`                           |
+| 🤖 Agent 编排   | `rules/agents.md`                                  |
 
 ---
 
 ## ⚠️ Top 5 高频错误（快速参考）
 
-| 错误 | 核心问题 | 快速检查 |
-|------|---------|---------|
+| 错误     | 核心问题   | 快速检查                             |
+| -------- | ---------- | ------------------------------------ |
 | **E001** | 异步未并行 | 多个异步操作是否用 `Promise.all()`？ |
-| **E002** | 轮询无超时 | 轮询是否设置 `maxAttempts`？ |
-| **E003** | 错误未抛出 | `catch` 块是否 `throw error`？ |
-| **E004** | SQL未用CTE | JOIN 后过滤 → 用 CTE 预过滤大表 |
-| **E007** | 资源泄漏 | 所有退出路径都清理资源？ |
+| **E002** | 轮询无超时 | 轮询是否设置 `maxAttempts`？         |
+| **E003** | 错误未抛出 | `catch` 块是否 `throw error`？       |
+| **E004** | SQL未用CTE | JOIN 后过滤 → 用 CTE 预过滤大表      |
+| **E007** | 资源泄漏   | 所有退出路径都清理资源？             |
 
 **完整错误目录**: `errors/ERROR_CATALOG.md` (E001-E015)
 
@@ -119,20 +119,20 @@ Phase 3: 实现代码
 
 ### MCP Servers（外部数据）
 
-| 任务 | MCP | 文档 |
-|-----|-----|------|
-| SQL查询 | bytebase | `capabilities/mcp-servers.md` |
-| 浏览器 | playwright | `capabilities/browser-automation/` |
-| 监控日志 | honeycomb | `capabilities/mcp-servers.md` |
+| 任务     | MCP        | 文档                               |
+| -------- | ---------- | ---------------------------------- |
+| SQL查询  | bytebase   | `capabilities/mcp-servers.md`      |
+| 浏览器   | playwright | `capabilities/browser-automation/` |
+| 监控日志 | honeycomb  | `capabilities/mcp-servers.md`      |
 
 ### Skills（自动化任务）
 
-| 类别 | 示例 | 文档 |
-|------|------|------|
-| Git工作流 | /commit, /create-pr | `capabilities/skills-guide.md` |
-| 测试生成 | /write-tests | 同上 |
-| UI设计 | ui-ux-pro-max | 同上 |
-| 营销 | 24个专业Skills | `capabilities/MARKETING_SKILLS_GUIDE.md` |
+| 类别      | 示例                | 文档                                     |
+| --------- | ------------------- | ---------------------------------------- |
+| Git工作流 | /commit, /create-pr | `capabilities/skills-guide.md`           |
+| 测试生成  | /write-tests        | 同上                                     |
+| UI设计    | ui-ux-pro-max       | 同上                                     |
+| 营销      | 24个专业Skills      | `capabilities/MARKETING_SKILLS_GUIDE.md` |
 
 **完整清单**: `capabilities/skills-guide.md` (81个Skills)
 
@@ -141,12 +141,14 @@ Phase 3: 实现代码
 ## 📚 完整文档导航
 
 ### 索引层（快速查找）
+
 - `index/task-router.md` - 任务路由决策树（30秒找到工具）
 - `index/capabilities-index.md` - 能力索引
 - `index/tools-index.md` - 工具索引
 - `index/error-patterns-index.md` - 错误模式索引
 
 ### 规则库（自动加载）
+
 - `rules/core/` - 核心规则（总是加载）
   - `blocking-rules.md`, `work-mode.md`
 - `rules/domain/` - 领域规则（按需加载）
@@ -156,6 +158,7 @@ Phase 3: 实现代码
 - `rules/performance.md` - 性能优化
 
 ### 能力库（按需加载）
+
 - `capabilities/browser-automation/` - 浏览器自动化
 - `capabilities/video-creation/` - 视频创作
 - `capabilities/data-analysis/` - 数据分析
@@ -163,10 +166,12 @@ Phase 3: 实现代码
 - `vibe-marketing/` - 营销内容
 
 ### 错误库（按需加载）
+
 - `errors/top-5-errors.md` - 高频错误快速参考
 - `errors/ERROR_CATALOG.md` - 完整错误目录 (E001-E015)
 
 ### 知识库（参考）
+
 - `KNOWLEDGE_MAP.md` - 知识图谱（12个Mermaid图）
 - `QUICK_REFERENCE.md` - 一页速查表
 - `INDEX.md` - 所有文档的完整索引
@@ -185,6 +190,7 @@ Phase 3: 实现代码
 ## 👁️ 视觉验证
 
 进行 UI 修改后（尤其是 3D 可视化或连接线相关），必须：
+
 1. 用 `npm run dev` 启动应用
 2. 导航到受影响的组件
 3. 验证视觉元素正确渲染且无控制台错误
@@ -206,13 +212,13 @@ Phase 3: 实现代码
 
 ## 🔬 工程化工作流
 
-| 任务类型 | 必须执行 |
-|---------|---------|
-| UI 修改 | 验证闭环（启动应用 → 视觉确认） |
-| 新功能 | 顺序思维规划 → 步骤分解 → 依赖标注 |
-| 数据库变更 | 事务化迁移 → 回滚脚本 → 一致性验证 |
-| 复杂功能 | TDD 全流程（RED → GREEN → 属性测试） |
-| 核心组件 | 自愈合模式（回归测试 + 响应式 + 无障碍） |
+| 任务类型   | 必须执行                                 |
+| ---------- | ---------------------------------------- |
+| UI 修改    | 验证闭环（启动应用 → 视觉确认）          |
+| 新功能     | 顺序思维规划 → 步骤分解 → 依赖标注       |
+| 数据库变更 | 事务化迁移 → 回滚脚本 → 一致性验证       |
+| 复杂功能   | TDD 全流程（RED → GREEN → 属性测试）     |
+| 核心组件   | 自愈合模式（回归测试 + 响应式 + 无障碍） |
 
 **详细说明**: `rules/domain/engineering-workflows.md`
 
@@ -221,6 +227,7 @@ Phase 3: 实现代码
 ## 📊 Context 使用优化
 
 ### Before (v4.2)
+
 ```
 CLAUDE.md: 20KB
 + 多个规则文件: 30KB
@@ -229,6 +236,7 @@ CLAUDE.md: 20KB
 ```
 
 ### After (v5.1 - 清理后)
+
 ```
 CLAUDE.md: 5KB
 + 核心规则 (core/ + domain/): ~18KB
@@ -252,6 +260,7 @@ CLAUDE.md: 5KB
 ### 你需要做什么？
 
 **什么都不需要！** 只需描述你的任务，系统会自动：
+
 - ✅ 识别任务类型
 - ✅ 加载相关文档
 - ✅ 保持 context 清洁
@@ -286,6 +295,7 @@ CLAUDE.md: 5KB
 准备好接收任务了！
 
 **记住**:
+
 - ✅ 快速规划 → 展示 → 确认 → 执行
 - ✅ 自行决策 95% 的问题
 - ✅ 只在 4 种致命阻塞时提问

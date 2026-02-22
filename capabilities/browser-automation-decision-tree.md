@@ -8,15 +8,15 @@
 
 ### 两大工具对比
 
-| 特性 | **Playwright MCP** ⭐ 主力 | **agent-browser CLI** 🚀 轻量 |
-|------|--------------------------|------------------------------|
-| **集成方式** | MCP工具（无缝调用） | CLI命令（需手动调用） |
-| **调用语法** | `mcp__plugin_playwright_playwright__*` | `agent-browser <command>` |
-| **性能** | 中等（Node.js） | 快速（Rust核心） |
-| **启动速度** | 2-3秒 | <1秒 |
-| **功能丰富度** | ⭐⭐⭐⭐⭐ 全面 | ⭐⭐⭐ 核心功能 |
-| **AI友好度** | ⭐⭐⭐ 标准 | ⭐⭐⭐⭐⭐ 专为AI设计 |
-| **学习成本** | 低（自动调用） | 中等（需学命令） |
+| 特性           | **Playwright MCP** ⭐ 主力             | **agent-browser CLI** 🚀 轻量 |
+| -------------- | -------------------------------------- | ----------------------------- |
+| **集成方式**   | MCP工具（无缝调用）                    | CLI命令（需手动调用）         |
+| **调用语法**   | `mcp__plugin_playwright_playwright__*` | `agent-browser <command>`     |
+| **性能**       | 中等（Node.js）                        | 快速（Rust核心）              |
+| **启动速度**   | 2-3秒                                  | <1秒                          |
+| **功能丰富度** | ⭐⭐⭐⭐⭐ 全面                        | ⭐⭐⭐ 核心功能               |
+| **AI友好度**   | ⭐⭐⭐ 标准                            | ⭐⭐⭐⭐⭐ 专为AI设计         |
+| **学习成本**   | 低（自动调用）                         | 中等（需学命令）              |
 
 ---
 
@@ -89,18 +89,18 @@
 
 ## 📊 使用场景决策表
 
-| 场景 | 推荐工具 | 理由 |
-|------|---------|------|
-| **实时调试网页** | Playwright MCP ⭐ | 无缝集成，结果即时返回 |
-| **截图/PDF生成** | Playwright MCP ⭐ | 直接调用，输出到指定目录 |
-| **表单自动填充** | Playwright MCP ⭐ | 对话中完成，无需切换 |
-| **E2E测试编写** | Playwright MCP ⭐ | 完整测试框架，断言支持 |
-| **网络拦截/Mock** | Playwright MCP ⭐ | 唯一选择（agent-browser不支持） |
-| **批量数据采集** | agent-browser CLI 🚀 | 快速启动，脚本友好 |
-| **定时任务爬虫** | agent-browser CLI 🚀 | 轻量级，适合cron |
-| **AI Agent自动化** | agent-browser CLI 🚀 | Accessibility Tree设计 |
-| **大量重复操作** | agent-browser CLI 🚀 | 性能优势明显 |
-| **首次探索页面** | Playwright MCP ⭐ | 交互式，便于调试 |
+| 场景               | 推荐工具             | 理由                            |
+| ------------------ | -------------------- | ------------------------------- |
+| **实时调试网页**   | Playwright MCP ⭐    | 无缝集成，结果即时返回          |
+| **截图/PDF生成**   | Playwright MCP ⭐    | 直接调用，输出到指定目录        |
+| **表单自动填充**   | Playwright MCP ⭐    | 对话中完成，无需切换            |
+| **E2E测试编写**    | Playwright MCP ⭐    | 完整测试框架，断言支持          |
+| **网络拦截/Mock**  | Playwright MCP ⭐    | 唯一选择（agent-browser不支持） |
+| **批量数据采集**   | agent-browser CLI 🚀 | 快速启动，脚本友好              |
+| **定时任务爬虫**   | agent-browser CLI 🚀 | 轻量级，适合cron                |
+| **AI Agent自动化** | agent-browser CLI 🚀 | Accessibility Tree设计          |
+| **大量重复操作**   | agent-browser CLI 🚀 | 性能优势明显                    |
+| **首次探索页面**   | Playwright MCP ⭐    | 交互式，便于调试                |
 
 ---
 
@@ -126,11 +126,16 @@
 ```
 
 **调用示例**：
+
 ```typescript
 // Claude Code 中直接调用工具
-mcp__plugin_playwright_playwright__browser_navigate({ url: "https://example.com" })
-mcp__plugin_playwright_playwright__browser_snapshot()
-mcp__plugin_playwright_playwright__browser_take_screenshot({ filename: "page.png" })
+mcp__plugin_playwright_playwright__browser_navigate({
+  url: 'https://example.com',
+});
+mcp__plugin_playwright_playwright__browser_snapshot();
+mcp__plugin_playwright_playwright__browser_take_screenshot({
+  filename: 'page.png',
+});
 ```
 
 ---
@@ -155,6 +160,7 @@ mcp__plugin_playwright_playwright__browser_take_screenshot({ filename: "page.png
 ```
 
 **调用示例**：
+
 ```bash
 # 通过 Bash 工具调用
 agent-browser open example.com
@@ -170,24 +176,24 @@ agent-browser close
 
 ### Playwright 独有功能
 
-| 功能 | 说明 | 用途 |
-|------|------|------|
-| **网络拦截** | Route请求、Mock响应 | API测试、离线测试 |
-| **录制回放** | Codegen录制操作 | 快速生成测试代码 |
-| **Trace追踪** | 完整操作记录 | 调试失败用例 |
-| **多浏览器** | Chrome/Firefox/Safari | 跨浏览器测试 |
-| **视频录制** | 录制操作视频 | 问题复现、演示 |
-| **完整断言** | expect API | 自动化测试 |
+| 功能          | 说明                  | 用途              |
+| ------------- | --------------------- | ----------------- |
+| **网络拦截**  | Route请求、Mock响应   | API测试、离线测试 |
+| **录制回放**  | Codegen录制操作       | 快速生成测试代码  |
+| **Trace追踪** | 完整操作记录          | 调试失败用例      |
+| **多浏览器**  | Chrome/Firefox/Safari | 跨浏览器测试      |
+| **视频录制**  | 录制操作视频          | 问题复现、演示    |
+| **完整断言**  | expect API            | 自动化测试        |
 
 ### agent-browser 独有功能
 
-| 功能 | 说明 | 用途 |
-|------|------|------|
-| **Accessibility Tree** | 包含 refs 的页面结构 | AI理解页面 |
-| **语义定位器** | find role/text/label | 自然语言操作 |
-| **极速启动** | <1秒启动（Rust核心） | 高频操作 |
-| **简化输出** | AI友好的格式 | 减少token消耗 |
-| **命令管道** | Unix风格命令组合 | 脚本编排 |
+| 功能                   | 说明                 | 用途          |
+| ---------------------- | -------------------- | ------------- |
+| **Accessibility Tree** | 包含 refs 的页面结构 | AI理解页面    |
+| **语义定位器**         | find role/text/label | 自然语言操作  |
+| **极速启动**           | <1秒启动（Rust核心） | 高频操作      |
+| **简化输出**           | AI友好的格式         | 减少token消耗 |
+| **命令管道**           | Unix风格命令组合     | 脚本编排      |
 
 ---
 
@@ -279,15 +285,15 @@ Claude: 使用 agent-browser snapshot 获取页面结构
 
 ## 🚀 性能对比实测
 
-| 操作 | Playwright MCP | agent-browser CLI | 差异 |
-|------|---------------|-------------------|------|
-| **启动浏览器** | 2.3秒 | 0.8秒 | **2.9x faster** |
-| **打开页面** | 1.1秒 | 0.9秒 | 1.2x faster |
-| **获取快照** | 0.5秒 | 0.3秒 | 1.7x faster |
-| **点击元素** | 0.2秒 | 0.2秒 | 相同 |
-| **截图** | 0.8秒 | 0.6秒 | 1.3x faster |
-| **关闭浏览器** | 0.3秒 | 0.2秒 | 1.5x faster |
-| **100次操作总时间** | 124秒 | 67秒 | **1.85x faster** |
+| 操作                | Playwright MCP | agent-browser CLI | 差异             |
+| ------------------- | -------------- | ----------------- | ---------------- |
+| **启动浏览器**      | 2.3秒          | 0.8秒             | **2.9x faster**  |
+| **打开页面**        | 1.1秒          | 0.9秒             | 1.2x faster      |
+| **获取快照**        | 0.5秒          | 0.3秒             | 1.7x faster      |
+| **点击元素**        | 0.2秒          | 0.2秒             | 相同             |
+| **截图**            | 0.8秒          | 0.6秒             | 1.3x faster      |
+| **关闭浏览器**      | 0.3秒          | 0.2秒             | 1.5x faster      |
+| **100次操作总时间** | 124秒          | 67秒              | **1.85x faster** |
 
 **结论**：agent-browser 在高频操作场景下有显著性能优势。
 
@@ -298,12 +304,14 @@ Claude: 使用 agent-browser snapshot 获取页面结构
 ### 1. 默认选择 Playwright MCP
 
 **原因**：
+
 - ✅ 无缝集成 Claude Code
 - ✅ 无需学习新命令
 - ✅ 结果自动返回对话
 - ✅ 功能最全面
 
 **何时切换到 agent-browser**：
+
 - 🚀 遇到性能瓶颈（>50次操作）
 - 🚀 需要脚本化/定时任务
 - 🚀 需要AI专属特性（Accessibility Tree）
@@ -385,29 +393,30 @@ done < "$urls_file"
 
 ## 🎯 工具能力对照表
 
-| 能力类别 | Playwright MCP | agent-browser CLI |
-|---------|---------------|-------------------|
-| **页面导航** | ✅ 完整 | ✅ 完整 |
-| **元素定位** | ✅ CSS/XPath/Text | ✅ CSS + 语义定位器 ⭐ |
-| **表单操作** | ✅ 完整 | ✅ 完整 |
-| **鼠标键盘** | ✅ 完整 | ✅ 完整 |
-| **截图/PDF** | ✅ 完整 | ✅ 完整 |
-| **等待策略** | ✅ 丰富（多种条件） | ✅ 标准 |
-| **网络控制** | ✅ 拦截/Mock/监控 ⭐ | ❌ 不支持 |
-| **多标签页** | ✅ 完整管理 | ✅ 基础管理 |
-| **设备模拟** | ✅ 50+ 设备预设 | ✅ 自定义视口 |
-| **Cookie/Storage** | ✅ 完整 | ✅ 完整 |
-| **JavaScript执行** | ✅ 完整 | ✅ 完整 |
-| **录制回放** | ✅ Codegen ⭐ | ❌ 不支持 |
-| **Trace追踪** | ✅ 详细追踪 ⭐ | ❌ 不支持 |
-| **断言系统** | ✅ expect API ⭐ | ❌ 不支持 |
-| **Accessibility Tree** | ⚠️ 基础 | ✅ 专为AI优化 ⭐ |
-| **语义定位** | ⚠️ 有限 | ✅ 丰富（role/text/label） ⭐ |
-| **启动速度** | ⚠️ 2-3秒 | ✅ <1秒 ⭐ |
-| **性能** | ⚠️ 中等 | ✅ 快速（Rust） ⭐ |
-| **脚本友好** | ⚠️ 需要Node.js环境 | ✅ CLI直接调用 ⭐ |
+| 能力类别               | Playwright MCP       | agent-browser CLI             |
+| ---------------------- | -------------------- | ----------------------------- |
+| **页面导航**           | ✅ 完整              | ✅ 完整                       |
+| **元素定位**           | ✅ CSS/XPath/Text    | ✅ CSS + 语义定位器 ⭐        |
+| **表单操作**           | ✅ 完整              | ✅ 完整                       |
+| **鼠标键盘**           | ✅ 完整              | ✅ 完整                       |
+| **截图/PDF**           | ✅ 完整              | ✅ 完整                       |
+| **等待策略**           | ✅ 丰富（多种条件）  | ✅ 标准                       |
+| **网络控制**           | ✅ 拦截/Mock/监控 ⭐ | ❌ 不支持                     |
+| **多标签页**           | ✅ 完整管理          | ✅ 基础管理                   |
+| **设备模拟**           | ✅ 50+ 设备预设      | ✅ 自定义视口                 |
+| **Cookie/Storage**     | ✅ 完整              | ✅ 完整                       |
+| **JavaScript执行**     | ✅ 完整              | ✅ 完整                       |
+| **录制回放**           | ✅ Codegen ⭐        | ❌ 不支持                     |
+| **Trace追踪**          | ✅ 详细追踪 ⭐       | ❌ 不支持                     |
+| **断言系统**           | ✅ expect API ⭐     | ❌ 不支持                     |
+| **Accessibility Tree** | ⚠️ 基础              | ✅ 专为AI优化 ⭐              |
+| **语义定位**           | ⚠️ 有限              | ✅ 丰富（role/text/label） ⭐ |
+| **启动速度**           | ⚠️ 2-3秒             | ✅ <1秒 ⭐                    |
+| **性能**               | ⚠️ 中等              | ✅ 快速（Rust） ⭐            |
+| **脚本友好**           | ⚠️ 需要Node.js环境   | ✅ CLI直接调用 ⭐             |
 
 **图例**：
+
 - ✅ 完整支持
 - ⚠️ 部分支持或有限制
 - ❌ 不支持

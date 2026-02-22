@@ -19,7 +19,7 @@
 ```javascript
 // ❌ 错误：顺序执行 (13次 × 2秒 = 26秒)
 for (const term of searchTerms) {
-  const results = await api.search(term);  // 等待这个完成才开始下一个
+  const results = await api.search(term); // 等待这个完成才开始下一个
   allResults.push(...results);
 }
 ```
@@ -28,15 +28,22 @@ for (const term of searchTerms) {
 
 ```javascript
 // ✅ 正确：并行执行 (max 2秒)
-const searchPromises = searchTerms.map(term =>
-  api.search(term)
-    .then(results => ({ term, results, success: true }))
-    .catch(error => ({ term, results: [], success: false, error: error.message }))
+const searchPromises = searchTerms.map((term) =>
+  api
+    .search(term)
+    .then((results) => ({ term, results, success: true }))
+    .catch((error) => ({
+      term,
+      results: [],
+      success: false,
+      error: error.message,
+    }))
 );
 const searchResults = await Promise.all(searchPromises);
 ```
 
 ### 影响
+
 - **性能**: 慢 13 倍
 - **用户体验**: 长时间等待
 
@@ -60,7 +67,7 @@ const searchResults = await Promise.all(searchPromises);
 setInterval(async () => {
   const data = await fetchStatus(scanId);
   if (data.status === 'completed') {
-    clearInterval(scanPollInterval);  // 只在成功时清理
+    clearInterval(scanPollInterval); // 只在成功时清理
     updateUI(data);
   }
 }, 2000);
@@ -94,6 +101,7 @@ function pollStatus(scanId, maxAttempts = 30) {
 ```
 
 ### 影响
+
 - **资源泄漏**: 无限轮询
 - **浏览器卡死**: 内存占用持续增长
 
@@ -115,9 +123,9 @@ function pollStatus(scanId, maxAttempts = 30) {
 // ❌ 错误：吞掉了错误
 async function fetchUser(id) {
   try {
-    return await fetch(`/api/users/${id}`).then(r => r.json());
+    return await fetch(`/api/users/${id}`).then((r) => r.json());
   } catch (error) {
-    console.error('获取失败:', error);  // 只记录，没有抛出
+    console.error('获取失败:', error); // 只记录，没有抛出
     // 函数返回 undefined，调用者不知道失败了
   }
 }
@@ -129,7 +137,7 @@ async function fetchUser(id) {
 // ✅ 正确：重新抛出错误
 async function fetchUser(id) {
   try {
-    return await fetch(`/api/users/${id}`).then(r => r.json());
+    return await fetch(`/api/users/${id}`).then((r) => r.json());
   } catch (error) {
     console.error('获取失败:', error);
     throw new Error(`无法获取用户 ${id}: ${error.message}`);
@@ -138,6 +146,7 @@ async function fetchUser(id) {
 ```
 
 ### 影响
+
 - **静默失败**: 调用者不知道出错了
 - **数据不一致**: 使用 undefined 继续执行
 
@@ -182,6 +191,7 @@ LEFT JOIN user_energy_bot_usage_logs u
 ```
 
 ### 影响
+
 - **性能**: 慢 10-100 倍
 - **数据库负载**: CPU 和内存占用高
 
@@ -206,9 +216,9 @@ async function processData() {
   try {
     const data = await fetchData();
     processResults(data);
-    stopLoading();  // 只在成功时清理
+    stopLoading(); // 只在成功时清理
   } catch (error) {
-    showError(error);  // 失败时没有 stopLoading()
+    showError(error); // 失败时没有 stopLoading()
   }
 }
 ```
@@ -225,12 +235,13 @@ async function processData() {
   } catch (error) {
     showError(error);
   } finally {
-    stopLoading();  // 所有路径都清理
+    stopLoading(); // 所有路径都清理
   }
 }
 ```
 
 ### 影响
+
 - **UI 卡住**: Loading 动画不消失
 - **内存泄漏**: 定时器/监听器没有清理
 - **文件句柄泄漏**: 文件没有关闭
@@ -254,6 +265,7 @@ async function processData() {
 **所有 15 个错误模式**: `errors/ERROR_CATALOG.md`
 
 包含：
+
 - E001-E015 完整案例
 - 根因分析
 - 测试用例

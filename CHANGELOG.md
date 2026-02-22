@@ -57,12 +57,14 @@
 ### ✨ 新增
 
 #### Context Engineering v5.1
+
 - **CLAUDE.md v5.1**: Context Cleanup，全局规则从 120KB 降至 27KB
 - **四层加载架构**: Layer 0 (总是) → Layer 1 (识别) → Layer 2 (按需) → Layer 3 (精确)
 - **delegator 系统移除**: 删除 22KB 无效委托系统
 - **Remotion 规则项目级化**: 从全局 rules/ 移至 examples/project-rules/
 
 #### 工程化工作流 v1.1
+
 - **3D 可视化布局修改工作流**: Three.js/R3F 场景修改规范
   - 按节点数量加权分配扇区角度
   - 连线表面偏移系数（球=1.0, 方=1.2, 环=1.4）
@@ -70,15 +72,18 @@
   - 分批查询、前端 Set 去重、CSS 固定裁剪、按需加载
 
 #### Skills 清单 v2.0
+
 - 完整 41 项 Skills 清单（15 用户调用 + 26 自动激活）
 - 新增分类：UI 设计(6)、开发专家(8)、内容创作(4)、专业工具(5)、分析(2)
 
 #### Plugins 清单 v2.0
+
 - 完整 80 个 Plugins 清单（4 个来源）
 - 新增 claude-code-workflows 系列 60 个专业工作流插件
 - 新增 everything-claude-code 全功能增强插件
 
 #### Hooks 系统更新
+
 - 新增 vibecraft 四阶段集成
 - 新增 learn-patterns + session-summary 自动化
 
@@ -103,6 +108,7 @@
 ### ✨ 新增
 
 #### 模块化重构
+
 - **CLAUDE.md v4.2**: 从 47KB 缩减到 20KB（57%减少）
   - 保留核心原则和高频错误模式（E001-E003 完整）
   - 其他高频错误改为快速参考表 + 链接（E004, E007, E008, E011-E015）
@@ -113,6 +119,7 @@
   - `CLAUDE-v4.1-20260123.md` 已归档
 
 #### 打包分发工具
+
 - **upgrade.sh**: 自动升级脚本
   - 版本检查和对比
   - 自动备份当前配置
@@ -128,6 +135,7 @@
 - **VERSION**: 语义化版本文件（v4.2.0）
 
 #### 验证系统
+
 - **完整的测试框架 (100% 覆盖率)**:
   - Jest 测试环境配置
   - 11 个错误案例测试（E001-E015 完整覆盖）
@@ -146,18 +154,19 @@
   - `validate-all.sh` - 完整验证套件（生成健康评分）
 
 #### CI/CD 自动化
+
 - **GitHub Actions 工作流**:
   - `weekly-validation.yml` - 每周自动验证
-    * Markdown 格式检查
-    * 链接有效性检查
-    * 重复内容检测
-    * 过时文档检测（90 天）
-    * Jest 测试套件运行
-    * 自动创建 Issue（失败时）
-    * PR 自动评论验证结果
+    - Markdown 格式检查
+    - 链接有效性检查
+    - 重复内容检测
+    - 过时文档检测（90 天）
+    - Jest 测试套件运行
+    - 自动创建 Issue（失败时）
+    - PR 自动评论验证结果
   - `quick-validation.yml` - 推送快速检查
-    * 轻量级格式检查
-    * 文档健康度评分
+    - 轻量级格式检查
+    - 文档健康度评分
 - **自动化特性**:
   - 验证报告上传到 Artifacts（保留 30 天）
   - 测试覆盖率报告生成
@@ -165,6 +174,7 @@
   - 手动触发支持（workflow_dispatch）
 
 #### 搜索和导航工具
+
 - **search.sh (全文搜索工具)**:
   - 支持多种搜索模式（忽略大小写/全词匹配/正则表达式）
   - 按文件类型过滤（md/js/sh/all）
@@ -191,6 +201,7 @@
   - 彩色输出和统计汇总
 
 #### 协作机制
+
 - **GitHub Issue 模板**:
   - `error-case.md` - 错误案例提交模板
   - `capability-suggestion.md` - 能力建议模板
@@ -207,17 +218,20 @@
 ### 🔧 改进
 
 #### 文档结构
+
 - 核心内容与详细文档清晰分离
 - 快速参考表格 + 深度文档链接模式
 - 模块化设计，易于维护和扩展
 
 #### 备份机制
+
 - 升级前自动备份
 - 回滚前备份保护
 - 自动清理旧备份（保留5个）
 - 备份时间戳命名（YYYYMMDD-HHMMSS）
 
 #### 安装流程
+
 - 优化现有 install.sh 脚本
 - 支持增量更新（通过 upgrade.sh）
 - 支持回滚（通过 rollback.sh）
@@ -225,6 +239,7 @@
 ### 📚 文档
 
 #### 新增文档
+
 - `validation/README.md` - 验证系统完整使用指南
 - `validation/audit/template.md` - 审计报告模板
 - `scripts/upgrade.sh` - 升级脚本（540 行）
@@ -232,6 +247,7 @@
 - `archive/legacy-versions/CLAUDE-v4.1-20260123.md` - 归档版本
 
 #### 更新文档
+
 - `CLAUDE.md` - v4.2 重构版本（20KB）
 - `CONTRIBUTING.md` - v2.0 增强版（540 行）
 - `CHANGELOG.md` - 添加 v4.2.0 变更记录
@@ -245,9 +261,10 @@
 ### 📊 统计
 
 #### 新增文件
+
 - 验证系统: 15 个文件
-  * 测试: 11 个测试文件（E001-E015 完整）
-  * 验证脚本: 4 个（validate-markdown/links/all, detect-duplicates）
+  - 测试: 11 个测试文件（E001-E015 完整）
+  - 验证脚本: 4 个（validate-markdown/links/all, detect-duplicates）
 - 打包工具: 2 个脚本（upgrade.sh, rollback.sh）
 - CI/CD: 2 个工作流（weekly-validation, quick-validation）
 - 搜索导航: 2 个工具（search.sh, navigate.sh）
@@ -255,6 +272,7 @@
 - 总计: 24 个新文件
 
 #### 代码行数
+
 - 测试用例: ~3000 行（11 个错误模式，110+ 测试用例）
 - 验证工具: ~1000 行（4 个验证脚本）
 - 升级/回滚工具: ~830 行（upgrade.sh + rollback.sh）
@@ -264,6 +282,7 @@
 - 总计: ~6920 行新增代码
 
 #### 测试覆盖
+
 - 错误案例测试: **11/11 完成（100% 覆盖）** ✅
   - E001: 异步未并行（9 个测试用例）
   - E002: 轮询无超时（10 个测试用例）
@@ -279,6 +298,7 @@
 - 总计: ~110 个测试用例
 
 #### 文档优化
+
 - CLAUDE.md: 从 47KB 减少到 20KB（缩减 57%）
 - 加载速度: 预计提升 ~50%
 - 可维护性: 模块化后显著提升
@@ -286,11 +306,13 @@
 ### 💡 最佳实践
 
 #### 语义化版本控制
+
 - 严格遵循 SemVer 规范
 - VERSION 文件集中管理
 - CHANGELOG 详细记录变更
 
 #### 自动化升级流程
+
 1. 检查版本（对比当前 vs 最新）
 2. 备份现有配置
 3. 拉取最新代码
@@ -299,6 +321,7 @@
 6. 显示变更日志
 
 #### 安全回滚机制
+
 1. 列出可用备份
 2. 选择回滚目标
 3. 验证备份完整性
@@ -307,6 +330,7 @@
 6. 验证回滚结果
 
 #### 验证驱动开发
+
 - 编写测试先于文档
 - 自动化验证确保质量
 - 定期审计持续改进
@@ -333,6 +357,7 @@
 ### ✨ 新增
 
 #### 无障碍性自动化系统
+
 - 新增 WCAG 2.0-2.2 AA 标准完整实现
 - 新增 ESLint + Playwright + GitHub Actions 多层次自动化检查
 - 新增 11 个自动化测试用例（键盘导航、屏幕阅读器、ARIA、色彩对比度等）
@@ -340,6 +365,7 @@
 - 新增完整文档体系（README_ACCESSIBILITY.md + QUICK_START.md + 600+ 行测试指南）
 
 #### AI Agent 知识库系统
+
 - 新增知识库集成模式（12 个核心文档，116 KB）
 - 新增启动时加载到内存机制（响应时间从 150ms 降至 1ms）
 - 新增 Craft Agents 三栏布局实现
@@ -348,6 +374,7 @@
 - 新增增强输入工具栏（提示词选择 + 模型选择）
 
 #### Remotion 视频创作能力
+
 - 新增 Remotion 视频创作完整指南（REMOTION_VIDEO_CREATION_GUIDE.md）
 - 新增自动化视频生产规则（remotion-auto-production.md）
 - 整合 Remotion + Nano Banana Pro + Processing 三大能力
@@ -357,6 +384,7 @@
 ### 🔧 改进
 
 #### CLAUDE.md
+
 - 添加 E011: Git Bash npm install 失败（环境兼容性）
 - 添加 E012: Pre-commit Hook 权限问题（配置问题）
 - 添加 E013: 知识库每次请求加载（性能问题）
@@ -365,12 +393,14 @@
 - 更新版本号至 4.1
 
 #### DECISION_TREE.md
+
 - 全栈开发场景从 12 个增至 15 个
 - 新增场景 #28: 无障碍性检查
 - 新增场景 #29: 知识库集成
 - 新增场景 #30: Pre-commit Hook 设置
 
 #### ERROR_CATALOG.md
+
 - 更新版本号至 2.1
 - 高频错误从 Top 10 增至 Top 13
 - 新增 E011: Git Bash npm install 失败（高频，中等严重度）
@@ -381,6 +411,7 @@
 ### 📝 文档
 
 #### 新增文档
+
 - `analysis/TODAY_SUMMARY_2026-01-23.md` - 今日工作总结（5000+ 行）
   - 3 个主要项目完成记录
   - 核心成果和技术亮点
@@ -397,22 +428,26 @@
 ### 💡 最佳实践
 
 #### 多层次自动化
+
 - 第一层：开发时实时反馈（ESLint）
 - 第二层：提交前验证（Pre-commit Hook）
 - 第三层：推送后检查（GitHub Actions）
 - 第四层：定期审计（Weekly Audit）
 
 #### 知识库即时可用性
+
 - 启动时加载完成（+100ms）
 - 请求时从内存读取（-149ms）
 - 内存占用可接受（~120KB）
 
 #### 用户体验三层次
+
 1. 自动化 - 用户不需要做任何事情
 2. 简化 - 用户只需要提供最少的输入
 3. 引导 - 清晰的文档和错误提示
 
 #### 文档渐进式披露
+
 - 快速开始（3-5 分钟）→ 立即使用
 - 用户指南（10-15 分钟）→ 日常参考
 - 完整文档（30+ 分钟）→ 深入学习
@@ -421,6 +456,7 @@
 ### 📊 统计
 
 #### 文件统计
+
 - 创建/修改配置文件: 10+
 - 编写文档: 10+ (共约 5000+ 行)
 - 新增组件: 5+
@@ -428,11 +464,13 @@
 - 集成知识库文档: 12
 
 #### 技术栈新增
+
 - 无障碍性: @axe-core/playwright, eslint-plugin-jsx-a11y
 - Markdown: react-markdown, remark-gfm
 - 视频创作: Remotion + Nano Banana Pro + Processing
 
 #### 错误模式
+
 - 新增错误模式: 3 个（E011, E012, E013）
 - 错误总数: 从 10 个增至 13 个
 - 严重度分布: 🔴 5 个, 🟡 6 个, 🟢 2 个
@@ -444,6 +482,7 @@
 ### ✨ 新增
 
 #### 设计系统
+
 - 添加 `design/` 目录
 - 新增 `DESIGN_MASTER_PERSONA.md` - 设计大师人格和完整设计哲学
 - 新增 `UI_DESIGN_STYLES_REFERENCE.md` - 30 种 UI/UX 设计风格参考库
@@ -451,6 +490,7 @@
 - 新增 `PROCESSING_SKILL.md` - Processing 创意编程指南
 
 #### Vibe Marketing
+
 - 添加 `vibe-marketing/` 目录
 - 新增 `VIBE_MARKETING_GUIDE.md` - 完整 Vibe Marketing 指南
 - 新增 `MCP_SETUP_GUIDE.md` - Firecrawl/Perplexity MCP 设置
@@ -458,6 +498,7 @@
 - 新增 `MARKETING_SKILLS_GUIDE.md` - 24 个营销 Skills 详细指南
 
 #### Skills 研究
+
 - 添加 `skills-research/` 目录
 - 整合 9 个专业 Skills 项目
   - `marketingskills/` - 24 个营销 Skills
@@ -470,40 +511,48 @@
 - 新增 `skills-research/README.md` - Skills 总览和快速选择指南
 
 #### 学习资源
+
 - 新增 `CLAUDE_SKILLS_RESOURCES.md` - Claude Skills 资源库
 - 新增 `SESSION_INSIGHTS.md` - 会话洞察记录
 - 新增 `SKILL_EVOLUTION.md` - Skill 演进历史
 - 新增 `OPTIMIZATION_QUEUE.md` - 优化队列
 
 #### 参考资料
+
 - 新增 `capability-matrix.md` - 能力矩阵
 - 新增 `commands-cheatsheet.md` - 命令速查表
 - 新增 `faq.md` - 常见问题
 
 #### 工作流
+
 - 新增 `full-stack-dev.md` - 全栈开发流程
 - 新增 `debugging-ops.md` - 调试运维流程
 - 新增 `browser-automation.md` - 浏览器自动化流程
 
 #### 能力文档
+
 - 新增 `agents-delegation.md` - Agents 委托系统指南
 
 #### 分析报告
+
 - 添加 `analysis/` 目录
 - 新增 `token-efficiency-analysis.md` - Token 效率分析
 
 #### 项目文档
+
 - 新增 `RESTRUCTURE_PLAN.md` - 详细的重构计划文档
 - 新增 `CHANGELOG.md` - 本文件
 
 ### 🔄 更改
 
 #### 目录结构
+
 - 重组整个目录结构，从 8 个主要目录扩展到 14 个
 - 核心配置从根目录移到 `core/` 目录
 - 所有文档路径更新为相对路径引用
 
 #### 核心配置
+
 - 更新 `core/CLAUDE.md` 到 v3.2
   - 添加设计系统章节
   - 添加 Vibe Marketing 章节
@@ -515,12 +564,14 @@
   - 同步最新的能力决策树
 
 #### 错误知识库
+
 - 更新 `errors/ERROR_CATALOG.md`
   - 同步最新的错误模式
   - 添加项目级错误目录
 - 更新所有 `system-errors/*.md` 文件
 
 #### README
+
 - 大幅更新 `README.md`
   - 更新目录结构展示
   - 添加新功能介绍（设计、营销、Skills 研究）
@@ -548,6 +599,7 @@
 ## [3.2.0] - 2026-01-19
 
 ### 更改
+
 - 基础配置系统
 - 错误知识库初始版本
 - 能力文档初始版本

@@ -7,11 +7,13 @@
 ## 🎯 核心原则
 
 ### Progressive Disclosure
+
 - **只加载必需的内容**
 - **按任务类型分层加载**
 - **避免一次性加载所有文档**
 
 ### Context 预算管理
+
 - **总预算**: 200K tokens
 - **目标使用**: <40% (80K tokens)
 - **留给工作**: >60% (120K tokens)
@@ -48,11 +50,11 @@ Layer 2: 按需加载 (能力)
 
 ```yaml
 task_type: browser-automation
-keywords: ["浏览器", "自动化", "爬虫", "测试", "playwright"]
+keywords: ['浏览器', '自动化', '爬虫', '测试', 'playwright']
 load:
-  core: ["work-mode.md", "blocking-rules.md"]
-  domain: ["rules/domain/coding.md"]
-  capabilities: ["capabilities/browser-automation/decision-tree.md"]
+  core: ['work-mode.md', 'blocking-rules.md']
+  domain: ['rules/domain/coding.md']
+  capabilities: ['capabilities/browser-automation/decision-tree.md']
   estimated_size: 15KB
 ```
 
@@ -60,13 +62,13 @@ load:
 
 ```yaml
 task_type: video-creation
-keywords: ["视频", "Remotion", "动画", "特效"]
+keywords: ['视频', 'Remotion', '动画', '特效']
 load:
-  core: ["work-mode.md", "blocking-rules.md"]
-  domain: ["rules/domain/coding.md"]
+  core: ['work-mode.md', 'blocking-rules.md']
+  domain: ['rules/domain/coding.md']
   capabilities:
-    - "rules/remotion-auto-production.md"
-    - "capabilities/PROCESSING_SKILL.md"
+    - 'rules/remotion-auto-production.md'
+    - 'capabilities/PROCESSING_SKILL.md'
   estimated_size: 25KB
 ```
 
@@ -74,13 +76,13 @@ load:
 
 ```yaml
 task_type: data-analysis
-keywords: ["数据", "分析", "SQL", "报表", "图表"]
+keywords: ['数据', '分析', 'SQL', '报表', '图表']
 load:
-  core: ["work-mode.md", "blocking-rules.md"]
-  domain: ["rules/domain/coding.md"]
+  core: ['work-mode.md', 'blocking-rules.md']
+  domain: ['rules/domain/coding.md']
   capabilities:
-    - "capabilities/data-analysis-guide.md"
-    - "capabilities/sql-patterns.md"
+    - 'capabilities/data-analysis-guide.md'
+    - 'capabilities/sql-patterns.md'
   estimated_size: 20KB
 ```
 
@@ -88,13 +90,13 @@ load:
 
 ```yaml
 task_type: ui-design
-keywords: ["设计", "UI", "界面", "风格", "布局"]
+keywords: ['设计', 'UI', '界面', '风格', '布局']
 load:
-  core: ["work-mode.md"]
+  core: ['work-mode.md']
   domain: []
   capabilities:
-    - "design/DESIGN_MASTER_PERSONA.md"
-    - "design/UI_DESIGN_STYLES_REFERENCE.md"
+    - 'design/DESIGN_MASTER_PERSONA.md'
+    - 'design/UI_DESIGN_STYLES_REFERENCE.md'
   estimated_size: 30KB
 ```
 
@@ -102,13 +104,13 @@ load:
 
 ```yaml
 task_type: marketing
-keywords: ["营销", "文案", "SEO", "广告", "策略"]
+keywords: ['营销', '文案', 'SEO', '广告', '策略']
 load:
-  core: ["work-mode.md"]
+  core: ['work-mode.md']
   domain: []
   capabilities:
-    - "vibe-marketing/VIBE_MARKETING_GUIDE.md"
-    - "capabilities/MARKETING_SKILLS_GUIDE.md"
+    - 'vibe-marketing/VIBE_MARKETING_GUIDE.md'
+    - 'capabilities/MARKETING_SKILLS_GUIDE.md'
   estimated_size: 35KB
 ```
 
@@ -116,13 +118,13 @@ load:
 
 ```yaml
 task_type: coding
-keywords: ["开发", "代码", "功能", "实现", "bug"]
+keywords: ['开发', '代码', '功能', '实现', 'bug']
 load:
-  core: ["work-mode.md", "blocking-rules.md"]
+  core: ['work-mode.md', 'blocking-rules.md']
   domain:
-    - "rules/domain/coding.md"
-    - "rules/domain/testing.md"
-    - "rules/domain/git.md"
+    - 'rules/domain/coding.md'
+    - 'rules/domain/testing.md'
+    - 'rules/domain/git.md'
   capabilities: []
   estimated_size: 15KB
 ```
@@ -131,14 +133,14 @@ load:
 
 ```yaml
 task_type: debugging
-keywords: ["错误", "bug", "调试", "失败", "异常"]
+keywords: ['错误', 'bug', '调试', '失败', '异常']
 load:
-  core: ["work-mode.md", "blocking-rules.md"]
-  domain: ["rules/domain/coding.md"]
+  core: ['work-mode.md', 'blocking-rules.md']
+  domain: ['rules/domain/coding.md']
   capabilities:
-    - "errors/top-5-errors.md"  # 只加载高频错误
+    - 'errors/top-5-errors.md' # 只加载高频错误
   on_demand:
-    - "errors/ERROR_CATALOG.md"  # 需要时再加载完整目录
+    - 'errors/ERROR_CATALOG.md' # 需要时再加载完整目录
   estimated_size: 12KB
 ```
 
@@ -146,11 +148,11 @@ load:
 
 ```yaml
 task_type: security
-keywords: ["安全", "漏洞", "审计", "权限", "加密"]
+keywords: ['安全', '漏洞', '审计', '权限', '加密']
 load:
-  core: ["work-mode.md", "blocking-rules.md"]
-  domain: ["rules/domain/security.md"]
-  capabilities: ["capabilities/security-best-practices.md"]
+  core: ['work-mode.md', 'blocking-rules.md']
+  domain: ['rules/domain/security.md']
+  capabilities: ['capabilities/security-best-practices.md']
   estimated_size: 15KB
 ```
 
@@ -163,14 +165,20 @@ load:
 ```typescript
 function identify_task_type(user_request: string): string {
   const keywords_map = {
-    "browser-automation": ["浏览器", "自动化", "爬虫", "playwright", "测试网页"],
-    "video-creation": ["视频", "Remotion", "动画", "特效", "剪辑"],
-    "data-analysis": ["数据", "分析", "SQL", "查询", "报表", "图表"],
-    "ui-design": ["设计", "UI", "界面", "风格", "布局", "页面"],
-    "marketing": ["营销", "文案", "SEO", "广告", "推广", "策略"],
-    "coding": ["开发", "代码", "功能", "实现", "编写"],
-    "debugging": ["错误", "bug", "调试", "失败", "不工作", "异常"],
-    "security": ["安全", "漏洞", "审计", "权限", "加密", "认证"]
+    'browser-automation': [
+      '浏览器',
+      '自动化',
+      '爬虫',
+      'playwright',
+      '测试网页',
+    ],
+    'video-creation': ['视频', 'Remotion', '动画', '特效', '剪辑'],
+    'data-analysis': ['数据', '分析', 'SQL', '查询', '报表', '图表'],
+    'ui-design': ['设计', 'UI', '界面', '风格', '布局', '页面'],
+    marketing: ['营销', '文案', 'SEO', '广告', '推广', '策略'],
+    coding: ['开发', '代码', '功能', '实现', '编写'],
+    debugging: ['错误', 'bug', '调试', '失败', '不工作', '异常'],
+    security: ['安全', '漏洞', '审计', '权限', '加密', '认证'],
   };
 
   for (const [task_type, keywords] of Object.entries(keywords_map)) {
@@ -181,7 +189,7 @@ function identify_task_type(user_request: string): string {
     }
   }
 
-  return "general";  // 默认通用任务
+  return 'general'; // 默认通用任务
 }
 ```
 
@@ -191,22 +199,22 @@ function identify_task_type(user_request: string): string {
 
 ```typescript
 function load_for_multiple_tasks(task_types: string[]): LoadPlan {
-  const core = ["work-mode.md", "blocking-rules.md"];  // 总是加载
+  const core = ['work-mode.md', 'blocking-rules.md']; // 总是加载
 
   let domain = new Set<string>();
   let capabilities = new Set<string>();
 
   for (const task_type of task_types) {
     const plan = get_load_plan(task_type);
-    plan.domain.forEach(d => domain.add(d));
-    plan.capabilities.forEach(c => capabilities.add(c));
+    plan.domain.forEach((d) => domain.add(d));
+    plan.capabilities.forEach((c) => capabilities.add(c));
   }
 
   return {
     core,
     domain: Array.from(domain),
     capabilities: Array.from(capabilities),
-    estimated_size: estimate_total_size([...core, ...domain, ...capabilities])
+    estimated_size: estimate_total_size([...core, ...domain, ...capabilities]),
   };
 }
 ```
@@ -249,6 +257,7 @@ function load_for_multiple_tasks(task_types: string[]): LoadPlan {
 **识别**: `browser-automation`
 
 **加载**:
+
 ```
 core: work-mode.md + blocking-rules.md (10KB)
 domain: coding.md (5KB)
@@ -263,6 +272,7 @@ capabilities: browser-automation/decision-tree.md (8KB)
 **识别**: `video-creation` + `data-analysis`
 
 **加载**:
+
 ```
 core: work-mode.md + blocking-rules.md (10KB)
 domain: coding.md (5KB)
@@ -279,6 +289,7 @@ capabilities:
 **识别**: `general` (无明确关键词)
 
 **操作**: 询问用户具体方向
+
 - 前端性能？→ `coding` + `capabilities/frontend-optimization.md`
 - 数据库查询？→ `coding` + `capabilities/sql-patterns.md`
 - 服务器配置？→ `coding` + `capabilities/devops-guide.md`
@@ -291,9 +302,9 @@ capabilities:
 
 ```yaml
 thresholds:
-  safe: 50KB      # 安全区，直接加载
-  warning: 80KB   # 警告区，提示用户
-  limit: 100KB    # 限制区，要求明确优先级
+  safe: 50KB # 安全区，直接加载
+  warning: 80KB # 警告区，提示用户
+  limit: 100KB # 限制区，要求明确优先级
 ```
 
 ### 自动优化策略

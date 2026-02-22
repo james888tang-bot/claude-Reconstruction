@@ -14,39 +14,39 @@
 
 ### PreToolUse
 
-| Hook | Matcher | Purpose |
-|------|---------|---------|
-| **pre-bash.sh** | Bash | Validate bash commands before execution |
-| **pre-edit.sh** | Edit | Validate file edits before applying |
-| **enhance-tool-call.sh** | * | Enhance all tool calls with context |
-| **vibecraft-hook.js** | * | VibeCraft integration for all tools |
+| Hook                     | Matcher | Purpose                                 |
+| ------------------------ | ------- | --------------------------------------- |
+| **pre-bash.sh**          | Bash    | Validate bash commands before execution |
+| **pre-edit.sh**          | Edit    | Validate file edits before applying     |
+| **enhance-tool-call.sh** | \*      | Enhance all tool calls with context     |
+| **vibecraft-hook.js**    | \*      | VibeCraft integration for all tools     |
 
 ### PostToolUse
 
-| Hook | Matcher | Purpose |
-|------|---------|---------|
-| **post-bash.sh** | Bash | Post-process bash output |
-| **post-edit.sh** | Edit | Auto-format, TypeScript check after edits |
-| **vibecraft-hook.js** | * | VibeCraft post-processing |
+| Hook                  | Matcher | Purpose                                   |
+| --------------------- | ------- | ----------------------------------------- |
+| **post-bash.sh**      | Bash    | Post-process bash output                  |
+| **post-edit.sh**      | Edit    | Auto-format, TypeScript check after edits |
+| **vibecraft-hook.js** | \*      | VibeCraft post-processing                 |
 
 ### Stop
 
-| Hook | Purpose |
-|------|---------|
+| Hook                  | Purpose                |
+| --------------------- | ---------------------- |
 | **vibecraft-hook.js** | Session-end processing |
 
 ### SubagentStop
 
-| Hook | Purpose |
-|------|---------|
+| Hook                  | Purpose                       |
+| --------------------- | ----------------------------- |
 | **vibecraft-hook.js** | Sub-agent completion tracking |
 
 ### SessionStart
 
-| Hook | Purpose |
-|------|---------|
-| **learn-patterns.sh** | Auto-learn coding patterns from session |
-| **session-summary.sh** | Initialize session tracking |
+| Hook                   | Purpose                                 |
+| ---------------------- | --------------------------------------- |
+| **learn-patterns.sh**  | Auto-learn coding patterns from session |
+| **session-summary.sh** | Initialize session tracking             |
 
 ## Hook Files
 
@@ -82,6 +82,7 @@ Stop → vibecraft (session-end)
 ## Auto-Accept Permissions
 
 Use with caution:
+
 - Enable for trusted, well-defined plans
 - Disable for exploratory work
 - Never use dangerously-skip-permissions flag
@@ -90,6 +91,7 @@ Use with caution:
 ## TodoWrite Best Practices
 
 Use TodoWrite tool to:
+
 - Track progress on multi-step tasks
 - Verify understanding of instructions
 - Enable real-time steering

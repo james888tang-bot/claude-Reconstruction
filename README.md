@@ -9,17 +9,32 @@ A layered engineering system for [Claude Code](https://docs.anthropic.com/en/doc
 
 Clone the repo, then tell Claude to run the install script:
 
-```
+```bash
 git clone https://github.com/Arxchibobo/claude-Reconstruction.git
+cd claude-reconstruction
+pnpm install
+pnpm install:config
 ```
 
-Then in Claude Code:
+Or if you are in the monorepo root:
 
-```
-Run scripts/install.sh from the claude-Reconstruction repo to install it to ~/.claude
+```bash
+pnpm --filter @arxchibobo/claude-reconstruction install:config
 ```
 
-Claude will handle backup, directory creation, and file copying. On Windows, use `scripts/install.ps1`.
+To verify the installation:
+
+```bash
+pnpm verify
+```
+
+Legacy Bash scripts are also available:
+
+```bash
+./scripts/install.sh
+```
+
+Claude will handle backup, directory creation, and file copying. On Windows, the Node.js scripts (`pnpm install:config`) are recommended.
 
 ---
 
@@ -79,18 +94,19 @@ User says "write a Playwright test"
   → leaves 88% free for actual work
 ```
 
-| Layer | What | When | Size |
-|-------|------|------|------|
-| L0 | `CLAUDE.md` + `rules/core/` | Always | ~15KB |
-| L1 | `index/task-router.md` | Routing | ~3KB |
-| L2 | Domain + capability docs | On match | 15-30KB |
-| L3 | Templates, examples | Exact match | varies |
+| Layer | What                        | When        | Size    |
+| ----- | --------------------------- | ----------- | ------- |
+| L0    | `CLAUDE.md` + `rules/core/` | Always      | ~15KB   |
+| L1    | `index/task-router.md`      | Routing     | ~3KB    |
+| L2    | Domain + capability docs    | On match    | 15-30KB |
+| L3    | Templates, examples         | Exact match | varies  |
 
 ### Layer 4: Workflow Engine
 
 Defines **how Claude works** on any task. Located in `rules/core/`.
 
 **4-step cycle**:
+
 ```
 1. Plan      → Create TodoList, break down steps
 2. Confirm   → Show plan, wait for user "go"
@@ -99,6 +115,7 @@ Defines **how Claude works** on any task. Located in `rules/core/`.
 ```
 
 **Blocking rules** — Claude only asks questions in 4 cases:
+
 1. Missing credentials (API keys, passwords)
 2. Mutually exclusive approaches (can't infer)
 3. Contradictory requirements
@@ -110,15 +127,15 @@ Everything else is decided autonomously: file names, code style, dependency vers
 
 Domain-specific rules that govern code quality. Located in `rules/` and `rules/domain/`.
 
-| Module | File | What It Enforces |
-|--------|------|------------------|
-| **Coding Style** | `coding-style.md` | Immutability-first, small files (<800 lines), no mutation |
-| **Testing** | `testing.md` | TDD (RED→GREEN→REFACTOR), 80% coverage minimum |
-| **Security** | `security.md` | OWASP checks, no hardcoded secrets, input validation |
-| **Git** | `git-workflow.md` | Conventional commits, PR workflow, branch strategy |
-| **Patterns** | `patterns.md` | API response format, repository pattern, custom hooks |
-| **Performance** | `performance.md` | Model selection (Haiku/Sonnet/Opus), context management |
-| **Engineering** | `domain/engineering-workflows.md` | UI verification loop, TDD full cycle, DB migration protocol |
+| Module           | File                              | What It Enforces                                            |
+| ---------------- | --------------------------------- | ----------------------------------------------------------- |
+| **Coding Style** | `coding-style.md`                 | Immutability-first, small files (<800 lines), no mutation   |
+| **Testing**      | `testing.md`                      | TDD (RED→GREEN→REFACTOR), 80% coverage minimum              |
+| **Security**     | `security.md`                     | OWASP checks, no hardcoded secrets, input validation        |
+| **Git**          | `git-workflow.md`                 | Conventional commits, PR workflow, branch strategy          |
+| **Patterns**     | `patterns.md`                     | API response format, repository pattern, custom hooks       |
+| **Performance**  | `performance.md`                  | Model selection (Haiku/Sonnet/Opus), context management     |
+| **Engineering**  | `domain/engineering-workflows.md` | UI verification loop, TDD full cycle, DB migration protocol |
 
 ### Layer 2: Hook Layer
 
@@ -142,17 +159,20 @@ Hooks intercept Claude's tool calls at 3 points. Defined in `rules/hooks.md`, co
 ```
 
 **PreToolUse** (before tool executes):
+
 - Long command reminder — suggests tmux for `npm`, `cargo`, `pnpm` etc.
 - Git push review gate — opens editor for review before push
 - Doc blocker — prevents creating unnecessary .md/.txt files
 
 **PostToolUse** (after tool executes):
+
 - Prettier auto-format — formats JS/TS files after every edit
 - TypeScript check — runs `tsc` after editing .ts/.tsx files
 - Console.log warning — flags debug statements in edited files
 - PR logger — logs PR URL and CI status after PR creation
 
 **Stop** (session end):
+
 - Console.log audit — scans all modified files for leftover `console.log`
 
 ### Layer 1: Delegation Layer
@@ -161,24 +181,24 @@ Routes complex problems to specialized experts. Located in `rules/delegator/` an
 
 **Expert delegation** (via GPT/Codex MCP):
 
-| Expert | Triggers On | Does |
-|--------|------------|------|
-| Architect | "how should I structure", system design, 2+ failed fixes | Architecture decisions, tradeoff analysis |
-| Plan Reviewer | "review this plan", before significant work | APPROVE/REJECT with criteria |
-| Code Reviewer | After implementing features, "review this code" | Bug detection, quality issues |
-| Security Analyst | Auth changes, "is this secure", new endpoints | Vulnerability assessment, OWASP |
-| Scope Analyst | Vague requirements, "what am I missing" | Ambiguity detection, risk surface |
+| Expert           | Triggers On                                              | Does                                      |
+| ---------------- | -------------------------------------------------------- | ----------------------------------------- |
+| Architect        | "how should I structure", system design, 2+ failed fixes | Architecture decisions, tradeoff analysis |
+| Plan Reviewer    | "review this plan", before significant work              | APPROVE/REJECT with criteria              |
+| Code Reviewer    | After implementing features, "review this code"          | Bug detection, quality issues             |
+| Security Analyst | Auth changes, "is this secure", new endpoints            | Vulnerability assessment, OWASP           |
+| Scope Analyst    | Vague requirements, "what am I missing"                  | Ambiguity detection, risk surface         |
 
 **Sub-agent orchestration**:
 
-| Agent | Auto-triggers When |
-|-------|-------------------|
-| planner | Complex feature request |
-| code-reviewer | Code just written/modified |
-| tdd-guide | New feature or bug fix |
-| architect | Architectural decision needed |
-| build-error-resolver | Build fails |
-| security-reviewer | Before commits with sensitive changes |
+| Agent                | Auto-triggers When                    |
+| -------------------- | ------------------------------------- |
+| planner              | Complex feature request               |
+| code-reviewer        | Code just written/modified            |
+| tdd-guide            | New feature or bug fix                |
+| architect            | Architectural decision needed         |
+| build-error-resolver | Build fails                           |
+| security-reviewer    | Before commits with sensitive changes |
 
 Agents run in parallel when tasks are independent.
 
@@ -190,13 +210,13 @@ Agents run in parallel when tasks are independent.
 
 15 documented error patterns with root cause and fix. Located in `errors/`.
 
-| Code | Pattern | Quick Check |
-|------|---------|-------------|
-| E001 | Async not parallelized | Multiple awaits → use `Promise.all()`? |
-| E002 | Polling without timeout | Loop has `maxAttempts`? |
-| E003 | Errors swallowed | `catch` block re-throws? |
-| E004 | SQL without CTE | JOIN then filter → pre-filter with CTE? |
-| E007 | Resource leak | All exit paths clean up? |
+| Code | Pattern                 | Quick Check                             |
+| ---- | ----------------------- | --------------------------------------- |
+| E001 | Async not parallelized  | Multiple awaits → use `Promise.all()`?  |
+| E002 | Polling without timeout | Loop has `maxAttempts`?                 |
+| E003 | Errors swallowed        | `catch` block re-throws?                |
+| E004 | SQL without CTE         | JOIN then filter → pre-filter with CTE? |
+| E007 | Resource leak           | All exit paths clean up?                |
 
 Full catalog: `errors/ERROR_CATALOG.md`
 
@@ -204,14 +224,14 @@ Full catalog: `errors/ERROR_CATALOG.md`
 
 On-demand guides loaded by the Context Manager. Located in `capabilities/`.
 
-| Capability | File | When Loaded |
-|------------|------|-------------|
+| Capability         | File                                  | When Loaded                        |
+| ------------------ | ------------------------------------- | ---------------------------------- |
 | Browser automation | `browser-automation-decision-tree.md` | "playwright", "scrape", "automate" |
-| MCP servers | `mcp-servers.md` | "MCP", "bytebase", "honeycomb" |
-| Skills catalog | `skills-guide.md` | "skill", "/commit", "/write-tests" |
-| Remotion templates | `REMOTION_TEMPLATES_LIBRARY.md` | "video", "Remotion", "animation" |
-| Marketing skills | `MARKETING_SKILLS_GUIDE.md` | "marketing", "SEO", "content" |
-| UI/UX design | `design/DESIGN_MASTER_PERSONA.md` | "design", "UI", "interface" |
+| MCP servers        | `mcp-servers.md`                      | "MCP", "bytebase", "honeycomb"     |
+| Skills catalog     | `skills-guide.md`                     | "skill", "/commit", "/write-tests" |
+| Remotion templates | `REMOTION_TEMPLATES_LIBRARY.md`       | "video", "Remotion", "animation"   |
+| Marketing skills   | `MARKETING_SKILLS_GUIDE.md`           | "marketing", "SEO", "content"      |
+| UI/UX design       | `design/DESIGN_MASTER_PERSONA.md`     | "design", "UI", "interface"        |
 
 ### Index / Router
 
@@ -265,8 +285,10 @@ Step 5 — Delegation Layer (Layer 1)
 **Add hooks**: Edit hook definitions in `rules/hooks.md`, configure in `~/.claude/settings.json`
 
 **Add error patterns**: Append to `errors/ERROR_CATALOG.md`:
+
 ```markdown
 ### E0XX: Error Name
+
 **Pattern**: What goes wrong
 **Fix**: How to fix it
 **Check**: Quick diagnostic question

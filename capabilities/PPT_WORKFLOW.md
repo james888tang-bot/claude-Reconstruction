@@ -29,8 +29,10 @@
 **输出**: 结构化的 PPT 大纲
 
 **操作**:
+
 ```markdown
 # PPT 大纲
+
 - 总页数: N 页
 - 风格主题: [科技感/商务风/创意艺术/...]
 - 动态效果需求: [粒子背景/流场动画/数据可视化/...]
@@ -38,6 +40,7 @@
 ```
 
 **关键决策**:
+
 - 哪些页面需要静态设计（Nano Banana Pro）？
 - 哪些页面需要动态效果（Processing）？
 - 哪些页面需要数据可视化（图表）？
@@ -47,12 +50,14 @@
 ### Step 2: Nano Banana Pro 生成页面图片
 
 **优先使用场景**:
+
 - ✅ 封面页、标题页
 - ✅ 内容页整体设计
 - ✅ 复杂布局页面
 - ✅ 需要高质量视觉设计的页面
 
 **命令模板**:
+
 ```bash
 # 生成单页设计
 uv run ~/.claude/skills/nano-banana-pro/scripts/generate_image.py \
@@ -68,12 +73,14 @@ uv run ~/.claude/skills/nano-banana-pro/scripts/generate_image.py \
 ```
 
 **提示词最佳实践**:
+
 - 明确指定 16:9 宽高比
 - 包含风格关键词（professional, minimalist, tech-themed）
 - 描述配色方案
 - 指定文字位置和大小（large title at top, bullet points on left）
 
 **文件命名规范**:
+
 ```
 YYYY-MM-DD-HH-MM-SS-slide-[序号]-[描述].png
 ```
@@ -83,12 +90,14 @@ YYYY-MM-DD-HH-MM-SS-slide-[序号]-[描述].png
 ### Step 3: Processing 生成动态效果
 
 **适用场景**:
+
 - ✅ 背景动画（粒子系统、流场）
 - ✅ 过渡动画（章节分隔页）
 - ✅ 数据可视化动画
 - ✅ 装饰性图形元素
 
 **调用 Processing Skill**:
+
 ```bash
 # 生成粒子背景动画
 # Processing skill 会自动激活，直接描述需求即可
@@ -96,11 +105,13 @@ YYYY-MM-DD-HH-MM-SS-slide-[序号]-[描述].png
 ```
 
 **输出格式**:
+
 - 静态图: PNG
 - 动画: GIF（如果 PPT 支持）
 - 帧序列: 多张 PNG（用于复杂动画）
 
 **配色对齐**:
+
 - 确保 Processing 生成的效果与 Nano Banana Pro 的配色方案一致
 - 从 Nano Banana Pro 图片中提取主色调，传递给 Processing
 
@@ -157,6 +168,7 @@ def create_presentation_from_images(image_paths, output_filename):
 ```
 
 **脚本位置**:
+
 ```
 E:\Bobo's Coding cache\scripts\ppt\assemble_ppt_from_images.py
 ```
@@ -166,6 +178,7 @@ E:\Bobo's Coding cache\scripts\ppt\assemble_ppt_from_images.py
 ### Step 5: 导出双格式
 
 **必须输出**:
+
 1. **PPT 文件**: `output.pptx`
 2. **图片文件夹**: `output_slides/`
    ```
@@ -177,6 +190,7 @@ E:\Bobo's Coding cache\scripts\ppt\assemble_ppt_from_images.py
    ```
 
 **导出脚本**:
+
 ```python
 def export_slides_as_images(pptx_file, output_dir):
     """
@@ -212,6 +226,7 @@ def export_slides_as_images(pptx_file, output_dir):
 ## 🎨 主题配色库
 
 ### Tech Innovation (科技感)
+
 ```
 主色: #0066ff (Electric Blue)
 辅助: #00ffff (Neon Cyan)
@@ -220,6 +235,7 @@ def export_slides_as_images(pptx_file, output_dir):
 ```
 
 ### Business Professional (商务风)
+
 ```
 主色: #1C2833 (Deep Navy)
 辅助: #2E4053 (Slate Gray)
@@ -228,6 +244,7 @@ def export_slides_as_images(pptx_file, output_dir):
 ```
 
 ### Creative Vibrant (创意活力)
+
 ```
 主色: #E76F51 (Coral)
 辅助: #F4A261 (Peach)
@@ -240,6 +257,7 @@ def export_slides_as_images(pptx_file, output_dir):
 ## 📝 完整示例
 
 ### 示例需求
+
 > "制作一个5页的产品发布会 PPT，需要科技感，包含封面、产品介绍、功能亮点、市场分析、结束页"
 
 ### 执行流程

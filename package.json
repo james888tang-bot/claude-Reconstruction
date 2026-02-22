@@ -4,9 +4,14 @@
   "description": "Production-ready Claude Code engineering config - smart context loading, rules engine, error library, and hook system",
   "type": "module",
   "scripts": {
-    "install": "bash scripts/install.sh",
-    "verify": "bash scripts/verify.sh",
-    "test": "bash scripts/verify.sh"
+    "install:config": "node scripts/install.js",
+    "verify": "node scripts/verify.js",
+    "test": "node scripts/verify.js",
+    "lint": "prettier --check \"**/*.{md,json,js}\"",
+    "format": "prettier --write \"**/*.{md,json,js}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.2.0"
   },
   "keywords": [
     "claude-code",

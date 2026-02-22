@@ -7,22 +7,23 @@ ALWAYS create new objects, NEVER mutate:
 ```javascript
 // WRONG: Mutation
 function updateUser(user, name) {
-  user.name = name  // MUTATION!
-  return user
+  user.name = name; // MUTATION!
+  return user;
 }
 
 // CORRECT: Immutability
 function updateUser(user, name) {
   return {
     ...user,
-    name
-  }
+    name,
+  };
 }
 ```
 
 ## File Organization
 
 MANY SMALL FILES > FEW LARGE FILES:
+
 - High cohesion, low coupling
 - 200-400 lines typical, 800 max
 - Extract utilities from large components
@@ -34,11 +35,11 @@ ALWAYS handle errors comprehensively:
 
 ```typescript
 try {
-  const result = await riskyOperation()
-  return result
+  const result = await riskyOperation();
+  return result;
 } catch (error) {
-  console.error('Operation failed:', error)
-  throw new Error('Detailed user-friendly message')
+  console.error('Operation failed:', error);
+  throw new Error('Detailed user-friendly message');
 }
 ```
 
@@ -47,19 +48,20 @@ try {
 ALWAYS validate user input:
 
 ```typescript
-import { z } from 'zod'
+import { z } from 'zod';
 
 const schema = z.object({
   email: z.string().email(),
-  age: z.number().int().min(0).max(150)
-})
+  age: z.number().int().min(0).max(150),
+});
 
-const validated = schema.parse(input)
+const validated = schema.parse(input);
 ```
 
 ## Code Quality Checklist
 
 Before marking work complete:
+
 - [ ] Code is readable and well-named
 - [ ] Functions are small (<50 lines)
 - [ ] Files are focused (<800 lines)
@@ -77,14 +79,14 @@ Before marking work complete:
 
 ```typescript
 interface ApiResponse<T> {
-  success: boolean
-  data?: T
-  error?: string
+  success: boolean;
+  data?: T;
+  error?: string;
   meta?: {
-    total: number
-    page: number
-    limit: number
-  }
+    total: number;
+    page: number;
+    limit: number;
+  };
 }
 ```
 
@@ -92,14 +94,14 @@ interface ApiResponse<T> {
 
 ```typescript
 export function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value)
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
   useEffect(() => {
-    const handler = setTimeout(() => setDebouncedValue(value), delay)
-    return () => clearTimeout(handler)
-  }, [value, delay])
+    const handler = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(handler);
+  }, [value, delay]);
 
-  return debouncedValue
+  return debouncedValue;
 }
 ```
 
@@ -107,10 +109,10 @@ export function useDebounce<T>(value: T, delay: number): T {
 
 ```typescript
 interface Repository<T> {
-  findAll(filters?: Filters): Promise<T[]>
-  findById(id: string): Promise<T | null>
-  create(data: CreateDto): Promise<T>
-  update(id: string, data: UpdateDto): Promise<T>
-  delete(id: string): Promise<void>
+  findAll(filters?: Filters): Promise<T[]>;
+  findById(id: string): Promise<T | null>;
+  create(data: CreateDto): Promise<T>;
+  update(id: string, data: UpdateDto): Promise<T>;
+  delete(id: string): Promise<void>;
 }
 ```

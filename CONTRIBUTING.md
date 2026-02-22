@@ -9,11 +9,13 @@
 ## 📚 开始之前
 
 ### 必读文档
+
 - [QUICK_START.md](core/QUICK_START.md) - 3 分钟了解项目
 - [INDEX.md](core/INDEX.md) - 文档索引
 - [OPTIMIZATION_PLAN.md](OPTIMIZATION_PLAN.md) - 了解项目方向
 
 ### 项目结构
+
 ```
 claude-reconstruction/
 ├── core/              # 核心文档（CLAUDE.md, DECISION_TREE.md）
@@ -33,18 +35,22 @@ claude-reconstruction/
 ## 🎯 贡献方式
 
 ### 1. 报告问题
+
 [创建 Issue](https://github.com/Arxchibobo/claude-Reconstruction/issues/new/choose)
 
 选择模板：
+
 - **Bug Report** - 报告错误或问题
 - **Error Case** - 提交新的错误案例
 - **Capability Suggestion** - 建议新增或改进能力
 - **Documentation Improvement** - 文档改进建议
 
 ### 2. 提交代码
+
 [创建 Pull Request](https://github.com/Arxchibobo/claude-Reconstruction/pulls)
 
 流程：
+
 1. Fork 仓库
 2. 创建分支（`git checkout -b feature/your-feature`）
 3. 提交更改
@@ -52,12 +58,14 @@ claude-reconstruction/
 5. 创建 Pull Request
 
 ### 3. 改进文档
+
 - 修正错别字
 - 补充示例
 - 更新过时信息
 - 添加交叉引用
 
 ### 4. 分享经验
+
 - 在 [Discussions](https://github.com/Arxchibobo/claude-Reconstruction/discussions) 分享使用心得
 - 回答其他用户的问题
 - 分享你的工作流程
@@ -71,6 +79,7 @@ claude-reconstruction/
 **位置**: `errors/E0XX-短描述.md`
 
 **命名规则**:
+
 - 使用下一个可用编号（当前最大：E015）
 - 使用短横线分隔（`E016-description.md`）
 - 描述简短清晰（2-5 个单词）
@@ -93,16 +102,16 @@ claude-reconstruction/
 
 \`\`\`javascript
 function Counter() {
-  const [count, setCount] = useState(0);
+const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCount(count + 1); // ❌ 闭包：count 永远是初始值 0
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []); // 空依赖，闭包陷阱
+useEffect(() => {
+const timer = setInterval(() => {
+setCount(count + 1); // ❌ 闭包：count 永远是初始值 0
+}, 1000);
+return () => clearInterval(timer);
+}, []); // 空依赖，闭包陷阱
 
-  return <div>{count}</div>;
+return <div>{count}</div>;
 }
 \`\`\`
 
@@ -110,16 +119,16 @@ function Counter() {
 
 \`\`\`javascript
 function Counter() {
-  const [count, setCount] = useState(0);
+const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCount(prev => prev + 1); // ✅ 使用函数式更新
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []); // 空依赖，但函数式更新避免闭包
+useEffect(() => {
+const timer = setInterval(() => {
+setCount(prev => prev + 1); // ✅ 使用函数式更新
+}, 1000);
+return () => clearInterval(timer);
+}, []); // 空依赖，但函数式更新避免闭包
 
-  return <div>{count}</div>;
+return <div>{count}</div>;
 }
 \`\`\`
 
@@ -147,17 +156,21 @@ function Counter() {
 在以下文件中添加新案例：
 
 **1. errors/ERROR_CATALOG.md**
+
 ```markdown
 ### E016: React State 闭包陷阱 | 🟡 中等 | 高频
+
 [完整文档](./E016-react-state-closure.md)
 ```
 
 **2. core/QUICK_REFERENCE.md**
+
 ```markdown
 | **State 不更新** | E016 | 函数式更新 `prev => prev + 1` | 🟡 中等 |
 ```
 
 **3. core/INDEX.md**
+
 ```markdown
 | E016 | React State 闭包陷阱 | 🟡 中等 |
 ```
@@ -173,16 +186,22 @@ import { Counter } from './Counter';
 describe('E016: React State 闭包陷阱', () => {
   test('错误: 闭包导致 state 不更新', async () => {
     const { container } = render(<CounterWrong />);
-    await waitFor(() => {
-      expect(container.textContent).toBe('0'); // 永远是 0
-    }, { timeout: 3000 });
+    await waitFor(
+      () => {
+        expect(container.textContent).toBe('0'); // 永远是 0
+      },
+      { timeout: 3000 }
+    );
   });
 
   test('正确: 函数式更新避免闭包', async () => {
     const { container } = render(<CounterCorrect />);
-    await waitFor(() => {
-      expect(parseInt(container.textContent)).toBeGreaterThan(2);
-    }, { timeout: 3000 });
+    await waitFor(
+      () => {
+        expect(parseInt(container.textContent)).toBeGreaterThan(2);
+      },
+      { timeout: 3000 }
+    );
   });
 });
 ```
@@ -192,6 +211,7 @@ describe('E016: React State 闭包陷阱', () => {
 **标题格式**: `feat(error): add E016 - React State 闭包陷阱`
 
 **PR 描述**:
+
 ```markdown
 ## 新增错误案例
 
@@ -205,6 +225,7 @@ describe('E016: React State 闭包陷阱', () => {
 **发生频率**: 高频
 
 ## 检查清单
+
 - [x] 包含 ❌ 错误代码
 - [x] 包含 ✅ 正确代码
 - [x] 包含案例回顾
@@ -221,17 +242,18 @@ describe('E016: React State 闭包陷阱', () => {
 
 ### Step 1: 确定类型
 
-| 类型 | 目录 | 示例 |
-|-----|------|------|
-| **MCP Server** | capabilities/ | `bytebase-guide.md` |
-| **Skill** | skills-research/ | `new-skill/` |
-| **Plugin** | capabilities/ | `new-plugin-guide.md` |
-| **工作流** | workflows/ | `new-workflow.md` |
-| **规则** | rules/ | `new-automation-rule.md` |
+| 类型           | 目录             | 示例                     |
+| -------------- | ---------------- | ------------------------ |
+| **MCP Server** | capabilities/    | `bytebase-guide.md`      |
+| **Skill**      | skills-research/ | `new-skill/`             |
+| **Plugin**     | capabilities/    | `new-plugin-guide.md`    |
+| **工作流**     | workflows/       | `new-workflow.md`        |
+| **规则**       | rules/           | `new-automation-rule.md` |
 
 ### Step 2: 创建文档
 
 **模板结构**:
+
 ```markdown
 # [能力名称]
 
@@ -246,12 +268,15 @@ describe('E016: React State 闭包陷阱', () => {
 ## 📚 使用指南
 
 ### 安装
+
 [如何安装或启用]
 
 ### 基础用法
+
 [最简单的示例]
 
 ### 高级用法
+
 [高级特性]
 
 ## 🔧 配置
@@ -270,18 +295,21 @@ describe('E016: React State 闭包陷阱', () => {
 ### Step 3: 更新索引
 
 在 `core/INDEX.md` 中添加：
+
 ```markdown
 ## 按场景查找
 
 ### [你的场景]
-| 任务 | 文档 | 工具链 |
-|-----|------|--------|
+
+| 任务     | 文档                | 工具链 |
+| -------- | ------------------- | ------ |
 | [任务名] | [your-doc.md](path) | [工具] |
 ```
 
 ### Step 4: 更新知识图谱（可选）
 
 在 `core/KNOWLEDGE_MAP.md` 添加 Mermaid 图：
+
 ```mermaid
 graph LR
     User[用户需求] --> YourDoc[your-doc.md]
@@ -294,18 +322,23 @@ graph LR
 ## 📝 文档改进
 
 ### 发现错别字
+
 直接提交 PR，标题格式：`docs: fix typo in [file]`
 
 ### 补充示例
+
 在现有文档中添加 `## 📖 示例` 章节
 
 ### 更新过时信息
+
 - 检查版本号
 - 检查外部链接
 - 检查工具名称（可能已更名）
 
 ### 添加交叉引用
+
 在相关文档之间添加链接：
+
 ```markdown
 **相关文档**: [related-doc.md](path)
 ```
@@ -325,6 +358,7 @@ graph LR
 ```
 
 **Type**:
+
 - `feat` - 新功能
 - `fix` - Bug 修复
 - `docs` - 文档更新
@@ -333,6 +367,7 @@ graph LR
 - `chore` - 构建/工具相关
 
 **Scope**:
+
 - `error` - 错误案例
 - `capability` - 能力文档
 - `design` - 设计规范
@@ -340,19 +375,23 @@ graph LR
 - `workflow` - 工作流
 
 **Subject**:
+
 - 使用祈使句（"add" 而非 "added"）
 - 不超过 50 字符
 - 不以句号结尾
 
 **Body** (可选):
+
 - 详细描述变更内容
 - 说明为什么做这个变更
 
 **Footer** (可选):
+
 - `BREAKING CHANGE` - 破坏性变更
 - `Closes #123` - 关闭 Issue
 
 **示例**:
+
 ```
 feat(error): add E016 - React State 闭包陷阱
 
@@ -368,6 +407,7 @@ Closes #42
 ### PR 标题格式
 
 与 Commit Message 一致：
+
 - `feat(error): add E016 - React State 闭包陷阱`
 - `docs(capability): improve MCP servers guide`
 - `fix(design): correct color values in style guide`
@@ -407,24 +447,28 @@ Closes #42
 提交 PR 前，使用此清单：
 
 **文档审查**:
+
 - [ ] 运行 `scripts/validate-docs.sh`（如可用）
 - [ ] 检查所有链接
 - [ ] 检查 Markdown 格式
 - [ ] 检查拼写和语法
 
 **内容审查**:
+
 - [ ] 是否解决了实际问题？
 - [ ] 示例是否可复现？
 - [ ] 解释是否清晰？
 - [ ] 是否更新了索引？
 
 **测试审查**（如适用）:
+
 - [ ] 测试是否通过？
 - [ ] 测试是否覆盖关键场景？
 
 ### 社区审查
 
 PR 提交后：
+
 1. 自动化检查（CI）
 2. 维护者审查
 3. 社区讨论
@@ -435,26 +479,31 @@ PR 提交后：
 ## 💡 最佳实践
 
 ### 1. 小而专注的 PR
+
 - 一个 PR 只做一件事
 - 避免混合多个不相关的变更
 - 更容易审查和合并
 
 ### 2. 清晰的意图
+
 - PR 描述说明"为什么"而非"是什么"
 - 提供上下文和背景
 - 链接相关 Issue
 
 ### 3. 积极响应反馈
+
 - 快速回复审查意见
 - 解释你的设计决策
 - 乐于接受建议
 
 ### 4. 保持更新
+
 - 定期 rebase 最新的 main 分支
 - 解决冲突
 - 保持 PR 活跃
 
 ### 5. 测试你的变更
+
 - 在本地测试
 - 验证链接有效
 - 确保代码可运行
@@ -464,16 +513,19 @@ PR 提交后：
 ## 🎓 学习资源
 
 ### 项目相关
+
 - [QUICK_START.md](core/QUICK_START.md) - 快速入门
 - [OPTIMIZATION_PLAN.md](OPTIMIZATION_PLAN.md) - 了解项目方向
 - [ANALYSIS_REPORT.md](ANALYSIS_REPORT.md) - 深入理解项目
 
 ### Git 和 GitHub
+
 - [GitHub Flow](https://guides.github.com/introduction/flow/)
 - [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
 - [Conventional Commits](https://www.conventionalcommits.org/)
 
 ### Markdown
+
 - [Markdown Guide](https://www.markdownguide.org/)
 - [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/)
 
@@ -517,6 +569,7 @@ PR 提交后：
 ## 🎉 感谢贡献者
 
 每一个贡献都很重要！无论是：
+
 - 报告 Bug
 - 提交错误案例
 - 改进文档

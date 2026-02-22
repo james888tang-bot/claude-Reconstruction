@@ -25,14 +25,15 @@
 **症状**: 多个异步操作慢得离谱
 
 **快速检查**:
+
 ```javascript
 // ❌ 错误模式
 for (const item of items) {
-  await doSomething(item);  // 顺序执行
+  await doSomething(item); // 顺序执行
 }
 
 // ✅ 正确模式
-await Promise.all(items.map(item => doSomething(item)));
+await Promise.all(items.map((item) => doSomething(item)));
 ```
 
 **影响**: 性能慢 N 倍（N = 操作数量）
@@ -46,6 +47,7 @@ await Promise.all(items.map(item => doSomething(item)));
 **症状**: 轮询永远不停止
 
 **快速检查**:
+
 ```javascript
 // ❌ 错误模式
 setInterval(async () => {
@@ -78,13 +80,14 @@ function poll(maxAttempts = 30) {
 **症状**: 错误被"吞掉"，调用者不知道失败
 
 **快速检查**:
+
 ```javascript
 // ❌ 错误模式
 async function fetchData() {
   try {
     return await api.get('/data');
   } catch (error) {
-    console.error(error);  // 只记录，没有抛出
+    console.error(error); // 只记录，没有抛出
   }
 }
 
@@ -110,6 +113,7 @@ async function fetchData() {
 **症状**: SQL 查询慢
 
 **快速检查**:
+
 ```sql
 -- ❌ 错误模式（先 JOIN 再过滤）
 SELECT b.*, u.energy_change
@@ -138,15 +142,16 @@ JOIN another_table u ON b.id = u.id;
 **症状**: UI 卡住、内存持续增长
 
 **快速检查**:
+
 ```javascript
 // ❌ 错误模式（只在成功时清理）
 async function process() {
   startLoading();
   try {
     await doWork();
-    stopLoading();  // 只在成功时清理
+    stopLoading(); // 只在成功时清理
   } catch (error) {
-    showError(error);  // 失败时忘记 stopLoading()
+    showError(error); // 失败时忘记 stopLoading()
   }
 }
 
@@ -158,7 +163,7 @@ async function process() {
   } catch (error) {
     showError(error);
   } finally {
-    stopLoading();  // 所有路径都清理
+    stopLoading(); // 所有路径都清理
   }
 }
 ```
@@ -187,29 +192,29 @@ async function process() {
 
 ### 高频错误（编码前必查）
 
-| 错误 | 严重程度 | 频率 | 快速诊断 |
-|------|---------|------|---------|
-| **E001** | 🔴 严重 | 高频 | 多个 await 顺序执行？ |
-| **E002** | 🔴 严重 | 高频 | 轮询没有 maxAttempts？ |
-| **E003** | 🔴 严重 | 中频 | catch 没有 throw？ |
-| **E007** | 🔴 严重 | 中频 | 没用 finally 清理？ |
+| 错误     | 严重程度 | 频率 | 快速诊断               |
+| -------- | -------- | ---- | ---------------------- |
+| **E001** | 🔴 严重  | 高频 | 多个 await 顺序执行？  |
+| **E002** | 🔴 严重  | 高频 | 轮询没有 maxAttempts？ |
+| **E003** | 🔴 严重  | 中频 | catch 没有 throw？     |
+| **E007** | 🔴 严重  | 中频 | 没用 finally 清理？    |
 
 ### 中频错误（注意防范）
 
-| 错误 | 严重程度 | 频率 | 快速诊断 |
-|------|---------|------|---------|
-| **E004** | 🟡 中等 | 中频 | JOIN 后才过滤？ |
-| **E008** | 🔴 严重 | 中频 | ID 类型未验证？ |
-| **E013** | 🔴 严重 | 中频 | 每次请求加载文件？ |
+| 错误     | 严重程度 | 频率 | 快速诊断           |
+| -------- | -------- | ---- | ------------------ |
+| **E004** | 🟡 中等  | 中频 | JOIN 后才过滤？    |
+| **E008** | 🔴 严重  | 中频 | ID 类型未验证？    |
+| **E013** | 🔴 严重  | 中频 | 每次请求加载文件？ |
 
 ### 低频但重要
 
-| 错误 | 严重程度 | 频率 | 快速诊断 |
-|------|---------|------|---------|
-| **E011** | 🟡 中等 | 低频 | Git Bash 中 npm 卡住？ |
-| **E012** | 🟡 中等 | 低频 | Hook 没执行权限？ |
-| **E014** | 🟡 中等 | 低频 | 路径跨平台失败？ |
-| **E015** | 🔴 严重 | 低频 | Hook 只设置环境变量？ |
+| 错误     | 严重程度 | 频率 | 快速诊断               |
+| -------- | -------- | ---- | ---------------------- |
+| **E011** | 🟡 中等  | 低频 | Git Bash 中 npm 卡住？ |
+| **E012** | 🟡 中等  | 低频 | Hook 没执行权限？      |
+| **E014** | 🟡 中等  | 低频 | 路径跨平台失败？       |
+| **E015** | 🔴 严重  | 低频 | Hook 只设置环境变量？  |
 
 **完整错误库**: `errors/ERROR_CATALOG.md`
 
@@ -219,35 +224,35 @@ async function process() {
 
 ### 性能问题
 
-| 症状 | 可能错误 | 检查项 |
-|------|---------|--------|
-| 异步操作慢 | E001 | 是否并行执行？ |
-| SQL 查询慢 | E004 | 是否用 CTE 预过滤？ |
-| 每次请求慢 | E013 | 是否启动时加载？ |
+| 症状       | 可能错误 | 检查项              |
+| ---------- | -------- | ------------------- |
+| 异步操作慢 | E001     | 是否并行执行？      |
+| SQL 查询慢 | E004     | 是否用 CTE 预过滤？ |
+| 每次请求慢 | E013     | 是否启动时加载？    |
 
 ### 资源问题
 
-| 症状 | 可能错误 | 检查项 |
-|------|---------|--------|
-| 轮询不停止 | E002 | 有超时机制？ |
-| UI 卡住 | E007 | finally 清理？ |
-| 内存泄漏 | E007 | 所有路径清理？ |
+| 症状       | 可能错误 | 检查项         |
+| ---------- | -------- | -------------- |
+| 轮询不停止 | E002     | 有超时机制？   |
+| UI 卡住    | E007     | finally 清理？ |
+| 内存泄漏   | E007     | 所有路径清理？ |
 
 ### 逻辑问题
 
-| 症状 | 可能错误 | 检查项 |
-|------|---------|--------|
-| 静默失败 | E003 | catch 是否 throw？ |
-| ID 混淆 | E008 | 验证 ID 含义？ |
-| 权限问题 | E012 | chmod +x hook？ |
+| 症状     | 可能错误 | 检查项             |
+| -------- | -------- | ------------------ |
+| 静默失败 | E003     | catch 是否 throw？ |
+| ID 混淆  | E008     | 验证 ID 含义？     |
+| 权限问题 | E012     | chmod +x hook？    |
 
 ### 环境问题
 
-| 症状 | 可能错误 | 检查项 |
-|------|---------|--------|
-| npm 卡住 | E011 | 在 Git Bash？→ PowerShell |
-| 路径错误 | E014 | 统一路径转换？ |
-| Hook 未生效 | E015 | 验证完整链路？ |
+| 症状        | 可能错误 | 检查项                    |
+| ----------- | -------- | ------------------------- |
+| npm 卡住    | E011     | 在 Git Bash？→ PowerShell |
+| 路径错误    | E014     | 统一路径转换？            |
+| Hook 未生效 | E015     | 验证完整链路？            |
 
 ---
 
@@ -255,44 +260,46 @@ async function process() {
 
 ### JavaScript/TypeScript
 
-| 错误 | 场景 |
-|------|------|
+| 错误 | 场景                       |
+| ---- | -------------------------- |
 | E001 | Promise.all() vs for-await |
-| E002 | setInterval 超时控制 |
-| E003 | async/await 错误处理 |
-| E007 | 资源清理（finally） |
+| E002 | setInterval 超时控制       |
+| E003 | async/await 错误处理       |
+| E007 | 资源清理（finally）        |
 
 ### SQL/数据库
 
-| 错误 | 场景 |
-|------|------|
+| 错误 | 场景             |
+| ---- | ---------------- |
 | E004 | CTE vs 直接 JOIN |
-| E008 | ID 类型验证 |
+| E008 | ID 类型验证      |
 
 ### Node.js/后端
 
-| 错误 | 场景 |
-|------|------|
+| 错误 | 场景           |
+| ---- | -------------- |
 | E013 | 知识库加载时机 |
 
 ### 工具链
 
-| 错误 | 场景 |
-|------|------|
-| E011 | Git Bash + npm |
+| 错误 | 场景            |
+| ---- | --------------- |
+| E011 | Git Bash + npm  |
 | E012 | Husky hook 权限 |
-| E014 | 跨平台路径 |
-| E015 | Hook 完整验证 |
+| E014 | 跨平台路径      |
+| E015 | Hook 完整验证   |
 
 ---
 
 ## 📚 详细文档位置
 
 ### 快速参考
+
 - `errors/top-5-errors.md` (6KB) - 5个最高频错误
   - 包含：快速检查、错误/正确示例、影响分析
 
 ### 完整目录
+
 - `errors/ERROR_CATALOG.md` (30KB) - 所有 15 个错误
   - 包含：完整案例、根因分析、测试用例、修复方案
 
@@ -341,6 +348,7 @@ async function process() {
 ## 💡 学习路径
 
 ### 新手（15分钟）
+
 1. **记住 Top 5** (10分钟)
    - E001: 异步并行
    - E002: 轮询超时
@@ -352,6 +360,7 @@ async function process() {
    - 每次编码前过一遍
 
 ### 进阶（1小时）
+
 1. **阅读完整 ERROR_CATALOG.md** (40分钟)
    - 理解所有 15 个错误
 
@@ -359,6 +368,7 @@ async function process() {
    - 在实际项目中应用
 
 ### 专家（持续）
+
 - **主动预防**: 编码前自动过检查清单
 - **快速诊断**: 看症状立即知道可能错误
 - **传播知识**: 代码审查时指出这些模式
@@ -389,11 +399,11 @@ async function process() {
 
 某些错误可以通过工具自动检测：
 
-| 错误 | 工具 | 如何使用 |
-|------|------|---------|
-| E003 | ESLint | `no-unused-vars`, `@typescript-eslint/no-floating-promises` |
-| E004 | SQL Explain | `EXPLAIN ANALYZE` |
-| E007 | ESLint | `no-unsafe-finally` |
+| 错误 | 工具        | 如何使用                                                    |
+| ---- | ----------- | ----------------------------------------------------------- |
+| E003 | ESLint      | `no-unused-vars`, `@typescript-eslint/no-floating-promises` |
+| E004 | SQL Explain | `EXPLAIN ANALYZE`                                           |
+| E007 | ESLint      | `no-unsafe-finally`                                         |
 
 ### 代码审查
 

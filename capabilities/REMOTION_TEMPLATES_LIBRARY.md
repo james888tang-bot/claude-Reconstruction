@@ -10,23 +10,23 @@
 
 ### 本地模板库（15个核心模板）
 
-| 模板名称 | 类型 | 适用场景 | 技术特点 | 视觉效果 |
-|---------|------|---------|---------|---------|
-| **animated-list** | 列表动画 | 特性展示、步骤说明 | Spring动画、延迟入场 | 从左滑入+缩放+渐显 |
-| **animated-text** | 文字动画 | 标题、口号 | 逐字动画、旋转入场 | 字符下落旋转 |
-| **bounce-text** | 标题卡片 | 开场、章节分隔 | 渐变背景、弹性缩放 | 弹跳式入场+渐变卡片 |
-| **bubble-pop-text** | 气泡文字 | 趣味标题、品牌展示 | 圆形气泡、弹性缩放 | 气泡依次弹出 |
-| **card-flip** | 卡片翻转 | 信息切换、产品展示 | 3D翻转、透视效果 | 360度翻转 |
-| **floating-bubble-text** | 悬浮气泡 | 强调文字、焦点展示 | 浮动动画、霓虹边框 | 上下浮动+霓虹效果 |
-| **geometric-patterns** | 几何背景 | 科技感背景、过渡场景 | 多层旋转、缩放 | 几何图形旋转 |
-| **glitch-text** | 故障文字 | 赛博朋克、科技主题 | RGB偏移、抖动效果 | 三色分离抖动 |
-| **liquid-wave** | 液态波浪 | 背景效果、过渡动画 | SVG路径、正弦波 | 流动的液态波浪 |
-| **matrix-rain** | 矩阵雨 | 科技主题、黑客风格 | 随机字符、下落动画 | 绿色/蓝色字符雨 |
-| **particle-explosion** | 粒子爆炸 | 爆炸效果、强调时刻 | 粒子系统、径向扩散 | 粒子旋转爆炸 |
-| **pulsing-text** | 脉冲文字 | 节奏感强调、音乐视频 | 周期缩放、光晕效果 | 逐字脉冲闪烁 |
-| **slide-text** | 滑动文字 | 简单标题、字幕 | 平滑滑入、渐显 | 从右滑入 |
-| **sound-wave** | 声波可视化 | 音乐视频、音频展示 | 动态柱状图、音频同步 | 律动的声波条 |
-| **typewriter-subtitle** | 打字机字幕 | 字幕、对话、旁白 | 逐字显示、光标闪烁 | 打字机效果+闪烁光标 |
+| 模板名称                 | 类型       | 适用场景             | 技术特点             | 视觉效果            |
+| ------------------------ | ---------- | -------------------- | -------------------- | ------------------- |
+| **animated-list**        | 列表动画   | 特性展示、步骤说明   | Spring动画、延迟入场 | 从左滑入+缩放+渐显  |
+| **animated-text**        | 文字动画   | 标题、口号           | 逐字动画、旋转入场   | 字符下落旋转        |
+| **bounce-text**          | 标题卡片   | 开场、章节分隔       | 渐变背景、弹性缩放   | 弹跳式入场+渐变卡片 |
+| **bubble-pop-text**      | 气泡文字   | 趣味标题、品牌展示   | 圆形气泡、弹性缩放   | 气泡依次弹出        |
+| **card-flip**            | 卡片翻转   | 信息切换、产品展示   | 3D翻转、透视效果     | 360度翻转           |
+| **floating-bubble-text** | 悬浮气泡   | 强调文字、焦点展示   | 浮动动画、霓虹边框   | 上下浮动+霓虹效果   |
+| **geometric-patterns**   | 几何背景   | 科技感背景、过渡场景 | 多层旋转、缩放       | 几何图形旋转        |
+| **glitch-text**          | 故障文字   | 赛博朋克、科技主题   | RGB偏移、抖动效果    | 三色分离抖动        |
+| **liquid-wave**          | 液态波浪   | 背景效果、过渡动画   | SVG路径、正弦波      | 流动的液态波浪      |
+| **matrix-rain**          | 矩阵雨     | 科技主题、黑客风格   | 随机字符、下落动画   | 绿色/蓝色字符雨     |
+| **particle-explosion**   | 粒子爆炸   | 爆炸效果、强调时刻   | 粒子系统、径向扩散   | 粒子旋转爆炸        |
+| **pulsing-text**         | 脉冲文字   | 节奏感强调、音乐视频 | 周期缩放、光晕效果   | 逐字脉冲闪烁        |
+| **slide-text**           | 滑动文字   | 简单标题、字幕       | 平滑滑入、渐显       | 从右滑入            |
+| **sound-wave**           | 声波可视化 | 音乐视频、音频展示   | 动态柱状图、音频同步 | 律动的声波条        |
+| **typewriter-subtitle**  | 打字机字幕 | 字幕、对话、旁白     | 逐字显示、光标闪烁   | 打字机效果+闪烁光标 |
 
 ---
 
@@ -35,18 +35,20 @@
 ### 1. 标题和开场（6个）
 
 #### **animated-text** - 动态标题
+
 ```typescript
 // 适用场景：视频开场、章节标题
 // 效果：字符逐个从上下落并旋转入场
 // 配色：白色文字
 // 时长建议：2-3秒
 
-const text = "Hello Remotion".split("");
+const text = 'Hello Remotion'.split('');
 // 每个字符延迟 5 帧入场
 // Spring动画：从-50px下落，旋转-180度到0度
 ```
 
 **最佳实践**：
+
 - 文字长度：6-15个字符
 - 适合：科技、现代、活力风格
 - 搭配：深色背景
@@ -54,6 +56,7 @@ const text = "Hello Remotion".split("");
 ---
 
 #### **bounce-text** - 弹跳标题卡片
+
 ```typescript
 // 适用场景：产品介绍、宣传视频
 // 效果：渐变卡片+弹性入场+字幕淡入
@@ -65,6 +68,7 @@ const text = "Hello Remotion".split("");
 ```
 
 **最佳实践**：
+
 - 主标题：3-8个字
 - 副标题：10-20个字
 - 适合：专业、商务、科技风格
@@ -72,6 +76,7 @@ const text = "Hello Remotion".split("");
 ---
 
 #### **bubble-pop-text** - 气泡弹出
+
 ```typescript
 // 适用场景：趣味视频、儿童内容、品牌展示
 // 效果：圆形气泡依次弹出
@@ -83,6 +88,7 @@ const text = "Hello Remotion".split("");
 ```
 
 **最佳实践**：
+
 - 文字长度：3-6个字符
 - 适合：活泼、有趣、年轻风格
 - 配色可调：修改 background gradient
@@ -90,6 +96,7 @@ const text = "Hello Remotion".split("");
 ---
 
 #### **slide-text** - 简单滑入
+
 ```typescript
 // 适用场景：简洁字幕、快速切换
 // 效果：从右滑入+渐显
@@ -101,12 +108,14 @@ const text = "Hello Remotion".split("");
 ```
 
 **最佳实践**：
+
 - 最简洁的文字入场
 - 适合：极简风格、快节奏视频
 
 ---
 
 #### **pulsing-text** - 脉冲闪烁
+
 ```typescript
 // 适用场景：音乐视频、节奏感强的内容
 // 效果：逐字脉冲+光晕效果
@@ -118,12 +127,14 @@ const text = "Hello Remotion".split("");
 ```
 
 **最佳实践**：
+
 - 适合：EDM、电子音乐、派对视频
 - 可配合音频：使用 useAudioData
 
 ---
 
 #### **glitch-text** - 故障效果
+
 ```typescript
 // 适用场景：赛博朋克、黑客主题、科技视频
 // 效果：RGB分离+抖动
@@ -135,6 +146,7 @@ const text = "Hello Remotion".split("");
 ```
 
 **最佳实践**：
+
 - 适合：Cyberpunk、Synthwave风格
 - 不宜过长使用：容易视觉疲劳
 - 搭配：深色背景
@@ -144,6 +156,7 @@ const text = "Hello Remotion".split("");
 ### 2. 列表和信息展示（1个）
 
 #### **animated-list** - 动画列表
+
 ```typescript
 // 适用场景：功能特性、步骤说明、数据展示
 // 效果：列表项依次从左滑入+缩放+圆形图标
@@ -151,9 +164,9 @@ const text = "Hello Remotion".split("");
 // 时长建议：每项1秒，总3-5秒
 
 const items = [
-  { name: "特性一", color: "#3b82f6" },
-  { name: "特性二", color: "#60a5fa" },
-  { name: "特性三", color: "#93c5fd" },
+  { name: '特性一', color: '#3b82f6' },
+  { name: '特性二', color: '#60a5fa' },
+  { name: '特性三', color: '#93c5fd' },
 ];
 
 // 每项延迟 5 帧
@@ -161,6 +174,7 @@ const items = [
 ```
 
 **最佳实践**：
+
 - 列表项数量：3-5项
 - 适合：产品功能、步骤教程、优势展示
 - 自定义：修改 items 数组的颜色和名称
@@ -170,6 +184,7 @@ const items = [
 ### 3. 特效和背景（6个）
 
 #### **card-flip** - 3D卡片翻转
+
 ```typescript
 // 适用场景：产品展示、信息切换
 // 效果：360度翻转，正反两面
@@ -182,6 +197,7 @@ const items = [
 ```
 
 **最佳实践**：
+
 - 正面：品牌/产品图
 - 反面：详细信息/CTA
 - 适合：产品对比、前后对比
@@ -189,6 +205,7 @@ const items = [
 ---
 
 #### **floating-bubble-text** - 悬浮气泡
+
 ```typescript
 // 适用场景：强调文字、焦点展示
 // 效果：上下浮动+霓虹边框
@@ -200,12 +217,14 @@ const items = [
 ```
 
 **最佳实践**：
+
 - 适合：关键信息、CTA、强调内容
 - 搭配：深色背景
 
 ---
 
 #### **geometric-patterns** - 几何图案背景
+
 ```typescript
 // 适用场景：科技感背景、过渡场景
 // 效果：20个几何图形旋转+缩放
@@ -218,6 +237,7 @@ const items = [
 ```
 
 **最佳实践**：
+
 - 作为背景层使用
 - 适合：科技、现代、极简风格
 - 可调整：图形数量、颜色、旋转速度
@@ -225,6 +245,7 @@ const items = [
 ---
 
 #### **liquid-wave** - 液态波浪
+
 ```typescript
 // 适用场景：背景效果、过渡动画
 // 效果：流动的液态波浪
@@ -237,6 +258,7 @@ const items = [
 ```
 
 **最佳实践**：
+
 - 作为背景层或过渡效果
 - 适合：水、流体、自然主题
 - 可调整：波浪高度、速度
@@ -244,18 +266,20 @@ const items = [
 ---
 
 #### **matrix-rain** - 矩阵雨
+
 ```typescript
 // 适用场景：科技主题、黑客风格
 // 效果：随机字符下落
 // 配色：蓝色系（可改为绿色）
 // 时长建议：持续循环
 
-const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*";
+const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
 // 每列独立速度
 // 文字阴影：glow效果
 ```
 
 **最佳实践**：
+
 - 作为背景层
 - 适合：Cyberpunk、科技、编程主题
 - 经典绿色：改为 #00ff00
@@ -263,6 +287,7 @@ const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*";
 ---
 
 #### **particle-explosion** - 粒子爆炸
+
 ```typescript
 // 适用场景：爆炸效果、强调时刻、转场
 // 效果：150个粒子径向旋转扩散
@@ -275,6 +300,7 @@ const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*";
 ```
 
 **最佳实践**：
+
 - 适合：产品发布、重要时刻、转场
 - 中心文字：可自定义
 - 性能：粒子数量可调
@@ -284,18 +310,20 @@ const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*";
 ### 4. 字幕和文字效果（2个）
 
 #### **typewriter-subtitle** - 打字机字幕
+
 ```typescript
 // 适用场景：字幕、对话、旁白
 // 效果：逐字显示+闪烁光标
 // 配色：白色文字+蓝色光标
 // 时长建议：根据文字长度自动
 
-const text = "I like typing...";
+const text = 'I like typing...';
 // 45帧显示完整文字
 // 光标闪烁：15帧周期
 ```
 
 **最佳实践**：
+
 - 适合：教程、采访、对话
 - 字体：等宽字体（Courier New）
 - 速度：可调整帧数比例
@@ -303,6 +331,7 @@ const text = "I like typing...";
 ---
 
 #### **sound-wave** - 声波可视化
+
 ```typescript
 // 适用场景：音乐视频、音频展示、播客
 // 效果：40个律动的声波柱
@@ -315,6 +344,7 @@ const text = "I like typing...";
 ```
 
 **最佳实践**：
+
 - 适合：音乐、播客、音频内容
 - 进阶：使用 useAudioData 同步真实音频
 - 颜色：可改为彩虹渐变
@@ -337,8 +367,8 @@ cp remotion-templates/templates/animated-text.tsx ./src/components/
 
 ```tsx
 // src/Root.tsx
-import { Composition } from "remotion";
-import AnimatedText from "./components/animated-text";
+import { Composition } from 'remotion';
+import AnimatedText from './components/animated-text';
 
 export const RemotionRoot = () => {
   return (
@@ -360,10 +390,10 @@ export const RemotionRoot = () => {
 
 ```tsx
 // 修改文字内容
-const text = "你的标题".split("");
+const text = '你的标题'.split('');
 
 // 修改配色
-background: "linear-gradient(45deg, #your-color-1, #your-color-2)"
+background: 'linear-gradient(45deg, #your-color-1, #your-color-2)';
 
 // 修改动画参数
 const slideX = spring({
@@ -372,9 +402,9 @@ const slideX = spring({
   from: -100,
   to: 0,
   config: {
-    damping: 12,  // 阻尼（越大越稳定）
-    mass: 0.5,    // 质量（越大越缓慢）
-    stiffness: 100 // 刚度（越大越快）
+    damping: 12, // 阻尼（越大越稳定）
+    mass: 0.5, // 质量（越大越缓慢）
+    stiffness: 100, // 刚度（越大越快）
   },
 });
 ```
@@ -423,20 +453,20 @@ export const MyVideo = () => {
 // 从API获取数据
 const items = props.features.map((feature, i) => ({
   name: feature.title,
-  color: feature.color
+  color: feature.color,
 }));
 
 // 渲染列表
-<AnimatedList items={items} />
+<AnimatedList items={items} />;
 ```
 
 ### 4. 音频同步
 
 ```tsx
-import { useAudioData, Audio } from "remotion";
+import { useAudioData, Audio } from 'remotion';
 
 export const SyncedSoundWave = () => {
-  const audioData = useAudioData("./audio.mp3");
+  const audioData = useAudioData('./audio.mp3');
 
   // 使用真实音频数据驱动声波
   const amplitude = audioData?.getAmplitude(frame) || 0;
@@ -451,35 +481,39 @@ export const SyncedSoundWave = () => {
 ## 🎨 配色方案参考
 
 ### 科技/现代风格
+
 ```typescript
-primary: "#0066ff"
-secondary: "#00ffff"
-background: "#1e1e1e"
-accent: "#FFFFFF"
+primary: '#0066ff';
+secondary: '#00ffff';
+background: '#1e1e1e';
+accent: '#FFFFFF';
 ```
 
 ### Cyberpunk/赛博朋克
+
 ```typescript
-primary: "#00FFFF"
-secondary: "#FF00FF"
-background: "#0A0E27"
-accent: "#FFFF00"
+primary: '#00FFFF';
+secondary: '#FF00FF';
+background: '#0A0E27';
+accent: '#FFFF00';
 ```
 
 ### 专业/商务
+
 ```typescript
-primary: "#2C3E50"
-secondary: "#34495E"
-background: "#ECF0F1"
-accent: "#E74C3C"
+primary: '#2C3E50';
+secondary: '#34495E';
+background: '#ECF0F1';
+accent: '#E74C3C';
 ```
 
 ### 温暖/友好
+
 ```typescript
-primary: "#E76F51"
-secondary: "#F4A261"
-background: "#FFFBF7"
-accent: "#2A9D8F"
+primary: '#E76F51';
+secondary: '#F4A261';
+background: '#FFFBF7';
+accent: '#2A9D8F';
 ```
 
 ---
@@ -487,11 +521,13 @@ accent: "#2A9D8F"
 ## 🔗 扩展资源
 
 ### 官方资源
+
 - **官网模板库**: https://www.reactvideoeditor.com/remotion-templates
 - **GitHub仓库**: https://github.com/reactvideoeditor/remotion-templates
 - **Remotion文档**: https://www.remotion.dev/docs/
 
 ### 学习资源
+
 - **Spring动画**: https://www.remotion.dev/docs/spring
 - **Interpolate**: https://www.remotion.dev/docs/interpolate
 - **useAudioData**: https://www.remotion.dev/docs/use-audio-data
