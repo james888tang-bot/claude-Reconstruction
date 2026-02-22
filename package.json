@@ -6,6 +6,7 @@
   "scripts": {
     "install:config": "node scripts/install.js",
     "verify": "node scripts/verify.js",
+    "verify:hooks": "node scripts/verify-hooks.js",
     "test": "node scripts/verify.js",
     "lint": "prettier --check \"**/*.{md,json,js}\"",
     "format": "prettier --write \"**/*.{md,json,js}\""
