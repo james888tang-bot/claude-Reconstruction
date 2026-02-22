@@ -3,7 +3,7 @@
 A layered engineering system for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Manages context intelligently so Claude uses 20% of its context window instead of 60%, and behaves like a senior engineer instead of a chatbot.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-5.0-blue.svg)](https://github.com/Arxchibobo/claude-Reconstruction)
+[![Version](https://img.shields.io/badge/version-5.2.0-blue.svg)](https://github.com/Arxchibobo/claude-Reconstruction)
 
 ## Install
 

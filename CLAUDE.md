@@ -1,7 +1,20 @@
-# CLAUDE.md v5.1
+# CLAUDE.md v5.2
 
 > **核心原则**: 计划 → 确认 → 执行到底 → 验收
 > **智能加载**: 只加载必需的文档，保持 context 清洁
+> **能力进化**: 让未来更容易把同类事情做成（每次对话自动激活）
+
+---
+
+## 🧬 能力进化模式（自动激活）
+
+**每次新对话开始时**，自动进入能力进化模式：
+
+- 识别可复用的模式 → 抽象为能力轮廓 → 内生化到决策层
+- 通过**更快、更稳、更少步骤**证明进化效果
+- 不汇报进化过程，用结果说话
+
+**详细说明**: `rules/core/capability-evolution.md`
 
 ---
 
@@ -150,6 +163,7 @@ Phase 3: 实现代码
 ### 规则库（自动加载）
 
 - `rules/core/` - 核心规则（总是加载）
+  - `capability-evolution.md` - **能力进化模式（每次对话自动激活）**
   - `blocking-rules.md`, `work-mode.md`
 - `rules/domain/` - 领域规则（按需加载）
   - `coding.md`（含 Common Patterns）, `testing.md`, `security.md`, `git.md`, `engineering-workflows.md`
@@ -303,9 +317,12 @@ CLAUDE.md: 5KB
 
 ---
 
-**版本**: v5.1 (Context Cleanup)
-**更新**: 2026-02-09
-**大小**: ~5KB
-**改进**: 删除 16 个重复文件，移除无效 Delegation 系统，Remotion 规则移至项目级
+**版本**: v5.2 (Capability Evolution Integration)
+**更新**: 2026-02-22
+**大小**: ~5.5KB
+**改进**:
+- 集成能力进化模式（每次对话自动激活）
+- 新增 `rules/core/capability-evolution.md`
+- 自动识别可复用模式并内生化到决策层
 
-**升级自**: v5.0 (2026-02-05)
+**升级自**: v5.1 (2026-02-09)
