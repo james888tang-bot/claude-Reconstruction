@@ -11,8 +11,12 @@
     "lint": "prettier --check \"**/*.{md,json,js}\"",
     "format": "prettier --write \"**/*.{md,json,js}\""
   },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
   "devDependencies": {
-    "prettier": "^3.2.0"
+    "prettier": "3.2.5"
   },
   "keywords": [
     "claude-code",
