@@ -61,7 +61,12 @@ const expectedHooks = {
   ],
   SessionStart: [
     { name: 'learn-patterns.sh' },
+    { name: 'vibecraft-hook.js', optional: true },
+  ],
+  SessionEnd: [
     { name: 'session-summary.sh' },
+    { name: 'learn-patterns.sh' },
+    { name: 'vibecraft-hook.js', optional: true },
   ],
 };
 
@@ -78,11 +83,26 @@ for (const hookType of hookTypes) {
   console.log(`${BLUE}  ${hookType}:${NC}`);
 
   for (const expectedHook of expected) {
+    // Handle nested hook structure: { matcher: "...", hooks: [{command: "..."}] }
     const found = Array.isArray(configuredHooks)
-      ? configuredHooks.some(h =>
-          (typeof h === 'string' && h.includes(expectedHook.name)) ||
-          (typeof h === 'object' && h.command && h.command.includes(expectedHook.name))
-        )
+      ? configuredHooks.some(h => {
+          if (typeof h === 'string') {
+            return h.includes(expectedHook.name);
+          }
+          if (typeof h === 'object') {
+            // Direct command
+            if (h.command && h.command.includes(expectedHook.name)) {
+              return true;
+            }
+            // Nested hooks array
+            if (Array.isArray(h.hooks)) {
+              return h.hooks.some(nestedHook =>
+                nestedHook.command && nestedHook.command.includes(expectedHook.name)
+              );
+            }
+          }
+          return false;
+        })
       : false;
 
     if (found) {
