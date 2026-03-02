@@ -1,7 +1,9 @@
 # 工程化工作流规则
 
-> **来源**: Claude Code Insights 报告分析（2025-12-26 至 2026-02-09）
+> **来源**: Claude Code Insights 报告分析（2025-12-26 至 2026-03-02）
 > **原则**: 验证闭环 → 结构化思维 → 数据一致性
+> **相关**: `testing.md`(TDD快速参考), `coding.md`(代码风格), `security.md`(安全检查)
+> **记忆**: Detailed patterns → `memory/engineering-patterns.md`
 
 ---
 
@@ -207,7 +209,9 @@ COMMIT;
 
 ---
 
-**版本**: v1.1
+**版本**: v1.2
 **来源**: Claude Code Insights 报告
-**更新**: 2026-02-09 (新增 3D 可视化、大规模数据处理工作流)
+**更新**: 2026-03-02 (添加交叉引用, 收束工程化内容)
+**上次内容更新**: 2026-02-09 (新增 3D 可视化、大规模数据处理工作流)
 **状态**: Active
+**记忆同步**: `memory/engineering-patterns.md`

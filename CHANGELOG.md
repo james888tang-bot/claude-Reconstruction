@@ -7,6 +7,43 @@
 
 ---
 
+## [5.3.0] - 2026-03-02
+
+### 🎯 本次发布重点
+
+#### 记忆系统 (新增)
+1. **持久化记忆** - 创建 `memory/` 目录，MEMORY.md 每次对话自动加载
+2. **专题记忆文件** - engineering-patterns.md, project-contexts.md, tools-and-services.md
+3. **跨会话记忆** - 修复"记忆丢失"bug，确保关键信息跨对话持久化
+
+#### 工程化内容收束
+1. **EvoMap规则合并** - 4文件(1609行) → 2文件(562行)，减少65%冗余
+2. **Domain规则精简** - testing.md/git.md 去重，添加交叉引用
+3. **engineering-workflows v1.2** - 添加记忆同步标记和交叉引用
+4. **清理嵌套目录** - 删除 `.claude/.claude/` 重复内容
+
+### ✨ 新增文件
+- `memory/MEMORY.md` - 持久化记忆Hub（<200行，自动加载）
+- `memory/engineering-patterns.md` - 工程模式详细记录
+- `memory/project-contexts.md` - 项目状态追踪
+- `memory/tools-and-services.md` - 工具与服务配置
+- `rules/evomap/evomap-guide.md` - EvoMap统一指南（合并3文件）
+- `rules/evomap/evomap-content-guidelines.md` - Capsule内容优化规则
+
+### 🔄 更新文件
+- `rules/domain/testing.md` - 精简为指针文件，指向engineering-workflows.md
+- `rules/domain/git.md` - 去除重复TDD/agent内容
+- `rules/domain/engineering-workflows.md` - v1.2，添加交叉引用
+
+### 📊 Context优化
+```
+Before: EvoMap 40KB + Domain ~5KB + Memory 0KB = ~45KB
+After:  EvoMap 13KB + Domain ~4KB + Memory 13KB = ~30KB
+净节省: ~15KB，同时新增持久化记忆能力
+```
+
+---
+
 ## [5.2.0] - 2026-02-22
 
 ### 🎯 本次发布重点

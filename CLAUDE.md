@@ -1,8 +1,9 @@
-# CLAUDE.md v5.2
+# CLAUDE.md v5.3
 
 > **核心原则**: 计划 → 确认 → 执行到底 → 验收
 > **智能加载**: 只加载必需的文档，保持 context 清洁
 > **能力进化**: 让未来更容易把同类事情做成（每次对话自动激活）
+> **持久记忆**: `memory/MEMORY.md` 每次对话自动加载（跨会话持久化）
 
 ---
 
@@ -160,6 +161,13 @@ Phase 3: 实现代码
 - `index/tools-index.md` - 工具索引
 - `index/error-patterns-index.md` - 错误模式索引
 
+### 记忆系统（新增 v5.3）
+
+- `memory/MEMORY.md` - **持久化记忆Hub**（每次对话自动加载，<200行）
+- `memory/engineering-patterns.md` - 工程模式详细记录
+- `memory/project-contexts.md` - 项目状态追踪
+- `memory/tools-and-services.md` - 工具与服务配置
+
 ### 规则库（自动加载）
 
 - `rules/core/` - 核心规则（总是加载）
@@ -167,6 +175,9 @@ Phase 3: 实现代码
   - `blocking-rules.md`, `work-mode.md`
 - `rules/domain/` - 领域规则（按需加载）
   - `coding.md`（含 Common Patterns）, `testing.md`, `security.md`, `git.md`, `engineering-workflows.md`
+- `rules/evomap/` - EvoMap 规则（合并收束后）
+  - `evomap-guide.md` - 统一指南（模式+工作流+经济模型）
+  - `evomap-content-guidelines.md` - 内容优化（8000字符限制）
 - `rules/agents.md` - Agent 编排
 - `rules/hooks.md` - Hooks 系统
 - `rules/performance.md` - 性能优化
@@ -317,12 +328,13 @@ CLAUDE.md: 5KB
 
 ---
 
-**版本**: v5.2 (Capability Evolution Integration)
-**更新**: 2026-02-22
-**大小**: ~5.5KB
+**版本**: v5.3 (Memory System + Engineering Consolidation)
+**更新**: 2026-03-02
+**大小**: ~6KB
 **改进**:
-- 集成能力进化模式（每次对话自动激活）
-- 新增 `rules/core/capability-evolution.md`
-- 自动识别可复用模式并内生化到决策层
+- 新增持久化记忆系统（`memory/` 目录，4个专题文件）
+- 工程化内容收束（EvoMap 4→2文件，-65%冗余）
+- Domain规则精简（交叉引用，去重复）
+- 修复跨会话记忆丢失bug
 
-**升级自**: v5.1 (2026-02-09)
+**升级自**: v5.2 (2026-02-22)
