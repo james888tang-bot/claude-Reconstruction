@@ -228,7 +228,7 @@ On-demand guides loaded by the Context Manager. Located in `capabilities/`.
 | ------------------ | ------------------------------------- | ---------------------------------- |
 | Browser automation | `browser-automation-decision-tree.md` | "playwright", "scrape", "automate" |
 | MCP servers        | `mcp-servers.md`                      | "MCP", "bytebase", "honeycomb"     |
-| Skills catalog     | `skills-guide.md`                     | "skill", "/commit", "/write-tests" |
+| SQL workflow       | `capabilities/sql-workflow.md`        | Bytebase MCP reference + Chart MCP guidance |
 | Remotion templates | `REMOTION_TEMPLATES_LIBRARY.md`       | "video", "Remotion", "animation"   |
 | Marketing skills   | `MARKETING_SKILLS_GUIDE.md`           | "marketing", "SEO", "content"      |
 | UI/UX design       | `design/DESIGN_MASTER_PERSONA.md`     | "design", "UI", "interface"        |
