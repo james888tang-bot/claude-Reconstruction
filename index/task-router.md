@@ -95,12 +95,12 @@
 ├─ 查询数据库
 │  ├─ MySQL → MCP: bytebase
 │  ├─ PostgreSQL → 直接 SQL
-│  └─ 复杂查询 → capabilities/sql-patterns.md
+│  └─ 复杂查询 → capabilities/sql-workflow.md
 │
 ├─ 生成图表
 │  ├─ 简单图表 → MCP: chart
 │  ├─ Remotion 动画图表 → video-creation
-│  └─ 数据可视化最佳实践 → capabilities/data-viz-guide.md
+│  └─ 数据可视化最佳实践 → capabilities/mcp-servers.md
 │
 └─ 监控日志分析
    ├─ Honeycomb → MCP: honeycomb
@@ -176,15 +176,15 @@
 │
 ├─ 测试
 │  ├─ 写测试 → /write-tests
-│  ├─ TDD 工作流 → Skill: tdd-workflows
+│  ├─ TDD 工作流 → Skill: /write-tests
 │  └─ 测试指南 → rules/domain/testing.md
 │
 ├─ 架构设计
 │  → Plugin: backend-development
 │  → 自动激活
 │
-└─ 常见模式
-   → 文档: rules/domain/patterns.md
+└─ 常见工程化流程
+   → 文档: rules/domain/engineering-workflows.md
 ```
 
 ### 相关规则
@@ -238,9 +238,8 @@
 │  → 文档: rules/domain/security.md
 │  → 包含: OWASP Top 10 检查清单
 │
-└─ GPT 专家审计
-   → 使用: GPT Security Analyst
-   → 文档: rules/delegator/
+└─ Agent 编排审查
+   → 使用: rules/agents.md
 ```
 
 ### 安全检查清单
@@ -270,9 +269,7 @@
 
 ### 详细文档
 
-- `rules/delegator/triggers.md` - 触发规则
-- `rules/delegator/delegation-format.md` - 7部分模板
-- `rules/delegator/orchestration.md` - 编排流程
+- `rules/agents.md` - Agent 编排与触发规则
 
 ---
 

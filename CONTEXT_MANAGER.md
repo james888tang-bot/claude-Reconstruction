@@ -82,7 +82,7 @@ load:
   domain: ['rules/domain/coding.md']
   capabilities:
     - 'capabilities/data-analysis-guide.md'
-    - 'capabilities/sql-patterns.md'
+    - 'capabilities/sql-workflow.md'
   estimated_size: 20KB
 ```
 
@@ -291,7 +291,7 @@ capabilities:
 **操作**: 询问用户具体方向
 
 - 前端性能？→ `coding` + `capabilities/frontend-optimization.md`
-- 数据库查询？→ `coding` + `capabilities/sql-patterns.md`
+- 数据库查询？→ `coding` + `capabilities/sql-workflow.md`
 - 服务器配置？→ `coding` + `capabilities/devops-guide.md`
 
 ---

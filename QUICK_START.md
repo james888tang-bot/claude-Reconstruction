@@ -123,7 +123,7 @@ Layer 5: Context Manager    → 决定加载什么
 Layer 4: Workflow Engine     → 如何工作
 Layer 3: Rules Engine        → 遵循什么规则
 Layer 2: Hook Layer          → 质量门控
-Layer 1: Delegation Layer    → 专家路由
+Layer 1: Agent Orchestration Layer → 专家路由
 ```
 
 ### 4️⃣ **能力生态**
@@ -229,6 +229,6 @@ pnpm install:config  # 会自动备份旧配置
 
 ---
 
-**版本**: v5.2.0
+**版本**: v5.3.0
 **更新日期**: 2026-02-22
 **预计阅读时间**: 5 分钟

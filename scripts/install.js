@@ -17,7 +17,7 @@ const CLAUDE_DIR = path.join(HOME_DIR, '.claude');
 
 console.log(`${GREEN}`);
 console.log('╔═══════════════════════════════════════════════════════════════╗');
-console.log('║         Claude Reconstruction v5.0                           ║');
+console.log('║         Claude Reconstruction v5.3                           ║');
 console.log('║         Claude Code Engineering Config (Node.js)             ║');
 console.log('╚═══════════════════════════════════════════════════════════════╝');
 console.log(`${NC}`);
@@ -53,7 +53,7 @@ try {
   [
     'rules/core',
     'rules/domain',
-    'rules/delegator',
+    'rules/evomap',
     'index',
     'capabilities',
     'errors',

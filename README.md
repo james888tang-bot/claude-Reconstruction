@@ -3,7 +3,7 @@
 A layered engineering system for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Manages context intelligently so Claude uses 20% of its context window instead of 60%, and behaves like a senior engineer instead of a chatbot.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-5.2.0-blue.svg)](https://github.com/Arxchibobo/claude-Reconstruction)
+[![Version](https://img.shields.io/badge/version-5.3.0-blue.svg)](https://github.com/Arxchibobo/claude-Reconstruction)
 
 ## Install
 
@@ -61,7 +61,7 @@ The system is built as 5 layers that stack on top of each other. Each layer inte
                     ┌──────────────▼──────────────┐
           Layer 3   │      Rules Engine             │  What rules to follow?
                     │   (rules/domain/*.md)          │  coding, testing, security, git
-                    │   (rules/coding-style.md)      │  immutability, file organization
+                    │   (rules/domain/coding.md)      │  immutability, file organization
                     └──────────────┬──────────────┘
                                    │
                     ┌──────────────▼──────────────┐
@@ -70,8 +70,8 @@ The system is built as 5 layers that stack on top of each other. Each layer inte
                     └──────────────┬──────────────┘
                                    │
                     ┌──────────────▼──────────────┐
-          Layer 1   │      Delegation Layer         │  Route to specialists
-                    │   (rules/delegator/*.md)       │  Architect / Reviewer / Security
+          Layer 1   │      Agent Orchestration Layer │  Route to specialists
+                    │   (rules/agents.md)            │  Planner / Reviewer / Security
                     │   (rules/agents.md)            │  Sub-agent orchestration
                     └──────────────┬──────────────┘
                                    │
@@ -129,13 +129,12 @@ Domain-specific rules that govern code quality. Located in `rules/` and `rules/d
 
 | Module           | File                              | What It Enforces                                            |
 | ---------------- | --------------------------------- | ----------------------------------------------------------- |
-| **Coding Style** | `coding-style.md`                 | Immutability-first, small files (<800 lines), no mutation   |
-| **Testing**      | `testing.md`                      | TDD (RED→GREEN→REFACTOR), 80% coverage minimum              |
-| **Security**     | `security.md`                     | OWASP checks, no hardcoded secrets, input validation        |
-| **Git**          | `git-workflow.md`                 | Conventional commits, PR workflow, branch strategy          |
-| **Patterns**     | `patterns.md`                     | API response format, repository pattern, custom hooks       |
-| **Performance**  | `performance.md`                  | Model selection (Haiku/Sonnet/Opus), context management     |
-| **Engineering**  | `domain/engineering-workflows.md` | UI verification loop, TDD full cycle, DB migration protocol |
+| **Coding Style** | `rules/domain/coding.md`          | Immutability-first, small files (<800 lines), no mutation   |
+| **Testing**      | `rules/domain/testing.md`         | TDD (RED→GREEN→REFACTOR), 80% coverage minimum              |
+| **Security**     | `rules/domain/security.md`        | OWASP checks, no hardcoded secrets, input validation        |
+| **Git**          | `rules/domain/git.md`             | Conventional commits, PR workflow, branch strategy          |
+| **Performance**  | `rules/performance.md`            | Model selection (Haiku/Sonnet/Opus), context management     |
+| **Engineering**  | `rules/domain/engineering-workflows.md` | UI verification loop, TDD full cycle, DB migration protocol |
 
 ### Layer 2: Hook Layer
 
@@ -175,9 +174,9 @@ Hooks intercept Claude's tool calls at 3 points. Defined in `rules/hooks.md`, co
 
 - Console.log audit — scans all modified files for leftover `console.log`
 
-### Layer 1: Delegation Layer
+### Layer 1: Agent Orchestration Layer
 
-Routes complex problems to specialized experts. Located in `rules/delegator/` and `rules/agents.md`.
+Routes complex problems to specialized experts. Located in `rules/agents.md`.
 
 **Expert delegation** (via GPT/Codex MCP):
 
@@ -259,19 +258,19 @@ Step 2 — Workflow Engine (Layer 4)
   → Show plan → wait for confirmation
 
 Step 3 — Rules Engine (Layer 3)
-  → coding-style.md: immutable patterns, small functions
-  → security.md: bcrypt for passwords, no hardcoded secrets, input validation
-  → testing.md: TDD cycle, 80% coverage
+  → rules/domain/coding.md: immutable patterns, small functions
+  → rules/domain/security.md: bcrypt for passwords, no hardcoded secrets, input validation
+  → rules/domain/testing.md: TDD cycle, 80% coverage
 
 Step 4 — Hook Layer (Layer 2)
   → PreToolUse: validate before each edit
   → PostToolUse: Prettier formats, tsc checks types, console.log flagged
   → Stop: final console.log audit
 
-Step 5 — Delegation Layer (Layer 1)
+Step 5 — Agent Orchestration Layer (Layer 1)
   → Auto-trigger: code-reviewer agent after implementation
   → Auto-trigger: security-reviewer for auth code
-  → If architecture unclear: delegate to Architect expert
+  → If architecture unclear: delegate to architect agent
 ```
 
 ---

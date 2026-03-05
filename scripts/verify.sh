@@ -13,7 +13,7 @@ ERRORS=0
 
 echo -e "${GREEN}"
 echo "╔═══════════════════════════════════════════════════════════════╗"
-echo "║         Claude Reconstruction v5.0 - Verify                  ║"
+echo "║         Claude Reconstruction v5.3 - Verify                  ║"
 echo "╚═══════════════════════════════════════════════════════════════╝"
 echo -e "${NC}"
 
@@ -54,11 +54,11 @@ echo -e "${YELLOW}[2/4] Rules engine...${NC}"
 verify_dir "$CLAUDE_DIR/rules" "rules/"
 verify_dir "$CLAUDE_DIR/rules/core" "rules/core/"
 verify_dir "$CLAUDE_DIR/rules/domain" "rules/domain/"
-verify_dir "$CLAUDE_DIR/rules/delegator" "rules/delegator/"
+verify_dir "$CLAUDE_DIR/rules/evomap" "rules/evomap/"
 verify_file "$CLAUDE_DIR/rules/core/work-mode.md" "core/work-mode.md"
 verify_file "$CLAUDE_DIR/rules/core/blocking-rules.md" "core/blocking-rules.md"
-verify_file "$CLAUDE_DIR/rules/coding-style.md" "coding-style.md"
-verify_file "$CLAUDE_DIR/rules/security.md" "security.md"
+verify_file "$CLAUDE_DIR/rules/domain/coding.md" "domain/coding.md"
+verify_file "$CLAUDE_DIR/rules/evomap/evomap-guide.md" "evomap/evomap-guide.md"
 echo ""
 
 echo -e "${YELLOW}[3/4] Index & capabilities...${NC}"
@@ -81,11 +81,11 @@ if [ $ERRORS -eq 0 ]; then
     echo -e "${GREEN}✓ All checks passed!${NC}"
     echo ""
     echo -e "${YELLOW}Config location:${NC} $CLAUDE_DIR"
-    echo -e "${YELLOW}Version:${NC} 5.0 (Context Engineering)"
+    echo -e "${YELLOW}Version:${NC} 5.3 (Context Engineering)"
     exit 0
 else
     echo -e "${RED}✗ $ERRORS check(s) failed.${NC}"
     echo ""
-    echo "Run: ./scripts/install.sh"
+    echo "Run: pnpm install:config"
     exit 1
 fi

@@ -35,8 +35,8 @@
 
 | 能力         | 工具                 | 文档                             | 场景         |
 | ------------ | -------------------- | -------------------------------- | ------------ |
-| **SQL 查询** | bytebase MCP         | `capabilities/sql-patterns.md`   | MySQL 数据库 |
-| **图表生成** | chart MCP            | `capabilities/data-viz-guide.md` | 可视化       |
+| **SQL 查询** | bytebase MCP         | `capabilities/sql-workflow.md`   | MySQL 数据库 |
+| **图表生成** | chart MCP            | `capabilities/mcp-servers.md` | 可视化       |
 | **监控日志** | honeycomb/guance MCP | `capabilities/mcp-servers.md`    | 日志分析     |
 
 **Skills**: 8个数据分析 Skills（Bot毛利率、成本趋势等）
@@ -94,7 +94,7 @@
 | 能力         | 工具                     | 文档                       | 场景         |
 | ------------ | ------------------------ | -------------------------- | ------------ |
 | **安全扫描** | security-scanning Plugin | `rules/domain/security.md` | OWASP Top 10 |
-| **GPT 专家** | Security Analyst         | `rules/delegator/`         | 深度审计     |
+| **Agent 审查** | security-reviewer        | `rules/agents.md`         | 深度审计     |
 
 **检查项**:
 
@@ -107,15 +107,15 @@
 
 ### 🤖 GPT 专家系统
 
-| 专家                 | 专长     | 文档                                 | 触发时机           |
-| -------------------- | -------- | ------------------------------------ | ------------------ |
-| **Architect**        | 系统设计 | `rules/delegator/model-selection.md` | 架构决策           |
-| **Plan Reviewer**    | 计划验证 | 同上                                 | "review this plan" |
-| **Scope Analyst**    | 需求分析 | 同上                                 | 模糊需求           |
-| **Code Reviewer**    | 代码审查 | 同上                                 | 完成功能后         |
-| **Security Analyst** | 安全审计 | 同上                                 | 安全问题           |
+| 专家                 | 专长     | 文档              | 触发时机           |
+| -------------------- | -------- | ----------------- | ------------------ |
+| **architect**        | 系统设计 | `rules/agents.md` | 架构决策           |
+| **planner**          | 计划验证 | 同上              | 复杂任务前置规划   |
+| **tdd-guide**        | TDD指导  | 同上              | 新功能/bug修复     |
+| **code-reviewer**    | 代码审查 | 同上              | 完成功能后         |
+| **security-reviewer**| 安全审计 | 同上              | 安全相关改动       |
 
-**详细文档**: `rules/delegator/`
+**详细文档**: `rules/agents.md`
 
 ---
 
@@ -227,9 +227,9 @@
 
 | 场景       | 推荐能力      | 文档                |
 | ---------- | ------------- | ------------------- |
-| 数据库查询 | bytebase MCP  | `sql-patterns.md`   |
+| 数据库查询 | bytebase MCP  | `sql-workflow.md`   |
 | 日志分析   | honeycomb MCP | `mcp-servers.md`    |
-| 生成图表   | chart MCP     | `data-viz-guide.md` |
+| 生成图表   | chart MCP     | `mcp-servers.md` |
 
 ### 我想要设计...
 
@@ -255,7 +255,7 @@ capabilities/
 ├── skills-guide.md
 ├── mcp-servers.md
 ├── data-analysis-guide.md
-├── sql-patterns.md
+├── sql-workflow.md
 └── ...
 ```
 
