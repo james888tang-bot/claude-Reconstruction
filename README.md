@@ -1,40 +1,83 @@
 # Claude Code Engineering Config
 
-A layered engineering system for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Manages context intelligently so Claude uses 20% of its context window instead of 60%, and behaves like a senior engineer instead of a chatbot.
+A layered engineering system for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Manages context intelligently so Claude uses ~20% of its context window instead of 60%, and behaves like a senior engineer instead of a chatbot.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-5.3.0-blue.svg)](https://github.com/Arxchibobo/claude-Reconstruction)
+[![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org)
+
+---
+
+## Overview
+
+Claude Code loads everything in `~/.claude/` into context by default. A typical config eats 60% of the context window before any work starts.
+
+This system solves that with a 5-layer architecture that:
+
+- **Loads only relevant docs** per task type (35–55KB instead of 120KB)
+- **Enforces a 4-step workflow** — Plan → Confirm → Execute → Deliver
+- **Gates quality automatically** via hooks (Prettier, TypeScript checks, security audits)
+- **Routes to specialist agents** for architecture, review, and security problems
+- **Persists memory across sessions** so patterns and context survive conversation resets
+
+---
+
+## Features
+
+- **Smart context loading** — keyword-matched document loading keeps context under 28%
+- **Autonomous execution** — Claude decides independently on 95% of issues; only 4 cases require user input
+- **Hook layer** — PreToolUse / PostToolUse / Stop hooks enforce formatting, typing, and clean-up automatically
+- **15-pattern error library** — documented root causes and fixes for the most common AI-assisted dev mistakes
+- **8 specialist agents** — Planner, Architect, Code Reviewer, Security Analyst, Scope Analyst, and more
+- **Persistent memory system** — cross-session state via `memory/MEMORY.md` (auto-loaded, <200 lines)
+- **Capability evolution** — auto-learns reusable patterns each conversation and improves without reporting overhead
+- **81 skills catalog** — browser automation, video creation, SQL, UI/UX design, marketing content, and more
+
+---
 
 ## Install
 
-Clone the repo, then tell Claude to run the install script:
-
 ```bash
 git clone https://github.com/Arxchibobo/claude-Reconstruction.git
-cd claude-reconstruction
+cd claude-Reconstruction
 pnpm install
 pnpm install:config
 ```
 
-Or if you are in the monorepo root:
+Or from a monorepo root:
 
 ```bash
 pnpm --filter @arxchibobo/claude-reconstruction install:config
 ```
 
-To verify the installation:
+Verify the installation:
 
 ```bash
 pnpm verify
 ```
 
-Legacy Bash scripts are also available:
+**Windows**: Node.js scripts are recommended over Bash. `pnpm install:config` handles backup, directory creation, and file copying on all platforms.
+
+**Legacy Bash** (Linux/macOS):
 
 ```bash
 ./scripts/install.sh
 ```
 
-Claude will handle backup, directory creation, and file copying. On Windows, the Node.js scripts (`pnpm install:config`) are recommended.
+Files are installed to `~/.claude/`.
+
+---
+
+## Requirements
+
+| Requirement | Version   |
+| ----------- | --------- |
+| Node.js     | >= 18.0.0 |
+| pnpm        | >= 8.0.0  |
+
+**Platforms**: Windows, macOS, Linux
+
+**Dev dependency**: Prettier 3.2.5 (formatting only)
 
 ---
 
@@ -61,7 +104,6 @@ The system is built as 5 layers that stack on top of each other. Each layer inte
                     ┌──────────────▼──────────────┐
           Layer 3   │      Rules Engine             │  What rules to follow?
                     │   (rules/domain/*.md)          │  coding, testing, security, git
-                    │   (rules/domain/coding.md)      │  immutability, file organization
                     └──────────────┬──────────────┘
                                    │
                     ┌──────────────▼──────────────┐
@@ -70,9 +112,8 @@ The system is built as 5 layers that stack on top of each other. Each layer inte
                     └──────────────┬──────────────┘
                                    │
                     ┌──────────────▼──────────────┐
-          Layer 1   │      Agent Orchestration Layer │  Route to specialists
+          Layer 1   │      Agent Orchestration      │  Route to specialists
                     │   (rules/agents.md)            │  Planner / Reviewer / Security
-                    │   (rules/agents.md)            │  Sub-agent orchestration
                     └──────────────┬──────────────┘
                                    │
                     ┌──────────────▼──────────────┐
@@ -117,7 +158,7 @@ Defines **how Claude works** on any task. Located in `rules/core/`.
 **Blocking rules** — Claude only asks questions in 4 cases:
 
 1. Missing credentials (API keys, passwords)
-2. Mutually exclusive approaches (can't infer)
+2. Mutually exclusive approaches (can't infer from codebase)
 3. Contradictory requirements
 4. Irreversible high-risk operations
 
@@ -125,60 +166,38 @@ Everything else is decided autonomously: file names, code style, dependency vers
 
 ### Layer 3: Rules Engine
 
-Domain-specific rules that govern code quality. Located in `rules/` and `rules/domain/`.
+Domain-specific rules that govern code quality. Located in `rules/domain/`.
 
-| Module           | File                              | What It Enforces                                            |
-| ---------------- | --------------------------------- | ----------------------------------------------------------- |
-| **Coding Style** | `rules/domain/coding.md`          | Immutability-first, small files (<800 lines), no mutation   |
-| **Testing**      | `rules/domain/testing.md`         | TDD (RED→GREEN→REFACTOR), 80% coverage minimum              |
-| **Security**     | `rules/domain/security.md`        | OWASP checks, no hardcoded secrets, input validation        |
-| **Git**          | `rules/domain/git.md`             | Conventional commits, PR workflow, branch strategy          |
-| **Performance**  | `rules/performance.md`            | Model selection (Haiku/Sonnet/Opus), context management     |
-| **Engineering**  | `rules/domain/engineering-workflows.md` | UI verification loop, TDD full cycle, DB migration protocol |
+| Module           | File                                    | What It Enforces                                            |
+| ---------------- | --------------------------------------- | ----------------------------------------------------------- |
+| **Coding Style** | `rules/domain/coding.md`               | Immutability-first, small files (<800 lines), no mutation   |
+| **Testing**      | `rules/domain/testing.md`              | TDD (RED→GREEN→REFACTOR), 80% coverage minimum              |
+| **Security**     | `rules/domain/security.md`             | OWASP checks, no hardcoded secrets, input validation        |
+| **Git**          | `rules/domain/git.md`                  | Conventional commits, PR workflow, branch strategy          |
+| **Performance**  | `rules/performance.md`                 | Model selection (Haiku/Sonnet/Opus), context management     |
+| **Engineering**  | `rules/domain/engineering-workflows.md`| UI verification loop, TDD full cycle, DB migration protocol |
 
 ### Layer 2: Hook Layer
 
 Hooks intercept Claude's tool calls at 3 points. Defined in `rules/hooks.md`, configured in `~/.claude/settings.json`.
 
-```
-┌─────────────────────────────────────────────────────┐
-│                    Hook Lifecycle                     │
-│                                                       │
-│  ┌─────────────┐   ┌──────────┐   ┌──────────────┐  │
-│  │ PreToolUse   │──▶│ Tool Run │──▶│ PostToolUse  │  │
-│  └─────────────┘   └──────────┘   └──────────────┘  │
-│        │                                     │        │
-│   Validate &                            Auto-fix &    │
-│   Gate before                           Check after   │
-│                                                       │
-│  ┌──────────────────────────────────────────────┐    │
-│  │ Stop Hook — runs when session ends            │    │
-│  └──────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────┘
-```
-
 **PreToolUse** (before tool executes):
-
 - Long command reminder — suggests tmux for `npm`, `cargo`, `pnpm` etc.
 - Git push review gate — opens editor for review before push
-- Doc blocker — prevents creating unnecessary .md/.txt files
+- Doc blocker — prevents creating unnecessary `.md`/`.txt` files
 
 **PostToolUse** (after tool executes):
-
 - Prettier auto-format — formats JS/TS files after every edit
-- TypeScript check — runs `tsc` after editing .ts/.tsx files
+- TypeScript check — runs `tsc` after editing `.ts`/`.tsx` files
 - Console.log warning — flags debug statements in edited files
 - PR logger — logs PR URL and CI status after PR creation
 
 **Stop** (session end):
-
 - Console.log audit — scans all modified files for leftover `console.log`
 
 ### Layer 1: Agent Orchestration Layer
 
 Routes complex problems to specialized experts. Located in `rules/agents.md`.
-
-**Expert delegation** (via GPT/Codex MCP):
 
 | Expert           | Triggers On                                              | Does                                      |
 | ---------------- | -------------------------------------------------------- | ----------------------------------------- |
@@ -188,18 +207,7 @@ Routes complex problems to specialized experts. Located in `rules/agents.md`.
 | Security Analyst | Auth changes, "is this secure", new endpoints            | Vulnerability assessment, OWASP           |
 | Scope Analyst    | Vague requirements, "what am I missing"                  | Ambiguity detection, risk surface         |
 
-**Sub-agent orchestration**:
-
-| Agent                | Auto-triggers When                    |
-| -------------------- | ------------------------------------- |
-| planner              | Complex feature request               |
-| code-reviewer        | Code just written/modified            |
-| tdd-guide            | New feature or bug fix                |
-| architect            | Architectural decision needed         |
-| build-error-resolver | Build fails                           |
-| security-reviewer    | Before commits with sensitive changes |
-
-Agents run in parallel when tasks are independent.
+Sub-agents run in parallel when tasks are independent.
 
 ---
 
@@ -227,10 +235,21 @@ On-demand guides loaded by the Context Manager. Located in `capabilities/`.
 | ------------------ | ------------------------------------- | ---------------------------------- |
 | Browser automation | `browser-automation-decision-tree.md` | "playwright", "scrape", "automate" |
 | MCP servers        | `mcp-servers.md`                      | "MCP", "bytebase", "honeycomb"     |
-| SQL workflow       | `capabilities/sql-workflow.md`        | Bytebase MCP reference + Chart MCP guidance |
+| SQL workflow       | `sql-workflow.md`                     | "SQL", "query", "database"         |
 | Remotion templates | `REMOTION_TEMPLATES_LIBRARY.md`       | "video", "Remotion", "animation"   |
 | Marketing skills   | `MARKETING_SKILLS_GUIDE.md`           | "marketing", "SEO", "content"      |
 | UI/UX design       | `design/DESIGN_MASTER_PERSONA.md`     | "design", "UI", "interface"        |
+
+### Persistent Memory System
+
+New in v5.3. Located in `memory/`.
+
+- `MEMORY.md` — Hub file, auto-loaded every conversation, kept under 200 lines
+- `engineering-patterns.md` — Reusable patterns discovered across sessions
+- `project-contexts.md` — Active project state tracking
+- `tools-and-services.md` — MCP configs and service accounts
+
+The memory system persists user preferences, project context, and learned patterns across conversation resets — without bloating the context window.
 
 ### Index / Router
 
@@ -295,9 +314,29 @@ Step 5 — Agent Orchestration Layer (Layer 1)
 
 ---
 
+## Configuration
+
+After installation, the active config lives in `~/.claude/`. The repo is the source of truth — edit here, then re-run `pnpm install:config` to sync.
+
+Available scripts:
+
+| Script                  | What it does                                          |
+| ----------------------- | ----------------------------------------------------- |
+| `pnpm install:config`   | Copies config to `~/.claude/` with backup             |
+| `pnpm verify`           | Checks all expected files are installed               |
+| `pnpm verify:hooks`     | Validates hook configuration in `settings.json`       |
+| `pnpm format`           | Runs Prettier across all markdown files               |
+| `pnpm lint`             | Lints markdown and config files                       |
+
+---
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Fork → branch → change → PR.
+
+Commit format: `<type>(<scope>): <subject>`
+Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`
+Scopes: `error`, `capability`, `design`, `core`, `workflow`
 
 ## License
 
